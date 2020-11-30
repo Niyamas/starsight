@@ -202,8 +202,6 @@ body {
         "navi-left  navi-right";
     grid-column-gap: 17vw;
 
-    border: 1px solid orange;
-
     &__left {
         grid-area: navi-left;
         display: flex;
