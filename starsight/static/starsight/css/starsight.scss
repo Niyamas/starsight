@@ -1,0 +1,182 @@
+// Media queries for responsive website
+
+@mixin verge($point) {
+
+    @if $point == superlarge {
+        @media only screen and (max-width: 1808px) { @content; }
+    }
+
+    @else if $point == xlarge {
+        @media only screen and (max-width: 1511px) { @content; }
+    }
+
+    @else if $point == large {
+        @media only screen and (max-width: 1300px) { @content; }
+    }
+
+    @else if $point == medium {
+        @media only screen and (max-width: 1100px) { @content; }
+    }
+
+    @else if $point == small {
+        @media only screen and (max-width: 930px) { @content; }
+    }
+
+    @else if $point == mini {
+        @media only screen and (max-width: 795px) { @content; }
+    }
+
+    @else if $point == tiny {
+        @media only screen and (max-width: 730px) { @content; }
+    }
+
+    @else if $point == mobile {
+        @media only screen and (max-width: 530px) { @content; }
+    }
+
+    @else if $point == nano {
+        @media only screen and (max-width: 497px) { @content; }
+    }
+
+    @else if $point == femto {
+        @media only screen and (max-width: 387px) { @content; }
+    }
+
+    @else if $point == desktop_medium {
+        @media only screen and (min-width: 1100px) { @content; }
+    }
+
+    @else if $point == desktop {
+        @media only screen and (min-width: 930px) { @content; }
+    }
+
+    @else if $point == non_mobile {
+        @media only screen and (min-width: 530px) { @content; }
+    }
+}
+
+// Functions
+@function color($color-name) {
+    @return map-get($colors, $color-name)
+};
+
+@function margin($margin-name) {
+    @return map-get($margins, $margin-name)
+};
+
+
+// Variables
+$colors: (
+    background: #f5f5f5,
+    text: #050404,
+);
+
+$margins: (
+    wide: 20vw,
+    slim: 11vw
+);
+
+// Special classes
+.no-select {
+    //https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+}
+
+
+// Imports
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&display=swap');
+
+// Default CSS for blank canvas start
+* {
+    font-family: 'Mukta', sans-serif;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none !important;       // Bootstrap needs !important to remove link underline on hover */
+}
+
+// Apply border-box as default: https://css-tricks.com/international-box-sizing-awareness-day/
+// https://css-tricks.com/box-sizing/
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;    
+    box-sizing: border-box;
+
+    font-size: 16px;                // Default font-size, but specify anyway
+    scroll-behavior: smooth;        // Smooth scroll for anchor links: https://gomakethings.com/how-to-animate-scrolling-to-anchor-links-with-one-line-of-css/
+
+    // For firefox scrollbar styling
+    scrollbar-color: color(scrollbar) color(background);
+    scrollbar-width: thin !important;
+
+    // For other browsers scrollbar styling
+    &::-webkit-scrollbar {
+        width: 0.6rem;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: color(background);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: color(scrollbar);
+    }
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box; 
+    box-sizing: border-box;
+}
+
+// Change blue hyperlink color to its parent color
+a, a:hover {
+    color: inherit;
+}
+
+// Remove extra space below ul element
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: color(background);
+    color: color(text);
+}
+
+// base.html scss
+.header {
+    position: relative;
+    height: 350px;
+
+    &__hero {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    &__starsight {
+        position: relative;
+        z-index: 1;
+        top: 77px;
+        left: 130px;
+
+        font-size: 48px;
+        color: white;
+
+        &__star {
+            font-weight: 700;
+        }
+    }
+}

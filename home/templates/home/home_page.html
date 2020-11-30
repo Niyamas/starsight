@@ -4,18 +4,41 @@
 {% block body_class %}template-homepage{% endblock %}
 
 {% block extra_css %}
-
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
-<link rel="stylesheet" href="{% static 'css/welcome_page.css' %}">
 {% endblock extra_css %}
+
+{% block head_script %}
+
+{% endblock head_script %}
+
+<!-- Preload scripts -->
+<!-- <link rel="preload" as="script" href="{% static 'home/js/external_apis.js' %}"> -->
 
 {% block content %}
 
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
-{% include 'home/welcome_page.html' %}
+<div class="header">
+    <h1 class="header__starsight" href="#">
+        <span class="header__starsight__star">Star</span><span class="header__starsight__sight">Sight</span>
+    </h1>
+
+    <img class="header__hero" src="{% static 'home/images/galaxy-2643089_1920.jpg' %}" alt="Stars in space">
+</div>
+
+
+
+<!-- <div id="apod"></div> -->
+
+
+
 
 {% endblock content %}
+
+
+{% block extra_js %}
+
+<script>
+    let nasaAPIKey = '{{ nasa_api_key }}'
+</script>
+
+<!-- <script defer type="text/javascript" src="{% static 'home/js/external_apis.js' %}"></script> -->
+
+{% endblock extra_js %}
