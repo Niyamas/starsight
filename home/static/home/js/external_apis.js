@@ -17,10 +17,17 @@ class ExternalAPIS {
 
             // Store HTML image for APOD
             let apodHTML = `
-                <h2>Astronomy Picture of the Day</h2>
-                <h3>${apod.title}</h3>
-                <p>${apod.date}</p>
-                <img src="${apod.hdurl}" alt="NASA's Astronomy Picture of the Day (APOD)"></img>
+                <h2 class="apod__banner">
+                    Astronomy Picture of the Day
+                    <span class="apod__date">${apod.date}</span>
+                </h2>
+                <a href="https://apod.nasa.gov/apod/astropix.html" target="_blank">
+                    <img class="apod__img" src="${apod.url}" alt="NASA's Astronomy Picture of the Day (APOD)"></img>
+                </a>
+                <h3>
+                    ${apod.title}
+                    <span class="apod__copyright">by ${apod.copyright}</span>
+                </h3>
                 <p>${apod.explanation}</p>
             `
 

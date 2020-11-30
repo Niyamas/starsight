@@ -45,8 +45,9 @@ html::-webkit-scrollbar-track {
   box-sizing: border-box;
 }
 
-a, a:hover {
-  color: inherit;
+a, a:hover, a:active {
+  color: inherit !important;
+  text-decoration: none !important;
 }
 
 ul {
@@ -78,12 +79,65 @@ body {
   position: relative;
   z-index: 1;
   top: 77px;
-  left: 130px;
+  left: 0;
+  padding-left: 7vw;
   font-size: 48px;
   color: white;
 }
 
 .header__starsight__star {
   font-weight: 700;
+}
+
+.header__navi {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  padding: 0 9.5vw;
+  width: 100%;
+  font-size: 27px;
+  color: white;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+  -ms-grid-columns: 0.6fr 0.4fr;
+      grid-template-columns: 0.6fr 0.4fr;
+      grid-template-areas: "navi-left  navi-right";
+  grid-column-gap: 17vw;
+  border: 1px solid orange;
+}
+
+.header__navi__left {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: navi-left;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.header__navi__right {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: navi-right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 /*# sourceMappingURL=starsight.css.map */

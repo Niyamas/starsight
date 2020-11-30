@@ -4,28 +4,49 @@
 {% block body_class %}template-homepage{% endblock %}
 
 {% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+
 {% endblock extra_css %}
 
-{% block head_script %}
-
-{% endblock head_script %}
+{% block head_js %}
+{% endblock head_js %}
 
 <!-- Preload scripts -->
 <link rel="preload" as="script" href="{% static 'home/js/external_apis.js' %}">
 
 {% block content %}
 
-<div class="header">
-    <h1 class="header__starsight" href="#">
-        <span class="header__starsight__star">Star</span><span class="header__starsight__sight">Sight</span>
-    </h1>
 
-    <img class="header__hero" src="{% static 'home/images/galaxy-2643089.jpg' %}" alt="Stars in space">
+
+<!-- <div id="apod"></div> -->
+
+<div class="home-grid">
+    <article class="article article--1">
+        <h1>Post 1</h1>
+    </article>
+
+    <div class="home-grid__nested">
+        <article class="article article--2">
+            <h1>Post 2</h1>
+        </article>
+    
+        <article class="article article--3">
+            <h1>Post 3</h1>
+        </article>
+    </div>
+    
+    <div class="home-grid__sidebar">
+        <div id="apod" class="apod"></div>
+    </div>
 </div>
 
 
 
-<div id="apod"></div>
+
+
+
+
 
 
 

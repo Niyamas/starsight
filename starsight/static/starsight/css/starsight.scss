@@ -72,8 +72,8 @@ $colors: (
 );
 
 $margins: (
-    wide: 20vw,
-    slim: 11vw
+    wide: 9.5vw,
+    slim: 7vw
 );
 
 // Special classes
@@ -137,8 +137,9 @@ html {
 }
 
 // Change blue hyperlink color to its parent color
-a, a:hover {
-    color: inherit;
+a, a:hover, a:active {
+    color: inherit !important;
+    text-decoration: none !important;
 }
 
 // Remove extra space below ul element
@@ -170,7 +171,8 @@ body {
         position: relative;
         z-index: 1;
         top: 77px;
-        left: 130px;
+        left: 0;
+        padding-left: margin(slim);
 
         font-size: 48px;
         color: white;
@@ -178,5 +180,41 @@ body {
         &__star {
             font-weight: 700;
         }
+    }
+}
+
+.header__navi {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+
+    padding: 0 margin(wide);
+    width: 100%;    
+
+    font-size: 27px;
+    color: white;
+
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 0.6fr 0.4fr;
+    grid-template-areas:
+        "navi-left  navi-right";
+    grid-column-gap: 17vw;
+
+    border: 1px solid orange;
+
+    &__left {
+        grid-area: navi-left;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    &__right {
+        grid-area: navi-right;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
     }
 }
