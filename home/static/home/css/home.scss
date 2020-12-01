@@ -78,7 +78,9 @@ $margins: (
         margin-bottom: 0;
         line-height: 2.1;
 
-        height: 120px;
+        max-height: 120px;
+
+        //border: 1px solid green;
         overflow-y: hidden;
 
         &__fade {
@@ -87,7 +89,8 @@ $margins: (
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 70px;
+            //height: 70px;
+            height: 60%;
 
             //Works on firefox/safari
             background: linear-gradient(to bottom, rgba(255,255,255,0.001), #fff 70%);
@@ -97,7 +100,7 @@ $margins: (
     &__read-more {
         position: relative;
         z-index: 3;
-        margin: -15px 0;
+        //margin: -15px 0;
 
         width: fit-content;
 
