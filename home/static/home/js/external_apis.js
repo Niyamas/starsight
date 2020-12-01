@@ -4,58 +4,60 @@ class ExternalAPIS {
 
     }
 
-    static async getAPODs() {
+    static addReadMoreAnimation() {
         /**
          * 
          */
-        let url = 'https://api.nasa.gov/planetary/apod?api_key=' + nasaAPIKey
-        await fetch(url)
-        .then( (response) => response.json() )
-        .then( (apod) => {
 
-            console.log(`apod data structure = ${apod}`)
+        const readMore = document.getElementById('readMore')
+        const descriptionFade = document.getElementById('descriptionFade')
+        const description = document.getElementById('description')
 
-            // Store HTML image for APOD
-            let apodHTML = `
-                <h2 class="apod__banner">
-                    Astronomy Picture of the Day
-                    <span class="apod__date">${apod.date}</span>
-                </h2>
-                <a href="https://apod.nasa.gov/apod/astropix.html" target="_blank">
-                    <img class="apod__img" src="${apod.url}" alt="NASA's Astronomy Picture of the Day (APOD)"></img>
-                </a>
-                <h3>
-                    ${apod.title}
-                    <span class="apod__copyright">by ${apod.copyright}</span>
-                </h3>
-                <p class="apod__description">
-                    ${apod.explanation}
-                    <a class="apod__description__fade" href="#"></a>
-                </p>
-                <div class="apod__read-more">Read more</div>
-            `
+        readMore.addEventListener('click', () => {
 
-            // Place apodHTML in innerHTML of div with ID='apod'
-            document.getElementById('apod').innerHTML = apodHTML
+            console.log('read more clicked!')
 
+            // Toggle between "Read more" and "Show less" when clicked.
+            if (readMore.innerHTML === 'Read more') {
+                
+                readMore.innerHTML = 'Show less'
+            }
+            else {
+
+                readMore.innerHTML = 'Read more'
+            }
+
+            description.classList.toggle('apod__description--animation')
+            descriptionFade.classList.toggle('apod__description__fade--animation')
         })
-    }
 
-    static APODError(response) {
-        /**
-         * 
-         */
-        if (!response.ok) {
-            throw Error(response.statusText)
-        }
-        return response;
-    }
+        descriptionFade.addEventListener('click', () => {
 
+            console.log('fade clicked!')
+
+            // Toggle between "Read more" and "Show less" when clicked.
+            if (readMore.innerHTML === 'Read more') {
+                
+                readMore.innerHTML = 'Show less'
+            }
+            else {
+
+                readMore.innerHTML = 'Read more'
+            }
+
+            description.classList.toggle('apod__description--animation')
+            descriptionFade.classList.toggle('apod__description__fade--animation')
+        })
+
+    }
 
     static async getAPOD() {
         /**
-         * 
+         * Fetchs NASA's Astronomy Picture of the Day
+         * and its attributes. Outputs to the home page
+         * sidebar.
          */
+
         let url = 'https://api.nasa.gov/planetary/apod?api_key=' + nasaAPIKey
         await fetch(url)
         .then( (response) => {
@@ -101,28 +103,55 @@ class ExternalAPIS {
             console.log(`apod data structure = ${apod}`)
 
             // Store HTML image for APOD
-            let apodHTML = `
-                <h2 class="apod__banner">
-                    Astronomy Picture of the Day
-                    <span class="apod__date">${apod.date}</span>
-                </h2>
-                <a href="https://apod.nasa.gov/apod/astropix.html" target="_blank">
-                    <img class="apod__img" src="${apod.url}" alt="NASA's Astronomy Picture of the Day (APOD)"></img>
-                </a>
-                <h3>
-                    ${apod.title}
-                    <span class="apod__copyright">by ${apod.copyright}</span>
-                </h3>
-                <p class="apod__description">
-                    ${apod.explanation}
-                    <a class="apod__description__fade" href="#"></a>
-                </p>
-                <div class="apod__read-more">Read more</div>
-            `
+            let apodHTML
+
+            // If APOD description is > 276 characters, add blur and read more button
+            if (apod.explanation.length > 276) {
+
+                apodHTML = `
+                    <h2 class="apod__banner">
+                        Astronomy Picture of the Day
+                        <span class="apod__date">${apod.date}</span>
+                    </h2>
+                    <a href="https://apod.nasa.gov/apod/astropix.html" target="_blank">
+                        <img class="apod__img" src="${apod.url}" alt="NASA's Astronomy Picture of the Day (APOD)"></img>
+                    </a>
+                    <h3>
+                        ${apod.title}
+                        <span class="apod__copyright">by ${apod.copyright}</span>
+                    </h3>
+                    <p id="description" class="apod__description">
+                        ${apod.explanation}
+                        <a id="descriptionFade" class="apod__description__fade" href="#"></a>
+                    </p>
+                    <div id="readMore" class="apod__read-more">Read more</div>
+                `
+            }
+            else {
+
+                apodHTML = `
+                    <h2 class="apod__banner">
+                        Astronomy Picture of the Day
+                        <span class="apod__date">${apod.date}</span>
+                    </h2>
+                    <a href="https://apod.nasa.gov/apod/astropix.html" target="_blank">
+                        <img class="apod__img" src="${apod.url}" alt="NASA's Astronomy Picture of the Day (APOD)"></img>
+                    </a>
+                    <h3>
+                        ${apod.title}
+                        <span class="apod__copyright">by ${apod.copyright}</span>
+                    </h3>
+                    <p class="apod__description">${apod.explanation}</p>
+                `
+            }
+
+
 
             // Place apodHTML in innerHTML of div with ID='apod'
             document.getElementById('apod').innerHTML = apodHTML
 
+            // Add read more event listener on click to expand the APOD description
+            this.addReadMoreAnimation()
         })
     }
 }

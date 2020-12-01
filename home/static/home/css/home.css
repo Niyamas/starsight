@@ -10,6 +10,7 @@
       grid-template-columns: 0.6fr 0.4fr;
       grid-template-areas: "top-post       sidebar" "nested-grid    sidebar";
   grid-row-gap: 3vh;
+  grid-column-gap: 12vw;
 }
 
 .home-grid__nested {
@@ -63,6 +64,14 @@
   line-height: 2.1;
   max-height: 120px;
   overflow-y: hidden;
+  -webkit-transition: max-height 0.17s ease-out;
+  transition: max-height 0.17s ease-out;
+}
+
+.apod__description--animation {
+  max-height: 1000px;
+  -webkit-transition: max-height 0.3s ease-in-out;
+  transition: max-height 0.3s ease-in-out;
 }
 
 .apod__description__fade {
@@ -74,6 +83,15 @@
   height: 60%;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.001)), color-stop(70%, #fff));
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0.001), #fff 70%);
+  -webkit-transition: opacity 0.17s ease-in-out;
+  transition: opacity 0.17s ease-in-out;
+}
+
+.apod__description__fade--animation {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.3s ease-in-out, visibility 0s 0.31s ease-in-out;
+  transition: opacity 0.3s ease-in-out, visibility 0s 0.31s ease-in-out;
 }
 
 .apod__read-more {
