@@ -13,15 +13,7 @@ class HomePage(Page):
     templates = 'home/home_page.html'
     max_count = 1                       # Max number of home pages will be 1
 
-    """ hero_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null = True,
-        blank = False,
-        on_delete = models.SET_NULL,
-        related_name = "+"
-    )
-
-    content_panels = Page.content_panels + [
+    """ content_panels = Page.content_panels + [
         ImageChooserPanel('hero_image')
     ] """
 
