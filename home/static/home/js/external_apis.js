@@ -6,7 +6,10 @@ class ExternalAPIS {
 
     static addReadMoreAnimation() {
         /**
-         * 
+         * Adds click event listeners to the APOD
+         * read more button and the APOD white text fade.
+         * On click, will animate the description box to
+         * open.
          */
 
         const readMore = document.getElementById('readMore')

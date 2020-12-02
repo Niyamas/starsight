@@ -1,4 +1,5 @@
 {% load static wagtailuserbar %}
+{% load wagtailimages_tags %}
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -38,10 +39,14 @@
     <body class="{% block body_class %}{% endblock %}">
 
         <div class="header">
-            <img class="header__hero" src="{% static 'home/images/galaxy-2643089.jpg' %}" alt="Stars in space">
+
+            {% image self.hero_image original as hero_img %}
+
+            {% comment %} <img class="header__hero" src="{% static 'home/images/galaxy-2643089.jpg' %}" alt="Stars in space"> {% endcomment %}
+            <img class="header__hero" src="{{ hero_img.url }}" alt="Stars in space">
         
             <h1 class="header__starsight" href="#">
-                <span class="header__starsight__star">Star</span><span class="header__starsight__sight">Sight</span>
+                <span class="header__starsight__star">Star</span><span class="header__starsight__sight">sight</span>
             </h1>
         
             <div class="header__navi">
