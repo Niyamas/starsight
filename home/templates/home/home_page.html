@@ -24,9 +24,7 @@
 {% block content %}
 
 
-
-<!-- <div id="apod"></div> -->
-
+{% comment %} 
 <div class="home-grid">
     <article class="article article--1">
         <h1>Post 1</h1>
@@ -39,6 +37,61 @@
     
         <article class="article article--3">
             <h1>Post 3</h1>
+        </article>
+    </div>
+    
+    <div class="home-grid__sidebar">
+        <div id="apod" class="apod"></div>
+    </div>
+</div>
+ {% endcomment %}
+
+
+<div class="home-grid">
+    <article class="article article--1">
+        <img class="article__img" src="{% static 'home/images/space-1486556_1280.jpg' %}" alt="Jupiter vista">
+
+        <div class="article__content">
+            <h2 class="article__header">
+                Neverwinter Comet
+                <span class="article__date"><small>December 3, 2020</small></span>
+            </h2>
+            
+            <a href="#">Constellations are part of some the universe’s symbology through the lens of humanity through the ages.</a>
+        </div>
+    </article>
+
+    <div class="home-grid__nested">
+        <article class="article article--2">
+            <img class="article__img" src="{% static 'home/images/aurora-borealis-2874887_1920.jpg' %}" alt="Jupiter vista">
+
+            <div class="article__content">
+                <h2 class="article__header">
+                    The Mystical Aurora Borealis
+                    <span class="article__date"><small>December 2, 2020</small></span>
+                </h2>
+                
+                <a href="#">
+                    Is the Aurora Borealis more than just a “scientific” phenomena? What lies
+                    behind theserene and colorful lightshow that is the Auroroa Borealis?
+                </a>
+            </div>
+        </article>
+    
+        <article class="article article--3">
+            <img class="article__img" src="{% static 'home/images/constellation-3594964_1920.jpg' %}" alt="Jupiter vista">
+
+            <div class="article__content">
+                <h2 class="article__header">
+                    Bulwark Constellation
+                    <span class="article__date"><small>December 1, 2020</small></span>
+                </h2>
+                
+                <a href="#">
+                    Constellations are part of some the universe’s symbology through the lens of
+                    humanity through the ages.
+                </a>
+            </div>
         </article>
     </div>
     

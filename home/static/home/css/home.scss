@@ -53,7 +53,30 @@ $margins: (
         grid-area: top-post;
         margin-bottom: 3vh;
     }
+
+    &__img {
+        width: 100%;
+        height: 25vh;
+        object-fit: cover;
+    }
+
+    &__date {
+        font-size: 20px;
+        color: #7e7e7e;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 .apod {
 
