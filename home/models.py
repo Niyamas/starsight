@@ -1,10 +1,11 @@
 from django.db import models
 
-from wagtail.core.models import Page
+from modelcluster.fields import ParentalKey
+
+from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import StreamField, RichTextField
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, MultiFieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, MultiFieldPanel, InlinePanel
 from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.contrib.settings.models import BaseSetting, register_setting
 
 from streams import blocks
 
@@ -44,7 +45,16 @@ class HomePage(Page):
             heading='Default Apod Image',
             classname='collapsible'
         ),
-        StreamFieldPanel('content'),
+
+        StreamFieldPanel('content', classname='collapsible'),
+
+        MultiFieldPanel(
+            [
+                InlinePanel('carousel_images', max_num=5, min_num=1, label='Image')
+            ],
+            heading='Carousel Images',
+            classname='collapsible'
+        )
     ]
 
     def get_context(self, request):
@@ -53,18 +63,24 @@ class HomePage(Page):
         return context
 
 
-@register_setting
-class StarsightSettings(BaseSetting):
-    """Adds options in the admin settings."""
 
-    hero_image = models.ForeignKey(
+class HomePageCarouselImages(Orderable):
+    """
+    Between 1 and 5 images for the home page carousel. Similar to inline models in Django.
+    Orderables differ from streamfields in that one can set a minimum or maximum number of
+    objects. Another is that orderables are not restricted to the forloop template tag and
+    can be placed anywhere on the html page.
+    """
+
+    page = ParentalKey('home.HomePage', related_name='carousel_images')
+    carousel_image = models.ForeignKey(
         'wagtailimages.Image',
-        null = True,
-        blank = False,
-        on_delete = models.SET_NULL,
-        related_name = "+"
+        null=True,
+        blank=False,
+        on_delete=models.SET_NULL,
+        related_name='+'
     )
 
     panels = [
-        ImageChooserPanel('hero_image'),
+        ImageChooserPanel('carousel_image')
     ]

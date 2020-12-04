@@ -110,6 +110,32 @@
  {% endcomment %}
 
 
+{% comment %} From https://v5.getbootstrap.com/docs/5.0/components/carousel/ {% endcomment %}
+ <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+
+        {% for image in self.carousel_images.all %}
+
+            {% image image.carousel_image fill-900x400 as carousel_image %}
+
+            <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}">
+                <img src="{{ carousel_image.url }}" class="d-block w-100" alt="...">
+            </div>
+
+        {% endfor %}
+
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </a>
+</div>
+
+
 
 {% endblock content %}
 
