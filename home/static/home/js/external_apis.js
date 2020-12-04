@@ -65,6 +65,8 @@ class ExternalAPIS {
         await fetch(url)
         .then( (response) => {
 
+           
+
             // If no API errors, proceed to the next promise
             if (response.ok) {
                 return response
@@ -79,18 +81,16 @@ class ExternalAPIS {
                     Astronomy Picture of the Day
                     <span class="apod__date">(updating) ${dateTimeNow}</span>
                 </h2>
-                <a href="#">
+                <a href="${defaultAPODURL}" target="_blank">
                     <img class="apod__img" src="${defaultAPOD}" alt=""></img>
                 </a>
                 <h3>
-                    Cloud Belts of Jupter
-                    <span class="apod__copyright">by NASA's Juno Space Probe</span>
+                    ${defaultAPODTitle}
+                    <span class="apod__copyright">by ${defaultAPODCredits}</span>
                 </h3>
-                <p class="apod__description">
-                    NASA is in the midst of updating their Astronomy Picture of the Day.
-                    Here's a picture of a pearlescent Jupiter taken by Juno—high above and safe
-                    from the powerful storms of Jupiter!
-                 </p>
+                <div class="apod__description">
+                    ${defaultAPODText}
+                </div>
             `
 
             // Place apodHTML in innerHTML of div with ID='apod'

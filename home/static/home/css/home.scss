@@ -22,10 +22,11 @@ $margins: (
 .home-grid {
     margin-top: 70px;
     padding: 0 margin(slim);
-    height: 63vh;
+    //height: 63vh;
 
     display: grid;
     grid-template-rows: repeat(2, 1fr);
+    //grid-template-rows: repeat(2, 333px);
     grid-template-columns: 0.6fr 0.4fr;
     grid-template-areas:
         "top-post       sidebar"
@@ -96,7 +97,7 @@ $margins: (
         color: #7e7e7e;
     }
 
-    &__description {
+    &__description, &__description.p {
         position: relative;
         z-index: 1;
         margin-bottom: 0;
