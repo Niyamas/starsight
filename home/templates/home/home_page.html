@@ -1,5 +1,6 @@
 {% extends "starsight/base.html" %}
 {% load static %}
+{% load wagtailcore_tags %}
 
 
 {% block body_class %}template-homepage{% endblock %}
@@ -102,6 +103,11 @@
 
 
 
+<div>
+    {% for block in page.content %}
+        {% include_block block %}
+    {% endfor %}
+</div>
 
 
 

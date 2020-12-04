@@ -15,8 +15,6 @@ class TitleAndTextBlock(blocks.StructBlock):
         icon = 'edit'
         label = 'Title & Text'
 
-# @11:20
-# https://www.youtube.com/watch?v=DMP-GcElEIo&list=PLMQHMcNi6ocsS8Bfnuy_IDgJ4bHRRrvub&index=10&ab_channel=CodingForEverybody
 
 class CardBlock(blocks.StructBlock):
     """Cards with image, text and buttons."""
@@ -33,6 +31,11 @@ class CardBlock(blocks.StructBlock):
             ]
         )
     )
+
+    class Meta:
+        template = 'streams/card_block.html'
+        icon = 'placeholder'
+        label = 'Staff Cards'
 
 
 class RichTextBlock(blocks.RichTextBlock):
@@ -59,3 +62,17 @@ class SimpleRichTextBlock(blocks.RichTextBlock):
         icon = 'edit'
         label = 'Simple Rich Text'
 
+
+class CTABlock(blocks.StructBlock):
+    """A simple call to action section."""
+
+    title = blocks.CharBlock(required=False, max_length=60)
+    text = blocks.RichTextBlock(required=True, features=['bold', 'italic'])
+    button_page = blocks.PageChooserBlock(required=False)
+    button_url = blocks.URLBlock(required=False)
+    button_text = blocks.CharBlock(required=True, default='Learn More', max_length=40)
+
+    class Meta:
+        template = 'streams/cta_block.html'
+        icon = 'placeholder'
+        label = 'Call to Action'

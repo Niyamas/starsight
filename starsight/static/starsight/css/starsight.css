@@ -62,7 +62,8 @@ body {
 
 .header {
   position: relative;
-  height: 20vh;
+  height: 317px;
+  color: #ffffff;
 }
 
 .header__hero {
@@ -82,7 +83,6 @@ body {
   left: 0;
   padding-left: 7vw;
   font-size: 48px;
-  color: white;
 }
 
 .header__starsight__star {
@@ -97,7 +97,7 @@ body {
   padding: 0 9.5vw;
   width: 100%;
   font-size: 27px;
-  color: white;
+  color: #ffffff;
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: 1fr;
