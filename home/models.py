@@ -42,7 +42,7 @@ class HomePage(Page):
                 FieldPanel('default_apod_image_url'),
             ],
             heading='Default Apod Image',
-            classname='collapsible collapsed'
+            classname='collapsible'
         ),
         StreamFieldPanel('content'),
     ]

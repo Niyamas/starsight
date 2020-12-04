@@ -75,23 +75,48 @@ class ExternalAPIS {
             let date = new Date()
             let dateTimeNow = ( date.getMonth() + 1) + '-' + date.getDate() + '-' + date.getFullYear()
 
-            // Store HTML image for APOD
-            let apodHTML = `
-                <h2 class="apod__banner">
-                    Astronomy Picture of the Day
-                    <span class="apod__date">(updating) ${dateTimeNow}</span>
-                </h2>
-                <a href="${defaultAPODURL}" target="_blank">
-                    <img class="apod__img" src="${defaultAPOD}" alt=""></img>
-                </a>
-                <h3>
-                    ${defaultAPODTitle}
-                    <span class="apod__copyright">by ${defaultAPODCredits}</span>
-                </h3>
-                <div class="apod__description">
-                    ${defaultAPODText}
-                </div>
-            `
+            let apodHTML
+
+            if (defaultAPODURL === 'None') {
+
+                // Store HTML image for APOD if the URL set in Wagtail is not defined.
+                // To style Wagtail's rich text, need to place text within a div.
+                // In the CSS, call the rich text like so: "classname.p {}".
+                apodHTML = `
+                    <h2 class="apod__banner">
+                        Astronomy Picture of the Day
+                        <span class="apod__date">(updating) ${dateTimeNow}</span>
+                    </h2>
+                        <img class="apod__img" src="${defaultAPOD}" alt=""></img>
+                    <h3>
+                        ${defaultAPODTitle}
+                        <span class="apod__copyright">by ${defaultAPODCredits}</span>
+                    </h3>
+                    <div class="apod__description">
+                        ${defaultAPODText}
+                    </div>
+                `
+            }
+            else {
+
+                // Store HTML image for APOD if there is a URL set in Wagtail
+                apodHTML = `
+                    <h2 class="apod__banner">
+                        Astronomy Picture of the Day
+                        <span class="apod__date">(updating) ${dateTimeNow}</span>
+                    </h2>
+                    <a href="${defaultAPODURL}" target="_blank">
+                        <img class="apod__img" src="${defaultAPOD}" alt=""></img>
+                    </a>
+                    <h3>
+                        ${defaultAPODTitle}
+                        <span class="apod__copyright">by ${defaultAPODCredits}</span>
+                    </h3>
+                    <div class="apod__description">
+                        ${defaultAPODText}
+                    </div>
+                `
+            }
 
             // Place apodHTML in innerHTML of div with ID='apod'
             document.getElementById('apod').innerHTML = apodHTML
