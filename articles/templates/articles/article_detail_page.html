@@ -1,0 +1,43 @@
+{% extends 'starsight/base.html' %}
+{% load wagtailimages_tags wagtailcore_tags %}  {% comment %} wagtailcore_tags for blocks {% endcomment %}
+
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+
+{% block head_js %}
+{% endblock head_js %}
+
+
+{% block content %}
+
+<h1>article detail page</h1>
+
+{% image self.image fill-900x400 as article_image %}
+
+<img src="{{ article_image.url }}" alt="{{ article_image.alt }}">
+
+<div class="container">
+    <div class="text-center">
+        <h1>{{ self.title }}</h1>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            {% for block in self.content %}
+                {% include_block block %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}
+
+
+{% block extra_js %}
+{% endblock extra_js %}

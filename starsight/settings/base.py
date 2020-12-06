@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'search',
     'flex',
     'streams',
+    'subscribers',
+    'articles',
     'site_settings',
 
     'wagtail.contrib.forms',
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     'wagtail.core',
 
     'wagtail.contrib.settings',
+    'wagtail.contrib.modeladmin',
 
     'modelcluster',
     'taggit',

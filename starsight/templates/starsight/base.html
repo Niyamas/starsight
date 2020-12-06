@@ -77,6 +77,22 @@
 
         <footer class="footer">
             <h1>Footer</h1>
+
+            {% if settings.site_settings.StarsightSettings.facebook %}
+                <a href="{{ settings.site_settings.StarsightSettings.facebook }}" target="_blank">Facebook</a>
+            {% endif %}
+
+            {% if settings.site_settings.StarsightSettings.twitter %}
+                <a href="{{ settings.site_settings.StarsightSettings.twitter }}" target="_blank">Twitter</a>
+            {% endif %}
+
+            {% if settings.site_settings.StarsightSettings.youtube %}
+                <a href="{{ settings.site_settings.StarsightSettings.youtube }}" target="_blank">Youtube</a>
+            {% endif %}
+
+
+
+
         </footer>
 
 

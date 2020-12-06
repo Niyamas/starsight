@@ -57,8 +57,13 @@ class HomePage(Page):
         )
     ]
 
-    def get_context(self, request):
-        context = super(HomePage, self).get_context(request)
+    #def get_context(self, request):
+    #    context = super(HomePage, self).get_context(request)
+    #    context['nasa_api_key'] = config('NASA_API_KEY')
+    #    return context
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
         context['nasa_api_key'] = config('NASA_API_KEY')
         return context
 

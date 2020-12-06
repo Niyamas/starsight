@@ -26,6 +26,7 @@ $margins: (
 
     display: grid;
     grid-template-rows: repeat(2, 1fr);
+    //grid-template-rows: 0.8fr 1fr;
     //grid-template-rows: repeat(2, 333px);
     grid-template-columns: 0.6fr 0.4fr;
     grid-template-areas:
