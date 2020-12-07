@@ -1,6 +1,6 @@
 {% extends "starsight/base.html" %}
 {% load static %}       <!-- Remove after removing article images -->
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags wagtailroutablepage_tags %}
 
 
 {% block body_class %}template-homepage{% endblock %}
@@ -24,28 +24,6 @@
 
 {% block content %}
 
-
-{% comment %} 
-<div class="home-grid">
-    <article class="article article--1">
-        <h1>Post 1</h1>
-    </article>
-
-    <div class="home-grid__nested">
-        <article class="article article--2">
-            <h1>Post 2</h1>
-        </article>
-    
-        <article class="article article--3">
-            <h1>Post 3</h1>
-        </article>
-    </div>
-    
-    <div class="home-grid__sidebar">
-        <div id="apod" class="apod"></div>
-    </div>
-</div>
- {% endcomment %}
 
 
 <div class="home-grid">
@@ -135,6 +113,11 @@
     </a>
 </div>
 
+
+
+
+<a href="{% routablepageurl self 'subscribe_page' %}">Subscribe</a>
+<h2>Link is {{ test_link }}</h2>
 
 
 {% endblock content %}

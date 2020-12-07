@@ -76,3 +76,51 @@ class CTABlock(blocks.StructBlock):
         template = 'streams/cta_block.html'
         icon = 'placeholder'
         label = 'Call to Action'
+
+
+class LinkStructValue(blocks.StructValue):
+    """
+    Additional logic for the ButtonBlock() urls. Adds a method
+    that returns a button link to a page or a URL. Prioritizes
+    the button page. In the template, reference the method with:
+    {{ self.url }}
+    """
+
+    def url(self):
+        button_page = self.get('button_page')
+        button_url = self.get('button_url')
+
+        """ if button_page and not button_url:
+            return button_page.url
+
+        elif button_url and not button_page:
+            return button_url
+
+        elif button_page and button_url:
+            return button_page.url """
+
+        # better than above, incorporates priority for button_page too
+        if button_page:
+            return button_page.url
+
+        elif button_url:
+            return button_url
+
+        return None
+
+class ButtonBlock(blocks.StructBlock):
+    """An external or internal URL."""
+
+    button_page = blocks.PageChooserBlock(required=False, help_text='If selected, this URL will be used first.')
+    button_url = blocks.URLBlock(required=False, help_text='If added, this URL will be used second.')
+
+    class Meta:
+        template = 'streams/button_block.html'
+        icon = 'placeholder'
+        label = 'Single Button'
+        value_class = LinkStructValue
+
+    """ def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        context['newest_posts'] = ArticleDetailPage.objects.live().public()[:3]
+        return context """

@@ -12,14 +12,14 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())                 # https://si
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 INSTALLED_APPS += [
-    'debug_toolbar',
+    'debug_toolbar',                                        # For ddt
 ]
 
 MIDDLEWARE += [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',      # For ddt
 ]
 
-INTERNAL_IPS = ('127.0.0.1', '172.17.0.1')
+INTERNAL_IPS = ('127.0.0.1', '172.17.0.1')                  # For ddt
 
 
 # Deployment checklist: https://www.youtube.com/watch?v=_mgMth4im9E

@@ -1,11 +1,15 @@
 """Article listing and detail pages."""
 
 from django.db import models
+from django.utils import timezone
+#from django.shortcuts import render
 
 from wagtail.core.models import Page
-from wagtail.core.fields import StreamField
+from wagtail.core.fields import StreamField, RichTextField
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
+#from wagtail.contrib.routable_page.models import RoutablePageMixin, route
+
 
 from streams import blocks
 
@@ -31,7 +35,9 @@ class ArticleListingPage(Page):
 class ArticleDetailPage(Page):
     """Article detail page."""
 
-    custom_title = models.CharField(max_length=100, blank=False, null=False, help_text='Overwrites the default title')
+    title_subtext = RichTextField(features=['bold', 'italic'], max_length=200, null=True, blank=False)
+    date = models.DateTimeField(default=timezone.now)
+
     image = models.ForeignKey(
         'wagtailimages.Image',
         blank=False,
@@ -52,8 +58,9 @@ class ArticleDetailPage(Page):
     )
 
     content_panels = Page.content_panels + [
-        FieldPanel('custom_title'),
+        FieldPanel('title_subtext'),
         ImageChooserPanel('image'),
-        StreamFieldPanel('content')
+        StreamFieldPanel('content'),
+        FieldPanel('date')
 
     ]
