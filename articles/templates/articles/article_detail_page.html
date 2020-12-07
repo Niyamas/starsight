@@ -22,6 +22,26 @@
     <div class="text-center">
         <h1>{{ self.title }}</h1>
     </div>
+
+    <ul>
+
+        {% for loop in self.article_authors.all %}
+
+            {% image loop.author.image fill-70x70 as author_image %}
+
+            <li>
+                <img src="{{ author_image.url }}" alt="{{ loop.author.name }}">
+
+                {{ loop.author.name }}
+
+                {% if loop.author.website %}
+                    <a href="{{ loop.author.website }}" target="_blank">(Website)</a>
+                {% endif %}
+
+            </li>
+        {% endfor %}
+
+    </ul>
 </div>
 
 <div class="container">

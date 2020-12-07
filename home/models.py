@@ -1,17 +1,21 @@
 from django.db import models
 from django.shortcuts import render
 
-from modelcluster.fields import ParentalKey
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import StreamField, RichTextField
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, MultiFieldPanel, InlinePanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
+
+from modelcluster.fields import ParentalKey
+
 from streams import blocks
+from articles.models import (
+    ArticleDetailPage,
+    ArticleAuthor
+) 
 
 from decouple import config
-
-from articles.models import ArticleDetailPage
 
 
 class HomePage(RoutablePageMixin, Page):

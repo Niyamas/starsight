@@ -4,17 +4,20 @@ from django.db import models
 from django.utils import timezone
 #from django.shortcuts import render
 
-from wagtail.core.models import Page
+from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import StreamField, RichTextField
 from wagtail.admin.edit_handlers import (
     FieldPanel,
     StreamFieldPanel,
-    MultiFieldPanel
+    MultiFieldPanel,
+    InlinePanel
 )
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.models import register_snippet
-#from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 
+from modelcluster.fields import ParentalKey
+#from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 
 from streams import blocks
 
@@ -39,6 +42,8 @@ class ArticleListingPage(Page):
 
 class ArticleDetailPage(Page):
     """Article detail page."""
+
+    template = 'articles/article_detail_page.html'
 
     title_subtext = RichTextField(features=['bold', 'italic'], max_length=200, null=True, blank=False)
     date = models.DateTimeField(default=timezone.now)
@@ -65,9 +70,32 @@ class ArticleDetailPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('title_subtext'),
         ImageChooserPanel('image'),
+        MultiFieldPanel(
+            [
+                InlinePanel('article_authors', label='Author', min_num=1, max_num=3)
+            ],
+            heading='Author(s)'
+        ),
         StreamFieldPanel('content'),
         FieldPanel('date')
+    ]
 
+
+
+class ArticleAuthorsOrderable(Orderable):
+    """
+    This allows us to select one or more authors from the Snippets page,
+    which can be used in the article detail pages
+    """
+
+    page = ParentalKey('articles.ArticleDetailPage', related_name='article_authors')
+    author = models.ForeignKey(
+        'articles.ArticleAuthor',
+        on_delete=models.CASCADE,           # When ArticleAuthor instance is removed, remove all selected authors.
+    )
+
+    panels = [
+        SnippetChooserPanel('author')
     ]
 
 
