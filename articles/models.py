@@ -6,8 +6,13 @@ from django.utils import timezone
 
 from wagtail.core.models import Page
 from wagtail.core.fields import StreamField, RichTextField
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.admin.edit_handlers import (
+    FieldPanel,
+    StreamFieldPanel,
+    MultiFieldPanel
+)
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.snippets.models import register_snippet
 #from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 
 
@@ -64,3 +69,50 @@ class ArticleDetailPage(Page):
         FieldPanel('date')
 
     ]
+
+
+
+class ArticleAuthor(models.Model):
+    """
+    Article author for snippets using
+    vanilla Django models.
+    """
+
+    name = models.CharField(max_length=100)
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    website = models.URLField(blank=True, null=True)
+
+    panels = [
+        MultiFieldPanel(
+            [
+                FieldPanel('name'),
+                ImageChooserPanel('image')
+            ],
+            heading='Author Information'
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('website'),
+            ],
+            heading='Author Links'
+        )
+    ]
+
+    class Meta:
+        verbose_name = 'Article Author'
+        verbose_name_plural = 'Article Authors'
+
+    def __str__(self):
+        """
+        For vanilla Django to know how to name each model
+        object created.
+        """
+        return self.name
+
+register_snippet(ArticleAuthor)

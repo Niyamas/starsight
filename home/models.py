@@ -57,7 +57,9 @@ class HomePage(RoutablePageMixin, Page):
         # Get all live & public articles from the database and pass to the template
         context['articles'] = ArticleDetailPage.objects.live().public()
 
-        context['test_link'] = self.reverse_subpage('subscribe_page')
+        context['authors'] = ArticleAuthor.objects.all()
+
+        #context['test_link'] = self.reverse_subpage('subscribe_page')
 
         return context
 

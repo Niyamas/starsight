@@ -1,5 +1,5 @@
 {% load static wagtailuserbar %}
-{% load wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -47,7 +47,8 @@
             <img class="header__hero" src="{{ hero_img.url }}" alt="Stars in space">
         
             <h1 class="header__starsight" href="#">
-                <a href="{% url 'wagtail_serve' '' %}">
+                {% comment %} {% url 'wagtail_serve' '' %} {% endcomment %}
+                <a href="{% slugurl 'home' %}">
                     <span class="header__starsight__star">Star</span><span class="header__starsight__sight">sight</span>
                 </a>
             </h1>
@@ -63,7 +64,7 @@
                 <nav class="header__navi__right">
                     <a href="#">Store</a>
                     <a href="#">Stellarium</a>
-                    <a href="#">Resources</a>
+                    <a href="{% slugurl 'resources' %}">Resources</a>
                 </nav>
             </div>
         </div>
