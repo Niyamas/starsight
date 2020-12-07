@@ -2,6 +2,7 @@
 
 from django.db import models
 from django.utils import timezone
+from django import forms
 #from django.shortcuts import render
 
 from wagtail.core.models import Page, Orderable
@@ -16,7 +17,7 @@ from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.models import register_snippet
 
-from modelcluster.fields import ParentalKey
+from modelcluster.fields import ParentalKey, ParentalManyToManyField
 #from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 
 from streams import blocks
@@ -47,7 +48,6 @@ class ArticleDetailPage(Page):
 
     title_subtext = RichTextField(features=['bold', 'italic'], max_length=200, null=True, blank=False)
     date = models.DateTimeField(default=timezone.now)
-
     image = models.ForeignKey(
         'wagtailimages.Image',
         blank=False,
@@ -55,6 +55,7 @@ class ArticleDetailPage(Page):
         on_delete=models.SET_NULL,
         related_name='+',
     )
+    topics = ParentalManyToManyField('articles.ArticleTopic', blank=True)
     content = StreamField(
         [
             ('title_and_text', blocks.TitleAndTextBlock()),
@@ -75,6 +76,12 @@ class ArticleDetailPage(Page):
                 InlinePanel('article_authors', label='Author', min_num=1, max_num=3)
             ],
             heading='Author(s)'
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('topics', widget=forms.CheckboxSelectMultiple)
+            ],
+            heading='Topics'
         ),
         StreamFieldPanel('content'),
         FieldPanel('date')
@@ -135,6 +142,7 @@ class ArticleAuthor(models.Model):
     class Meta:
         verbose_name = 'Article Author'
         verbose_name_plural = 'Article Authors'
+        #ordering = ['name']
 
     def __str__(self):
         """
@@ -144,3 +152,32 @@ class ArticleAuthor(models.Model):
         return self.name
 
 register_snippet(ArticleAuthor)
+
+
+class ArticleTopic(models.Model):
+    """
+    Article topics that resides in Snippets.
+    """
+
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(
+        max_length=150,
+        verbose_name='slug',
+        allow_unicode=True,
+        help_text='A slug to identify articles by this topic.'
+    )
+
+    panels = [
+        FieldPanel('name'),
+        FieldPanel('slug')
+    ]
+
+    class Meta:
+        verbose_name = 'Article Topic'
+        verbose_name_plural = 'Article Topics'
+        ordering = ['name']                             # Alphabetial ordering
+
+    def __str__(self):
+        return self.name
+
+register_snippet(ArticleTopic)
