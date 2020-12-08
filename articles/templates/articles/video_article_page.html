@@ -27,6 +27,14 @@
         <h2>Topic: {{ self.topic.name }}</h2>
     </a>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ self.youtube_video_id }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
     <ul>
 
         {% for loop in self.article_authors.all %}
@@ -57,7 +65,6 @@
         </div>
     </div>
 </div>
-
 
 
 {% endblock content %}

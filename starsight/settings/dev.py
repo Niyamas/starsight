@@ -13,6 +13,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 INSTALLED_APPS += [
     'debug_toolbar',                                        # For ddt
+    'django_extensions',                                    # Enables python manage.py shell_plus in CMD
 ]
 
 MIDDLEWARE += [

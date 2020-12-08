@@ -2,7 +2,8 @@
 
 from django.db import models
 from django.utils import timezone
-from django import forms
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+#from django import forms
 #from django.shortcuts import render
 
 from wagtail.core.models import Page, Orderable
@@ -17,7 +18,10 @@ from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.models import register_snippet
 
-from modelcluster.fields import ParentalKey, ParentalManyToManyField
+from modelcluster.fields import (
+    ParentalKey,
+    #ParentalManyToManyField
+)
 #from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 
 from streams import blocks
@@ -38,7 +42,25 @@ class ArticleListingPage(Page):
     def get_context(self, request, *args, **kwargs):
         """Add additional context."""
         context = super().get_context(request, *args, **kwargs)
-        context['articles'] = ArticleDetailPage.objects.live().public()
+        #context['articles'] = ArticleDetailPage.objects.live().public().order_by('-first_published_at')
+
+        # Query all articles for paginator
+        articles = ArticleDetailPage.objects.live().public().order_by('-first_published_at')
+
+        # Create paginator
+        paginator = Paginator(articles, 2)
+        page = request.GET.get('page')
+
+        try:
+            articles_paginated = paginator.page(page)                     # Get the page if it exists
+        except PageNotAnInteger:
+            articles_paginated = paginator.page(1)                        # Return first page if page isn't an integer
+        except EmptyPage:
+            articles_paginated = paginator.page(paginator.num_pages)      # Return last page if user goes out of paginator range
+
+        context['articles'] = articles_paginated
+
+        context['topics'] = ArticleTopic.objects.all()
         return context
 
 class ArticleDetailPage(Page):
@@ -46,8 +68,7 @@ class ArticleDetailPage(Page):
 
     template = 'articles/article_detail_page.html'
 
-    title_subtext = RichTextField(features=['bold', 'italic'], max_length=200, null=True, blank=False)
-    date = models.DateTimeField(default=timezone.now)
+    banner_text = RichTextField(features=['bold', 'italic'], max_length=200, null=True, blank=False)
     image = models.ForeignKey(
         'wagtailimages.Image',
         blank=False,
@@ -55,7 +76,8 @@ class ArticleDetailPage(Page):
         on_delete=models.SET_NULL,
         related_name='+',
     )
-    topics = ParentalManyToManyField('articles.ArticleTopic', blank=True)
+    #topics = ParentalManyToManyField('articles.ArticleTopic', blank=True)
+    topic = models.ForeignKey('articles.ArticleTopic', null=True, blank=True, on_delete=models.SET_NULL)
     content = StreamField(
         [
             ('title_and_text', blocks.TitleAndTextBlock()),
@@ -67,25 +89,82 @@ class ArticleDetailPage(Page):
         null=True,
         blank=True
     )
+    date = models.DateTimeField(default=timezone.now)
 
     content_panels = Page.content_panels + [
-        FieldPanel('title_subtext'),
+        FieldPanel('banner_text'),
         ImageChooserPanel('image'),
+        #FieldPanel('topic'),
+        SnippetChooserPanel('topic'),
         MultiFieldPanel(
             [
                 InlinePanel('article_authors', label='Author', min_num=1, max_num=3)
             ],
             heading='Author(s)'
         ),
+        StreamFieldPanel('content'),
+        FieldPanel('date')
+    ]
+
+
+
+class VideoArticlePage(ArticleDetailPage):
+    """
+    Video article page that inherits from
+    ArticleDetailPage
+    """
+
+    template = 'articles/video_article_page.html'
+
+    youtube_video_id = models.CharField(max_length=30)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('banner_text'),
+        ImageChooserPanel('image'),
+        #FieldPanel('topic'),
+        SnippetChooserPanel('topic'),
         MultiFieldPanel(
             [
-                FieldPanel('topics', widget=forms.CheckboxSelectMultiple)
+                InlinePanel('article_authors', label='Author', min_num=1, max_num=3)
             ],
-            heading='Topics'
+            heading='Author(s)'
+        ),
+        FieldPanel('youtube_video_id'),
+        StreamFieldPanel('content'),
+        FieldPanel('date')
+    ]
+
+
+class ArticleDetailPageStrange(ArticleDetailPage):
+    """Inherits from ArticleDetailPage"""
+
+    template = 'articles/article_detail_page_strange.html'
+
+    strange_quote = models.CharField(max_length=100, null=True, blank=True, help_text='Add a strange quote you know!')
+
+    content_panels = Page.content_panels + [
+        FieldPanel('banner_text'),
+        FieldPanel('strange_quote'),
+        ImageChooserPanel('image'),
+        #FieldPanel('topic'),
+        SnippetChooserPanel('topic'),
+        MultiFieldPanel(
+            [
+                InlinePanel('article_authors', label='Author', min_num=1, max_num=3)
+            ],
+            heading='Author(s)'
         ),
         StreamFieldPanel('content'),
         FieldPanel('date')
     ]
+
+
+
+
+
+
+
+
 
 
 
