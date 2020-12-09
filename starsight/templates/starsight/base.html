@@ -2,7 +2,7 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% get_navigation 'main' as navigation_main %}
-{% get_navigation 'footer' as navigation_footer %} {% comment %} @todo {% endcomment %}
+{% comment %} {% get_navigation 'footer' as navigation_footer %} {% endcomment %} {% comment %} @todo add footer items and loop through later {% endcomment %}
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -72,14 +72,9 @@
                         <a href="{{ item.link }}" {% if item.open_in_new_tab %} target="_blank" {% endif %}>{{ item.link_title }}</a>
 
                     {% endfor %}
-
-
-
-                    {% comment %} <a href="#">Store</a>
-                    <a href="#">Stellarium</a>
-                    <a href="{% slugurl 'resources' %}">Resources</a> {% endcomment %}
                 </nav>
             </div>
+
         </div>
 
 
