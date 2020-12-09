@@ -150,7 +150,7 @@ class ExternalAPIS {
                     </h3>
                     <p id="description" class="apod__description">
                         ${apod.explanation}
-                        <a id="descriptionFade" class="apod__description__fade" href="#"></a>
+                        <span id="descriptionFade" class="apod__description__fade"></span>
                     </p>
                     <div id="readMore" class="apod__read-more">Read more</div>
                 `

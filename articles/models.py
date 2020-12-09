@@ -47,7 +47,7 @@ class ArticleListingPage(Page):
         # Query all articles for paginator
         articles = ArticleDetailPage.objects.live().public().order_by('-first_published_at')
 
-        # Create paginator
+        # Create paginator and paginate by 2
         paginator = Paginator(articles, 2)
         page = request.GET.get('page')
 
