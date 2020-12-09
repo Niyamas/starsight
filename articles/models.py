@@ -3,6 +3,7 @@
 from django.db import models
 from django.utils import timezone
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django_extensions.db.fields import AutoSlugField
 #from django import forms
 #from django.shortcuts import render
 
@@ -185,7 +186,7 @@ class ArticleAuthorsOrderable(Orderable):
     ]
 
 
-
+@register_snippet
 class ArticleAuthor(models.Model):
     """
     Article author for snippets using
@@ -230,17 +231,26 @@ class ArticleAuthor(models.Model):
         """
         return self.name
 
-register_snippet(ArticleAuthor)
+#register_snippet(ArticleAuthor)
 
-
+@register_snippet
 class ArticleTopic(models.Model):
     """
     Article topics that resides in Snippets.
     """
 
     name = models.CharField(max_length=100)
-    slug = models.SlugField(
-        max_length=150,
+    #slug = models.SlugField(
+    #    max_length=150,
+    #    verbose_name='slug',
+    #    allow_unicode=True,
+    #    help_text='A slug to identify articles by this topic.'
+    #)
+
+    slug = AutoSlugField(
+        populate_from='name',
+        editable=True,
+        max_length=100,
         verbose_name='slug',
         allow_unicode=True,
         help_text='A slug to identify articles by this topic.'
@@ -259,4 +269,4 @@ class ArticleTopic(models.Model):
     def __str__(self):
         return self.name
 
-register_snippet(ArticleTopic)
+#register_snippet(ArticleTopic)

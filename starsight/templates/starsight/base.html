@@ -1,5 +1,8 @@
-{% load static wagtailuserbar %}
+{% load static wagtailuserbar menus_tags %}
 {% load wagtailcore_tags wagtailimages_tags %}
+
+{% get_navigation 'main' as navigation_main %}
+{% get_navigation 'footer' as navigation_footer %} {% comment %} @todo {% endcomment %}
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -62,9 +65,19 @@
                 </nav>
         
                 <nav class="header__navi__right">
-                    <a href="#">Store</a>
+
+                    {% comment %} navigation_main is from template tags, navigation_items is from navigations/models.py {% endcomment %}
+                    {% for item in navigation_main.navigation_items.all %}
+                    
+                        <a href="{{ item.link }}" {% if item.open_in_new_tab %} target="_blank" {% endif %}>{{ item.link_title }}</a>
+
+                    {% endfor %}
+
+
+
+                    {% comment %} <a href="#">Store</a>
                     <a href="#">Stellarium</a>
-                    <a href="{% slugurl 'resources' %}">Resources</a>
+                    <a href="{% slugurl 'resources' %}">Resources</a> {% endcomment %}
                 </nav>
             </div>
         </div>
