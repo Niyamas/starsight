@@ -66,12 +66,26 @@ body {
 
 .header {
   position: relative;
-  height: 317px;
+  height: 130px;
   color: #ffffff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .header__hero {
   position: absolute;
+  z-index: -1;
   top: 0;
   left: 0;
   height: 100%;
@@ -80,17 +94,21 @@ body {
      object-fit: cover;
 }
 
-.header__starsight {
-  position: relative;
-  z-index: 1;
-  top: 77px;
-  left: 0;
-  padding-left: 7vw;
-  font-size: 48px;
+.header__left {
+  margin-left: 7vw;
+  font-size: 40px;
 }
 
-.header__starsight__star {
-  font-weight: 700;
+.header__right {
+  margin-right: 7vw;
+  width: 40%;
+  font-size: 24px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 /* .header__navi {

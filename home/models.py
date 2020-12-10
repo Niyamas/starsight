@@ -59,12 +59,10 @@ class HomePage(RoutablePageMixin, Page):
         context['nasa_api_key'] = config('NASA_API_KEY')
 
         # Get all live & public articles from the database and pass to the template
-        context['articles'] = ArticleDetailPage.objects.live().public()
+        context['articles'] = ArticleDetailPage.objects.live().public().order_by('-first_published_at')
 
         context['authors'] = ArticleAuthor.objects.all()
-
-        #context['test_link'] = self.reverse_subpage('subscribe_page')
-
+        
         return context
 
     #@route(r'^subscribe/$')

@@ -158,13 +158,18 @@ body {
 // base.html scss
 .header {
     position: relative;
-    //height: 20vh;
-    height: 317px;
+    height: 130px;
 
     color: color(header_text);
 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
     &__hero {
         position: absolute;
+        z-index: -1;
         top: 0;
         left: 0;
         height: 100%;
@@ -172,18 +177,21 @@ body {
         object-fit: cover;
     }
 
-    &__starsight {
-        position: relative;
-        z-index: 1;
-        top: 77px;
-        left: 0;
-        padding-left: margin(slim);
+    &__left {
+        margin-left: margin(slim);
+        font-size: 40px;
+        //border: 1px solid blue;
+    }
 
-        font-size: 48px;
+    &__right {
+        margin-right: margin(slim);
+        width: 40%;
+        font-size: 24px;
 
-        &__star {
-            font-weight: 700;
-        }
+        display: flex;
+        justify-content: space-between;
+
+        //border: 1px solid red;
     }
 }
 

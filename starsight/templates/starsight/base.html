@@ -6,111 +6,96 @@
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-    <head>
-        <meta charset="utf-8" />
+<head>
+    <meta charset="utf-8" />
 
-        <title>
-            {% block title %}
-                {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
-            {% endblock %}
-            {% block title_suffix %}
-                {% with self.get_site.site_name as site_name %}
-                    {% if site_name %}- {{ site_name }}{% endif %}
-                {% endwith %}
-            {% endblock %}
-        </title>
-
-        <meta name="description" content="" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-        {# Global stylesheets #}
-        <link rel="stylesheet" href="{% static 'starsight/css/starsight.css' %}">
-
-        <!-- Bootstrap 5 beta CSS (https://getbootstrap.com/docs/5.0/getting-started/introduction/) -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-
-
-        {% block extra_css %}
-            {# Override this in templates to add extra stylesheets #}
+    <title>
+        {% block title %}
+            {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
         {% endblock %}
-
-        {% block head_js %}
+        {% block title_suffix %}
+            {% with self.get_site.site_name as site_name %}
+                {% if site_name %}- {{ site_name }}{% endif %}
+            {% endwith %}
         {% endblock %}
+    </title>
 
-    </head>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <body class="{% block body_class %}{% endblock %}">
+    {# Global stylesheets #}
+    <link rel="stylesheet" href="{% static 'starsight/css/starsight.css' %}">
 
-        <div class="header">
-
-            {% comment %} {% image self.hero_image original as hero_img %} {% endcomment %}
-            {% image settings.site_settings.StarsightSettings.hero_image original as hero_img %}
-
-            {% comment %} <img class="header__hero" src="{% static 'home/images/galaxy-2643089.jpg' %}" alt="Stars in space"> {% endcomment %}
-            <img class="header__hero" src="{{ hero_img.url }}" alt="Stars in space">
-        
-            <h1 class="header__starsight" href="#">
-                {% comment %} {% url 'wagtail_serve' '' %} {% endcomment %}
-                <a href="{% slugurl 'home' %}">
-                    <span class="header__starsight__star">Star</span><span class="header__starsight__sight">sight</span>
-                </a>
-            </h1>
-        
-            <div class="header__navi">
-                <nav class="header__navi__left">
-                    <a href="#">Featured</a>
-                    <a href="#">Stars</a>
-                    <a href="#">Comets</a>
-                    <a href="#">Mythos</a>
-                </nav>
-        
-                <nav class="header__navi__right">
-
-                    {% comment %} navigation_main is from template tags, navigation_items is from navigations/models.py {% endcomment %}
-                    {% for item in navigation_main.navigation_items.all %}
-                    
-                        <a href="{{ item.link }}" {% if item.open_in_new_tab %} target="_blank" {% endif %}>{{ item.link_title }}</a>
-
-                    {% endfor %}
-                </nav>
-            </div>
-
-        </div>
+    <!-- Bootstrap 5 beta CSS (https://getbootstrap.com/docs/5.0/getting-started/introduction/) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
 
-        {% wagtailuserbar %}
+    {% block extra_css %}
+        {# Override this in templates to add extra stylesheets #}
+    {% endblock %}
 
-        {% block content %}
-        {% endblock %}
+    {% block head_js %}
+    {% endblock %}
+
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+
+    <header class="header">
+
+        {% image settings.site_settings.StarsightSettings.hero_image original as hero_img %}
+        <img class="header__hero" src="{{ hero_img.url }}" alt="Stars in space">
+
+        <nav class="header__left">
+            <a class="header__left__starsight" href="{% slugurl 'home' %}">Starsight</a>
+        </nav>
+
+        <nav class="header__right">
+            {% comment %} navigation_main is from template tags, navigation_items is from navigations/models.py {% endcomment %}
+            {% for item in navigation_main.navigation_items.all %}
+            
+                <a href="{{ item.link }}" {% if item.open_in_new_tab %} target="_blank" {% endif %}>{{ item.link_title }}</a>
+
+            {% endfor %}
+        </nav>
 
 
-        <footer class="footer">
-            <h1>Footer</h1>
-
-            {% if settings.site_settings.StarsightSettings.facebook %}
-                <a href="{{ settings.site_settings.StarsightSettings.facebook }}" target="_blank">Facebook</a>
-            {% endif %}
-
-            {% if settings.site_settings.StarsightSettings.twitter %}
-                <a href="{{ settings.site_settings.StarsightSettings.twitter }}" target="_blank">Twitter</a>
-            {% endif %}
-
-            {% if settings.site_settings.StarsightSettings.youtube %}
-                <a href="{{ settings.site_settings.StarsightSettings.youtube }}" target="_blank">Youtube</a>
-            {% endif %}
+    </header>
 
 
+    {% wagtailuserbar %}
+
+    {% block content %}
+    {% endblock %}
 
 
-        </footer>
+    <footer class="footer">
+        <h1>Footer</h1>
+
+        {% if settings.site_settings.StarsightSettings.facebook %}
+            <a href="{{ settings.site_settings.StarsightSettings.facebook }}" target="_blank">Facebook</a>
+        {% endif %}
+
+        {% if settings.site_settings.StarsightSettings.twitter %}
+            <a href="{{ settings.site_settings.StarsightSettings.twitter }}" target="_blank">Twitter</a>
+        {% endif %}
+
+        {% if settings.site_settings.StarsightSettings.youtube %}
+            <a href="{{ settings.site_settings.StarsightSettings.youtube }}" target="_blank">Youtube</a>
+        {% endif %}
 
 
-        {# Global javascript #}        
-        <!-- Bootstrap 5 beta JS bundle -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
-        {% block extra_js %}
-            {# Override this in templates to add extra javascript #}
-        {% endblock %}
-    </body>
+
+    </footer>
+
+
+    {# Global javascript #}        
+    <!-- Bootstrap 5 beta JS bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+    {% block extra_js %}
+        {# Override this in templates to add extra javascript #}
+    {% endblock %}
+</body>
 </html>

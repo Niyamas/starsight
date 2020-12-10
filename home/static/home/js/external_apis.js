@@ -61,7 +61,7 @@ class ExternalAPIS {
          * sidebar.
          */
 
-        let url = 'https://api.nasa.gov/planetary/apod?api_key=' + nasaAPIKey
+        let url = 'https://api.nasa.gov/planetary/apod?api_key' + nasaAPIKey
         await fetch(url)
         .then( (response) => {
 

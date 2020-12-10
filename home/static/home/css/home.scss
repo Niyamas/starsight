@@ -22,7 +22,10 @@ $margins: (
 .home-grid {
     margin-top: 70px;
     padding: 0 margin(slim);
-    //height: 63vh;
+    height: auto;
+
+    //width: 1000px;
+    //max-width: 1000px;
 
     display: grid;
     grid-template-rows: repeat(2, 1fr);
@@ -31,8 +34,8 @@ $margins: (
     grid-template-columns: 0.6fr 0.4fr;
     grid-template-areas:
         "top-post       sidebar"
-        "nested-grid    sidebar";
-    grid-row-gap: 3vh;
+        "nested-grid    sidebar"
+    grid-row-gap: 30px;
     grid-column-gap: 12vw;
 
     &__nested {
@@ -51,15 +54,28 @@ $margins: (
 
 .article {
 
+    width: 100%;
+    height: 100%;
+
     &--1 {
         grid-area: top-post;
         margin-bottom: 3vh;
     }
 
+    &__header {
+        margin-top: 12px;
+    }
+
     &__img {
         width: 100%;
-        height: 25vh;
+        height: 100%;
         object-fit: cover;
+
+        & img {
+            width: 100%;
+            height: 370px;
+            object-fit: cover;
+        }
     }
 
     &__date {
@@ -67,18 +83,6 @@ $margins: (
         color: #7e7e7e;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 .apod {
 
@@ -155,4 +159,18 @@ $margins: (
         cursor: pointer;
         color: #2c8a94;
     }
+}
+
+
+
+.home-grid-second {
+    margin-top: 70px;
+    padding: 0 margin(slim);
+    height: 1000px;
+
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: 30px;
+    grid-column-gap: 3vw;
 }

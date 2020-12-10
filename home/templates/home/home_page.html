@@ -27,57 +27,59 @@
 
 
 <div class="home-grid">
-    <article class="article article--1">
-        <img class="article__img" src="{% static 'home/images/space-1486556_1280.jpg' %}" alt="Jupiter vista">
 
-        <div class="article__content">
-            <h2 class="article__header">
-                Neverwinter Comet
-                <span class="article__date"><small>December 3, 2020</small></span>
-            </h2>
+    {% for article in articles|slice:'0:1' %}
+    
+        <article class="article article--{{ forloop.counter }}">
             
-            <a href="#">Constellations are part of some the universe’s symbology through the lens of humanity through the ages.</a>
-        </div>
-    </article>
+            <a class="article__img" href="{{ article.url }}">
+                {% image article.image original as article_img %}
+                <img src="{{ article_img.url }}" alt="{{ article_img.alt }}">
+            </a>
+            
+            <a class="article_content" href="{{ article.url }}">
+                <h2 class="article__header">
+                    {{ article.title }}
+                    <span class="article__date"><small>{{ article.first_published_at }}</small></span>
+                </h2>
+            </a>
+
+            <a href="{{ article.url }}">{{ article.banner_text|richtext }}</a>
+        </article>
+    
+        {% endfor %}
 
     <div class="home-grid__nested">
-        <article class="article article--2">
-            <img class="article__img" src="{% static 'home/images/aurora-borealis-2874887_1920.jpg' %}" alt="Jupiter vista">
 
-            <div class="article__content">
-                <h2 class="article__header">
-                    The Mystical Aurora Borealis
-                    <span class="article__date"><small>December 2, 2020</small></span>
-                </h2>
-                
-                <a href="#">
-                    Is the Aurora Borealis more than just a “scientific” phenomena? What lies
-                    behind theserene and colorful lightshow that is the Auroroa Borealis?
+        {% for article in articles|slice:'1:3' %}
+        
+            <article class="article">
+                <a class="article__img" href="{{ article.url }}">
+                {% image article.image original as article_img %}
+                    <img src="{{ article_img.url }}" alt="{{ article_img.alt }}">
                 </a>
-            </div>
-        </article>
-    
-        <article class="article article--3">
-            <img class="article__img" src="{% static 'home/images/constellation-3594964_1920.jpg' %}" alt="Jupiter vista">
+                
+                <a class="article_content" href="{{ article.url }}">
+                    <h2 class="article__header">
+                        {{ article.title }}
+                        <span class="article__date"><small>{{ article.first_published_at }}</small></span>
+                    </h2>
+                </a>
 
-            <div class="article__content">
-                <h2 class="article__header">
-                    Bulwark Constellation
-                    <span class="article__date"><small>December 1, 2020</small></span>
-                </h2>
-                
-                <a href="#">
-                    Constellations are part of some the universe’s symbology through the lens of
-                    humanity through the ages.
-                </a>
-            </div>
-        </article>
+                <a href="{{ article.url }}">{{ article.banner_text|richtext }}</a>
+
+            </article>
+        
+        {% endfor %}
+
     </div>
-    
+
     <div class="home-grid__sidebar">
         <div id="apod" class="apod"></div>
     </div>
 </div>
+
+
 
 
 {% comment %} <div>
@@ -89,7 +91,7 @@
 
 
 {% comment %} From https://v5.getbootstrap.com/docs/5.0/components/carousel/ {% endcomment %}
- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+{% comment %}  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
 
         {% for image in self.carousel_images.all %}
@@ -111,7 +113,7 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
     </a>
-</div>
+</div> {% endcomment %}
 
 
 
