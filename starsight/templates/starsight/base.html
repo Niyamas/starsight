@@ -56,7 +56,7 @@
 
     </nav>
 
-    <div class="hero">
+{% comment %}     <div class="hero">
 
         {% image settings.site_settings.StarsightSettings.hero_image original as hero_img %}
         <img class="hero__img" src="{{ hero_img.url }}" alt="{{ hero_img.alt }}">
@@ -71,7 +71,7 @@
             Bright
         </p>
 
-    </div>
+    </div> {% endcomment %}
 
 
     
@@ -118,7 +118,7 @@
 
 
     <footer class="footer">
-        <h1>Footer</h1>
+        <h1 style="color: white;">Footer</h1>
 
         {% if settings.site_settings.StarsightSettings.facebook %}
             <a href="{{ settings.site_settings.StarsightSettings.facebook }}" target="_blank">Facebook</a>

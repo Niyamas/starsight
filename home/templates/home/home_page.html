@@ -25,8 +25,81 @@
 {% block content %}
 
 
+<div class="hero">
+
+    {% image self.hero_image original as hero_img %}
+    <img class="hero__img" src="{{ hero_img.url }}" alt="{{ hero_img.alt }}">
+
+    <p class="hero__text-left">
+        Some of these stars may not exist as stars anymore...<br>
+        but their lights still echo forth through the cosmos
+    </p>
+
+    <p class="hero__text-right">
+        Shine<br>
+        Bright
+    </p>
+
+</div>
+
 
 <div class="home-grid">
+
+    <article class="featured-article featured-article--1">
+        <span class="featured-article__date">December 10, 2020</span>
+
+        <img class="featured-article__img" src="{% static 'home/images/guillermo-ferla-Oze6U2m1oYU-unsplash.jpg' %}" alt="Milky Way">
+
+        <div class="featured-article__content">
+            <h2 class="featured-article__content__title">Star Clusters in the Milky Way</h2>
+            <p class="featured-article__content__text">Many of these stars are part of the mythos that surround our constellations</p>
+        </div>
+    </article>
+
+    <div class="home-grid__nested">
+
+        <article class="featured-article featured-article--2">
+            <span class="featured-article__date">December 9, 2020</span>
+
+            <img class="featured-article__img" src="{% static 'home/images/space-1486556_1280.jpg' %}" alt="Comet">
+
+            <div class="featured-article__content featured-article__content--2">
+                <h2 class="featured-article__content__title">Neverwinter Comet</h2>
+                <p class="featured-article__content__text">This interstellar traveller visits the solar system once again</p>
+            </div>
+        </article>
+
+        <article class="featured-article featured-article--3">
+            <span class="featured-article__date">December 8, 2020</span>
+
+            <img class="featured-article__img" src="{% static 'home/images/aperture-vintage-SshYpuf607g-unsplash.jpg' %}" alt="Comet">
+
+            <div class="featured-article__content featured-article__content--3">
+                <h2 class="featured-article__content__title">Beautiful Spire in Space</h2>
+                <p class="featured-article__content__text">Take a gander at this beautiful space image taken by a cool photographer</p>
+            </div>
+        </article>
+
+    </div>
+
+
+
+
+
+    <div class="home-grid__widgets">
+        <div id="apod" class="apod"></div>
+    </div> 
+
+</div>
+
+
+
+
+
+
+
+
+{% comment %} <div class="home-grid"> {% endcomment %}
 
 {% comment %}     {% for article in articles|slice:'0:7' %}
         
@@ -160,7 +233,7 @@
     {% comment %} <div class="home-grid__sidebar">
         <div id="apod" class="apod"></div>
     </div> {% endcomment %}
-</div>
+{% comment %} </div> {% endcomment %}
 
 
 

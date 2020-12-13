@@ -24,6 +24,14 @@ class HomePage(RoutablePageMixin, Page):
     templates = 'home/home_page.html'
     max_count = 1                       # Max number of home pages will be 1
 
+    hero_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null = True,
+        blank = False,
+        on_delete = models.SET_NULL,
+        related_name = "+"
+    )
+
     default_apod_image = models.ForeignKey('wagtailimages.Image', null=True, blank=False, on_delete=models.SET_NULL, related_name='+')
     default_apod_image_title = models.CharField(max_length=100, null=True, blank=False)
     default_apod_image_credits = models.CharField(max_length=100, null=True, blank=False)
@@ -31,6 +39,7 @@ class HomePage(RoutablePageMixin, Page):
     default_apod_image_url = models.URLField(null=True, blank=True)
 
     content_panels = Page.content_panels + [
+        ImageChooserPanel('hero_image'),
         MultiFieldPanel(
             [
                 ImageChooserPanel('default_apod_image'),
