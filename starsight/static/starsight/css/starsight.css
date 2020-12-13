@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
 .no-select {
   -webkit-touch-callout: none;
   /* iOS Safari */
@@ -15,7 +15,7 @@
 }
 
 * {
-  font-family: 'Mukta', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   margin: 0;
   padding: 0;
@@ -64,86 +64,64 @@ body {
   color: #050404;
 }
 
-.header {
-  position: relative;
-  height: 130px;
-  color: #ffffff;
+.nav {
+  margin: 0 7vw;
+  width: 50vw;
+  height: 70px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.header__hero {
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  height: 100%;
+.nav__starsight {
+  font-size: 30px;
+  font-weight: 300;
+  letter-spacing: 5px;
+}
+
+.nav__link {
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 700px;
+}
+
+.hero__img {
   width: 100%;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
 
-.header__left {
-  margin-left: 7vw;
-  font-size: 40px;
+.hero__text-left {
+  position: absolute;
+  top: 30%;
+  left: 7vw;
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: 5px;
+  line-height: 2;
+  color: white;
 }
 
-.header__right {
-  margin-right: 7vw;
-  width: 40%;
-  font-size: 24px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+.hero__text-right {
+  position: absolute;
+  top: 45%;
+  right: calc( 7vw + 3vw);
+  font-size: 70px;
+  font-weight: 700;
+  letter-spacing: 15px;
+  color: white;
 }
-
-/* .header__navi {
-    position: absolute;
-    z-index: 1;
-    bottom: 0;
-    left: 0;
-
-    padding: 0 margin(wide);
-    width: 100%;    
-
-    font-size: 27px;
-    color: color(header_text);
-
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 0.6fr 0.4fr;
-    grid-template-areas:
-        "navi-left  navi-right";
-    grid-column-gap: 17vw;
-
-    &__left {
-        grid-area: navi-left;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-
-    }
-
-    &__right {
-        grid-area: navi-right;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-
-    }
-} */
 /*# sourceMappingURL=starsight.css.map */

@@ -28,7 +28,43 @@
 
 <div class="home-grid">
 
-    {% for article in articles|slice:'0:1' %}
+{% comment %}     {% for article in articles|slice:'0:7' %}
+        
+        <article class="article article--{{ forloop.counter }}">
+            
+            <a class="article__img" href="{{ article.url }}">
+                {% image article.image original as article_img %}
+                <img src="{{ article_img.url }}" alt="{{ article_img.alt }}">
+            </a>
+            
+            <a class="article_content" href="{{ article.url }}">
+                <h2 class="article__header">
+                    {{ article.title }}
+                    <span class="article__date"><small>{{ article.first_published_at }}</small></span>
+                </h2>
+
+                <a class="article__text" href="{{ article.url }}">{{ article.banner_text|richtext }}</a>
+            </a>
+
+        </article>
+        
+    {% endfor %} {% endcomment %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %}     {% for article in articles|slice:'0:1' %}
     
         <article class="article article--{{ forloop.counter }}">
             
@@ -119,11 +155,11 @@
 
         {% endfor %}
 
-    </div>
+    </div> {% endcomment %}
 
-    <div class="home-grid__sidebar">
+    {% comment %} <div class="home-grid__sidebar">
         <div id="apod" class="apod"></div>
-    </div>
+    </div> {% endcomment %}
 </div>
 
 

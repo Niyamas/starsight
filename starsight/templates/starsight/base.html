@@ -41,7 +41,56 @@
 
 <body class="{% block body_class %}{% endblock %}">
 
-    <header class="header">
+    <nav class="nav">
+
+        <a class="nav__starsight" href="{% slugurl 'home' %}">STARSIGHT</a>
+
+        {% comment %} navigation_main is from template tags, navigation_items is from navigations/models.py {% endcomment %}
+        {% for nav_link in navigation_main.navigation_items.all %}
+        
+            <a class="nav__link" href="{{ nav_link.link }}" {% if item.open_in_new_tab %} target="_blank" {% endif %}>
+                {{ nav_link.link_title }}
+            </a>
+
+        {% endfor %}
+
+    </nav>
+
+    <div class="hero">
+
+        {% image settings.site_settings.StarsightSettings.hero_image original as hero_img %}
+        <img class="hero__img" src="{{ hero_img.url }}" alt="{{ hero_img.alt }}">
+
+        <p class="hero__text-left">
+            Some of these stars may not exist as stars anymore...<br>
+            but their lights still echo forth through the cosmos
+        </p>
+
+        <p class="hero__text-right">
+            Shine<br>
+            Bright
+        </p>
+
+    </div>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %}     <header class="header">
 
         {% image settings.site_settings.StarsightSettings.hero_image original as hero_img %}
         <img class="header__hero" src="{{ hero_img.url }}" alt="Stars in space">
@@ -51,7 +100,6 @@
         </nav>
 
         <nav class="header__right">
-            {% comment %} navigation_main is from template tags, navigation_items is from navigations/models.py {% endcomment %}
             {% for item in navigation_main.navigation_items.all %}
             
                 <a href="{{ item.link }}" {% if item.open_in_new_tab %} target="_blank" {% endif %}>{{ item.link_title }}</a>
@@ -61,7 +109,7 @@
 
 
     </header>
-
+ {% endcomment %}
 
     {% wagtailuserbar %}
 
