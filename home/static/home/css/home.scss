@@ -15,7 +15,9 @@ $colors: (
     scrollbar: #4FC0C0,
     footer: #30323F,
 
-    featured-text-box: rgba(48, 50, 63, 0.7)
+    featured-text-box: rgba(48, 50, 63, 0.7),
+
+    cool-green: #4FC0C0
 );
 
 $margins: (
@@ -26,7 +28,7 @@ $margins: (
 
 .hero {
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: 700px;
 
     &__img {
@@ -62,13 +64,8 @@ $margins: (
 }
 
 .home-grid {
-    //margin-top: 60px;
-    //margin-left: margin(slim);
-    //margin-right: margin(slim);
-
     margin: 70px margin(slim) 0 margin(slim);
     
-    //width: 100vw;
     height: 1070px;
 
     display: grid;
@@ -257,11 +254,22 @@ $margins: (
     }
 
     &__banner {
-        font-size: 27px;
+        font-size: 20px;
     }
 
-    &__date, &__copyright {
+    &__date {
+        font-size: 16px;
+        letter-spacing: 3px;
+        color: #7e7e7e;
+    }
+
+    &__title {
         font-size: 20px;
+    }
+
+    &__copyright {
+        margin-bottom: 0.5rem;
+        font-size: 16px;
         color: #7e7e7e;
     }
 
@@ -320,7 +328,8 @@ $margins: (
 
         font-weight: 700;
         cursor: pointer;
-        color: #2c8a94;
+        //color: #2c8a94;
+        color: color(cool-green);
     }
 }
 

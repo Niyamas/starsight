@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 700px;
 }
 
@@ -204,11 +204,22 @@
 }
 
 .apod__banner {
-  font-size: 27px;
+  font-size: 20px;
 }
 
-.apod__date, .apod__copyright {
+.apod__date {
+  font-size: 16px;
+  letter-spacing: 3px;
+  color: #7e7e7e;
+}
+
+.apod__title {
   font-size: 20px;
+}
+
+.apod__copyright {
+  margin-bottom: 0.5rem;
+  font-size: 16px;
   color: #7e7e7e;
 }
 
@@ -258,7 +269,7 @@
   width: fit-content;
   font-weight: 700;
   cursor: pointer;
-  color: #2c8a94;
+  color: #4FC0C0;
 }
 
 /* .home-grid-second {
