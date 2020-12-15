@@ -133,8 +133,14 @@ class ExternalAPIS {
             // Store HTML image for APOD
             let apodHTML
 
-            // If APOD description is > 276 characters, add blur and read more button
-            if (apod.explanation.length > 276) {
+            // Boolean check if apod.url is an embedded youtube link.
+            let apodYTCheck = apod.url.includes('https://www.youtube.com/')
+            //console.log('includes:', apodYTCheck)
+
+            // If APOD description is > 276 characters and it's not a YouTube link, add blur and read more button.
+            // Also outputs either an img or iframe tag depending if the apod.url is an image or an embedded YouTube
+            // video.
+            if (apod.explanation.length > 276 && apodYTCheck === false) {
 
                 apodHTML = `
                     <h2 class="apod__banner">
@@ -155,7 +161,7 @@ class ExternalAPIS {
                     <div id="readMore" class="apod__read-more">Read more</div>
                 `
             }
-            else {
+            else if (apod.explanation.length <= 276 && apodYTCheck === false) {
 
                 apodHTML = `
                     <h2 class="apod__banner">
@@ -172,8 +178,46 @@ class ExternalAPIS {
                     <p class="apod__description">${apod.explanation}</p>
                 `
             }
+            else if (apod.explanation.length > 276 && apodYTCheck === true) {
 
+                apodHTML = `
+                    <h2 class="apod__banner">
+                        Astronomy Picture of the Day
+                        <span class="apod__date">${apod.date}</span>
+                    </h2>
 
+                    <iframe class="apod__iframe" src="${apod.url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                    <h3>
+                        ${apod.title}
+                        <span class="apod__copyright">by ${apod.copyright}</span>
+                    </h3>
+                    <p id="description" class="apod__description">
+                        ${apod.explanation}
+                        <span id="descriptionFade" class="apod__description__fade"></span>
+                    </p>
+                    <div id="readMore" class="apod__read-more">Read more</div>
+                `
+            }
+            else if (apod.explanation.length <= 276 && apodYTCheck === true) {
+
+                apodHTML = `
+                    <h2 class="apod__banner">
+                        Astronomy Picture of the Day
+                        <span class="apod__date">${apod.date}</span>
+                    </h2>
+
+                    <iframe class="apod__iframe" src="${apod.url}" frameborder="0" picture-in-picture" allowfullscreen></iframe>
+
+                    <h3>
+                        ${apod.title}
+                        <span class="apod__copyright">by ${apod.copyright}</span>
+                    </h3>
+                    <p class="apod__description">${apod.explanation}</p>
+                `
+            }
+
+            console.log(`apod.url = ${apod.url}`)
 
             // Place apodHTML in innerHTML of div with ID='apod'
             document.getElementById('apod').innerHTML = apodHTML

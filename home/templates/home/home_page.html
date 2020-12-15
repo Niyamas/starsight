@@ -45,46 +45,45 @@
 
 <div class="home-grid">
 
-    <article class="featured-article featured-article--1">
-        <span class="featured-article__date">December 10, 2020</span>
+    {% for article in articles|slice:'0:1' %}
+    
+        <article class="featured-article">
+            <span class="featured-article__date">{{ article.first_published_at|date:"F d, Y" }}</span>
 
-        <img class="featured-article__img" src="{% static 'home/images/guillermo-ferla-Oze6U2m1oYU-unsplash.jpg' %}" alt="Milky Way">
+            <a href="{{ article.url }}">
+                {% image article.image original as article_img %}
+                <img class="featured-article__img" src="{{ article_img.url }}" alt="{{ article_img.alt }}">
+            </a>
 
-        <div class="featured-article__content">
-            <h2 class="featured-article__content__title">Star Clusters in the Milky Way</h2>
-            <p class="featured-article__content__text">Many of these stars are part of the mythos that surround our constellations</p>
-        </div>
-    </article>
+            <div class="featured-article__content">
+                <h2 class="featured-article__content__title">{{ article.title }}</h2>
+                <div class="featured-article__content__text">{{ article.banner_text|richtext }}</div>
+            </div>
+        </article>
+    
+    {% endfor %}
 
     <div class="home-grid__nested">
 
-        <article class="featured-article featured-article--2">
-            <span class="featured-article__date">December 9, 2020</span>
+        {% for article in articles|slice:'1:3' %}
+        
+            <article class="featured-article featured-article--{{ forloop.counter }}">
+                <span class="featured-article__date">{{ article.first_published_at|date:"F d, Y" }}</span>
 
-            <img class="featured-article__img" src="{% static 'home/images/space-1486556_1280.jpg' %}" alt="Comet">
+                <a href="{{ article.url }}">
+                    {% image article.image original as article_img %}
+                    <img class="featured-article__img" src="{{ article_img.url }}" alt="{{ article_img.alt }}">
+                </a>
 
-            <div class="featured-article__content featured-article__content--2">
-                <h2 class="featured-article__content__title">Neverwinter Comet</h2>
-                <p class="featured-article__content__text">This interstellar traveller visits the solar system once again</p>
-            </div>
-        </article>
-
-        <article class="featured-article featured-article--3">
-            <span class="featured-article__date">December 8, 2020</span>
-
-            <img class="featured-article__img" src="{% static 'home/images/aperture-vintage-SshYpuf607g-unsplash.jpg' %}" alt="Comet">
-
-            <div class="featured-article__content featured-article__content--3">
-                <h2 class="featured-article__content__title">Beautiful Spire in Space</h2>
-                <p class="featured-article__content__text">Take a gander at this beautiful space image taken by a cool photographer</p>
-            </div>
-        </article>
+                <div class="featured-article__content featured-article__content--2">
+                    <h2 class="featured-article__content__title">{{ article.title }}</h2>
+                    <div class="featured-article__content__text">{{ article.banner_text|richtext }}</div>
+                </div>
+            </article>
+        
+        {% endfor %}
 
     </div>
-
-
-
-
 
     <div class="home-grid__widgets">
         <div id="apod" class="apod"></div>
