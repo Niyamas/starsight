@@ -113,6 +113,12 @@
 
             <div class="older-article__content older-article__content--{{ forloop.counter }}">
                 <h2 class="older-article__content__title">{{ article.title }}</h2>
+
+                <span class="older-article__content__topic">
+                    {{ article.topic.name|upper }}
+                    <span class="older-article__content__date">{{ article.first_published_at|date:"F d, Y" }}</span>
+                </span>
+
                 <div class="older-article__content__text">{{ article.banner_text|richtext }}</div> 
             </div>
 

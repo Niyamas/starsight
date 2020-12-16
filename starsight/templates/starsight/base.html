@@ -40,19 +40,24 @@
 </head>
 
 <body class="{% block body_class %}{% endblock %}">
-
+    
     <nav class="nav">
 
-        <a class="nav__starsight" href="{% slugurl 'home' %}">STARSIGHT</a>
+        <ul class="nav__links">
+            <li><a class="nav__links__starsight" href="{% slugurl 'home' %}"><h1>STARSIGHT</h1></a></li>
 
-        {% comment %} navigation_main is from template tags, navigation_items is from navigations/models.py {% endcomment %}
-        {% for nav_link in navigation_main.navigation_items.all %}
-        
-            <a class="nav__link" href="{{ nav_link.link }}" {% if item.open_in_new_tab %} target="_blank" {% endif %}>
-                {{ nav_link.link_title }}
-            </a>
+            {% comment %} navigation_main is from template tags, navigation_items is from navigations/models.py {% endcomment %}
+            {% for nav_link in navigation_main.navigation_items.all %}
 
-        {% endfor %}
+                <li>
+                    <a class="nav__links__link" href="{{ nav_link.link }}" {% if item.open_in_new_tab %} target="_blank" {% endif %}>
+                        {{ nav_link.link_title }}
+                    </a>
+                </li>
+
+            {% endfor %}
+
+        </ul>
 
     </nav>
 

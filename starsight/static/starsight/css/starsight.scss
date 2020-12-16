@@ -71,7 +71,11 @@ $colors: (
     white-text: #ffffff,
     text: #050404,
     scrollbar: #4FC0C0,
-    footer: #30323F
+    footer: #30323F,
+
+    featured-text-box: rgba(48, 50, 63, 0.5),
+
+    cool-green: #4FC0C0
 );
 
 $margins: (
@@ -148,8 +152,8 @@ a, a:hover, a:active {
 
 // Remove extra space below ul element
 ul {
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 body {
@@ -158,7 +162,7 @@ body {
 }
 
 // base.html scss
-.nav {
+/* .nav {
     margin: 0 margin(slim);
 
     width: 50vw;
@@ -177,9 +181,67 @@ body {
     }
 
     &__link {
+        padding: auto 0;
         font-size: 20px;
         font-weight: 300;
         letter-spacing: 1px;
+
+        &:hover {
+            color: color(cool-green);
+        }
+    }
+} */
+
+.nav {
+    width: 100%;
+    height: 70px;
+
+    //border: 1px solid orange;
+
+    &__links {
+        margin-left: margin(slim) !important;
+
+        width: 50%;
+        height: 100%;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        //border: 1px solid green;
+
+        & li {
+            height: 100%;
+        }
+
+        &__starsight {
+            height: 100%;
+            display: flex;
+            align-items: center;
+
+            & h1 {
+                font-size: 30px;
+                font-weight: 300;
+                letter-spacing: 5px;
+            }
+        }
+
+        &__link {
+            height: 100%;
+            display: flex;
+            align-items: center;
+
+            font-size: 20px;
+            font-weight: 300;
+            letter-spacing: 1px;
+
+            transition: color ease-in-out 0.2s;
+            will-change: color;
+
+            &:hover {
+                color: color(cool-green) !important;
+            }
+        }
     }
 }
 

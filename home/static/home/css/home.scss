@@ -46,8 +46,9 @@ $margins: (
         font-weight: 400;
         letter-spacing: 5px;
         line-height: 2;
-
         color: color(white-text);
+
+        pointer-events: none;
     }
 
     &__text-right {
@@ -58,8 +59,9 @@ $margins: (
         font-size: 70px;
         font-weight: 700;
         letter-spacing: 15px;
-
         color: color(white-text);
+
+        pointer-events: none;
     }
 }
 
@@ -107,7 +109,7 @@ $margins: (
 
     &__date {
         font-weight: 300;
-        letter-spacing: 3px;
+        letter-spacing: 2px;
         color: color(text);
     }
 
@@ -138,7 +140,7 @@ $margins: (
         pointer-events: none;
 
         &__title {
-            font-size: 20px;
+            font-size: 25px;
             font-weight: 600;
             letter-spacing: 1px;
             color: color(white-text);
@@ -256,6 +258,7 @@ $margins: (
     position: relative;
     margin: 120px margin(slim) 0 margin(slim);
     
+    max-width: 100vw;
     height: calc( 1060 + 4*(35px) );            // Each image will be 300px. Need to hard code 300px later, so this needs to be precise.
 
     display: grid;
@@ -271,32 +274,34 @@ $margins: (
 }
 
 .more-grid__banner {
+    grid-area: article-1;
     position: absolute;
-    top: -30px;
+    top: -45px;
     left: 0px;
+    padding: 0 margin(slim);
 
     width: 100%;
 
-    border: 1px solid orange;
+    //border: 1px solid orange;
 
     &__text {
-        margin: 0;
-        padding-right: 18px;
-        font-size: 19px;
+        margin-bottom: 0;
+
+        display: grid;
+        grid-template-columns: auto minmax(20px, 1fr);
+        grid-column-gap: 15px;
+
+        font-size: 20px;
         letter-spacing: 1px;
         color: color(cool-green);
 
         //border: 1px solid blue;
-      
-    }
 
-    &::after {
-        position: absolute;
-        //display: inline-block;
-        content: "";
-        border-top: 10px solid color(cool-green);
-        //height: 0;
-        //width: 100%;
+        &::after {
+            content: "";
+            border-top: 1px solid color(cool-green);
+            transform: translateY(50%);
+        }
     }
 }
 
@@ -329,9 +334,6 @@ $margins: (
     }
 
     &__img {
-        //position: absolute;
-        //top: 0;
-        //left: 0;
         width: 100%;
         height: 300px;
         
@@ -345,6 +347,28 @@ $margins: (
 
         width: 100%;
 
-        border: 1px solid green;
+        &__title {
+            font-size: 25px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        &__topic {
+            letter-spacing: 3px;
+            color: color(cool-green);
+        }
+
+        &__date {
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: color(text);
+        }
+
+        &__text {
+            margin-top: 0.5rem;
+
+            letter-spacing: 1.2px;
+            line-height: 2.1;
+        }
     }
 }
