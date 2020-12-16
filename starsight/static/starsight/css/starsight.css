@@ -154,6 +154,71 @@ body {
 }
 
 .footer {
+  height: 350px;
   background-color: #30323F;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.footer__left {
+  margin-left: 7vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 17px;
+}
+
+.footer__left__link {
+  fill: #ffffff;
+  -webkit-transition: fill ease-in-out 0.2s;
+  transition: fill ease-in-out 0.2s;
+  will-change: fill;
+}
+
+.footer__left__link:hover {
+  fill: #4FC0C0;
+}
+
+.footer__middle {
+  font-size: 30px;
+  font-weight: 300;
+  letter-spacing: 5px;
+  color: #ffffff !important;
+  -webkit-transition: color ease-in-out 0.2s;
+  transition: color ease-in-out 0.2s;
+  will-change: color;
+}
+
+.footer__middle:hover {
+  color: #4FC0C0 !important;
+}
+
+.footer__right {
+  margin-right: 7vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 17px;
+}
+
+.footer__right__link {
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 1.2px;
+  color: #ffffff !important;
+  -webkit-transition: color ease-in-out 0.2s;
+  transition: color ease-in-out 0.2s;
+  will-change: color;
+}
+
+.footer__right__link:hover {
+  color: #4FC0C0 !important;
 }
 /*# sourceMappingURL=starsight.css.map */

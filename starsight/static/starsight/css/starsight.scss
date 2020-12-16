@@ -246,5 +246,63 @@ body {
 }
 
 .footer {
+    height: 350px;
     background-color: color(footer);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__left {
+        margin-left: margin(slim);
+
+        display: flex;
+        gap: 17px;
+
+        &__link {
+            fill: color(white-text);
+
+            transition: fill ease-in-out 0.2s;
+            will-change: fill;
+
+            &:hover {
+                fill: color(cool-green);
+            }
+        }
+    }
+
+    &__middle {
+        font-size: 30px;
+        font-weight: 300;
+        letter-spacing: 5px;
+        color: color(white-text) !important;
+
+        transition: color ease-in-out 0.2s;
+        will-change: color;
+
+        &:hover {
+            color: color(cool-green) !important;
+        }
+    }
+
+    &__right {
+        margin-right: margin(slim);
+
+        display: flex;
+        gap: 17px;
+
+        &__link {
+            font-size: 20px;
+            font-weight: 300;
+            letter-spacing: 1.2px;
+            color: color(white-text) !important;
+
+            transition: color ease-in-out 0.2s;
+            will-change: color;
+
+            &:hover {
+                color: color(cool-green) !important;
+            }
+        }
+    }
 }
