@@ -15,7 +15,7 @@ $colors: (
     scrollbar: #4FC0C0,
     footer: #30323F,
 
-    featured-text-box: rgba(48, 50, 63, 0.7),
+    featured-text-box: rgba(48, 50, 63, 0.5),
 
     cool-green: #4FC0C0
 );
@@ -96,12 +96,19 @@ $margins: (
 .featured-article {
     position: relative;
 
-    &__date {
+    &__topic {
         position: absolute;
         top: -30px;
         left: 0px;
 
         letter-spacing: 3px;
+        color: color(cool-green);
+    }
+
+    &__date {
+        font-weight: 300;
+        letter-spacing: 3px;
+        color: color(text);
     }
 
     &__img {
@@ -113,7 +120,7 @@ $margins: (
         height: 100%;
         object-fit: cover;
 
-        border-radius: 7px;
+        border-radius: 2px;
     }
 
     &__content {
@@ -126,7 +133,7 @@ $margins: (
         //width: fit-content;
 
         background-color: color(featured-text-box);
-        border-radius: 7px;
+        border-radius: 2px;
 
         pointer-events: none;
 
@@ -155,94 +162,6 @@ $margins: (
     }
 }
 
-
-
-
-
-
-/* .home-grid {
-    margin-top: 70px;
-    padding: 0 margin(slim);
-    height: 1000px;
-    //height: auto;
-
-    display: grid;
-    //grid-template-rows: repeat(4, 1fr);
-    grid-template-rows: 0.9fr 1fr 0.9fr 1fr;
-    grid-template-columns: 0.6fr 0.4fr;
-    grid-template-areas:
-        "top-post       sidebar"
-        "double-grid    sidebar"
-        "midlong-post   sidebar"
-        "triple-grid    sidebar";
-    grid-row-gap: 30px;
-    grid-column-gap: 30px;
-
-    &__double {
-        grid-area: double-grid;
-
-        display: grid;
-        grid-template-rows: 1fr;
-        grid-template-columns: 0.6fr 0.4fr;
-        grid-column-gap: 2.7vw;
-    }
-
-    &__triple {
-        grid-area: triple-grid;
-
-        display: grid;
-        grid-template-rows: 1fr;
-        grid-template-columns: repeat(3, 1fr);
-        grid-column-gap: 2.7vw;
-    }
-
-    &__sidebar {
-        grid-area: sidebar;
-    }
-} */
-
-
-
-
-
-
-
-.article {
-    margin-bottom: 0;
-
-    width: 100%;
-    height: auto;
-
-    &--1 {
-        grid-area: top-post;
-    }
-
-    &__header {
-        margin-top: 12px;
-    }
-
-    &__img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-
-        & img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-    }
-
-    &__date {
-        font-size: 20px;
-        color: #7e7e7e;
-    }
-
-    &__text p {
-        margin-bottom: 0;
-    }
-}
-
 .apod {
 
     &__img, &__iframe {
@@ -250,7 +169,7 @@ $margins: (
         width: 100%;
         height: 300px;
         object-fit: cover;
-        border-radius: 7px;
+        border-radius: 2px;
     }
 
     &__banner {
@@ -333,16 +252,99 @@ $margins: (
     }
 }
 
-
-
-/* .home-grid-second {
-    margin-top: 70px;
-    padding: 0 margin(slim);
-    height: 1000px;
+.more-grid {
+    position: relative;
+    margin: 120px margin(slim) 0 margin(slim);
+    
+    height: calc( 1060 + 4*(35px) );            // Each image will be 300px. Need to hard code 300px later, so this needs to be precise.
 
     display: grid;
-    grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(3, 1fr);
-    grid-row-gap: 30px;
-    grid-column-gap: 3vw;
-} */
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: 2.37fr 1fr;
+    grid-template-areas:
+        "article-1  widgets-more"
+        "article-2   widgets-more"
+        "article-3   widgets-more"
+        "article-4   widgets-more";
+    grid-row-gap: 35px;
+    grid-column-gap: 140px;
+}
+
+.more-grid__banner {
+    position: absolute;
+    top: -30px;
+    left: 0px;
+
+    width: 100%;
+
+    border: 1px solid orange;
+
+    &__text {
+        margin: 0;
+        padding-right: 18px;
+        font-size: 19px;
+        letter-spacing: 1px;
+        color: color(cool-green);
+
+        //border: 1px solid blue;
+      
+    }
+
+    &::after {
+        position: absolute;
+        //display: inline-block;
+        content: "";
+        border-top: 10px solid color(cool-green);
+        //height: 0;
+        //width: 100%;
+    }
+}
+
+.older-article {
+    position: relative;
+    padding: 0 margin(slim);
+
+    display: flex;
+
+    &--1 {
+        grid-area: article-1;
+    }
+
+    &--2 {
+        grid-area: article-2;
+    }
+
+    &--3 {
+        grid-area: article-3;
+    }
+
+    &--4 {
+        grid-area: article-4;
+    }
+
+    &__img-link {
+        width: 50%;
+        min-width: 50%;
+        //height: 300px;
+    }
+
+    &__img {
+        //position: absolute;
+        //top: 0;
+        //left: 0;
+        width: 100%;
+        height: 300px;
+        
+        object-fit: cover;
+
+        border-radius: 2px;
+    }
+
+    &__content {
+        margin-left: 100px;
+
+        width: 100%;
+
+        border: 1px solid green;
+    }
+}
