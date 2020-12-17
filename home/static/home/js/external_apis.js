@@ -83,14 +83,13 @@ class ExternalAPIS {
                 // To style Wagtail's rich text, need to place text within a div.
                 // In the CSS, call the rich text like so: "classname.p {}".
                 apodHTML = `
-                    <h3 class="apod__banner">
-                        Astronomy Picture of the Day
-                        <span class="apod__date">(updating) ${dateTimeNow}</span>
-                    </h3>
+                    <h3 class="apod__banner">ASTRONOMY PICTURE OF THE DAY</h3>
 
                     <img class="apod__img" src="${defaultAPOD}" alt=""></img>
 
                     <h3 class="apod__title">${defaultAPODTitle}</h3>
+
+                    <span class="apod__date">(updating) ${dateTimeNow}</span>
 
                     <span class="apod__copyright">by ${defaultAPODCredits}</span>
 
@@ -101,16 +100,15 @@ class ExternalAPIS {
 
                 // Store HTML image for APOD if there is a URL set in Wagtail
                 apodHTML = `
-                    <h3 class="apod__banner">
-                        Astronomy Picture of the Day
-                        <span class="apod__date">(updating) ${dateTimeNow}</span>
-                    </h3>
+                    <h3 class="apod__banner">ASTRONOMY PICTURE OF THE DAY</h3>
 
                     <a href="${defaultAPODURL}" target="_blank">
                         <img class="apod__img" src="${defaultAPOD}" alt=""></img>
                     </a>
 
                     <h3 class="apod__title">${defaultAPODTitle}</h3>
+
+                    <span class="apod__date">(updating) ${dateTimeNow}</span>
 
                     <span class="apod__copyright">by ${defaultAPODCredits}</span>
 
@@ -147,10 +145,7 @@ class ExternalAPIS {
             if (apod.explanation.length > 276 && apodYTCheck === false) {
 
                 apodHTML = `
-                    <h3 class="apod__banner">
-                        Astronomy Picture of the Day
-                        <span class="apod__date">${apodDateFormatted}</span>
-                    </h3>
+                    <h3 class="apod__banner">ASTRONOMY PICTURE OF THE DAY</h3>
 
                     <a href="https://apod.nasa.gov/apod/astropix.html" target="_blank">
                         <img class="apod__img" src="${apod.url}" alt="NASA's Astronomy Picture of the Day (APOD)"></img>
@@ -159,6 +154,8 @@ class ExternalAPIS {
                     <h3 class="apod__title">${apod.title}</h3>
 
                     <span class="apod__copyright">by ${apod.copyright}</span>
+
+                    <span class="apod__date">${apodDateFormatted}</span>
 
                     <p id="description" class="apod__description">
                         ${apod.explanation}
@@ -171,10 +168,7 @@ class ExternalAPIS {
             else if (apod.explanation.length <= 276 && apodYTCheck === false) {
 
                 apodHTML = `
-                    <h3 class="apod__banner">
-                        Astronomy Picture of the Day
-                        <span class="apod__date">${apodDateFormatted}</span>
-                    </h3>
+                    <h3 class="apod__banner">ASTRONOMY PICTURE OF THE DAY</h3>
 
                     <a href="https://apod.nasa.gov/apod/astropix.html" target="_blank">
                         <img class="apod__img" src="${apod.url}" alt="NASA's Astronomy Picture of the Day (APOD)"></img>
@@ -184,22 +178,23 @@ class ExternalAPIS {
 
                     <span class="apod__copyright">by ${apod.copyright}</span>
 
+                    <span class="apod__date">${apodDateFormatted}</span>
+
                     <p class="apod__description">${apod.explanation}</p>
                 `
             }
             else if (apod.explanation.length > 276 && apodYTCheck === true) {
 
                 apodHTML = `
-                    <h3 class="apod__banner">
-                        Astronomy Picture of the Day
-                        <span class="apod__date">${apodDateFormatted}</span>
-                    </h3>
+                    <h3 class="apod__banner">ASTRONOMY PICTURE OF THE DAY</h3>
 
                     <iframe class="apod__iframe" src="${apod.url}" frameborder="0" picture-in-picture" allowfullscreen></iframe>
 
                     <h3 class="apod__title">${apod.title}</h3>
 
                     <span class="apod__copyright">by ${apod.copyright}</span>
+
+                    <span class="apod__date">${apodDateFormatted}</span>
 
                     <p id="description" class="apod__description">
                         ${apod.explanation}
@@ -212,16 +207,15 @@ class ExternalAPIS {
             else if (apod.explanation.length <= 276 && apodYTCheck === true) {
 
                 apodHTML = `
-                    <h3 class="apod__banner">
-                        Astronomy Picture of the Day
-                        <span class="apod__date">${apodDateFormatted}</span>
-                    </h3>
+                    <h3 class="apod__banner">ASTRONOMY PICTURE OF THE DAY</h3>
 
                     <iframe class="apod__iframe" src="${apod.url}" frameborder="0" picture-in-picture" allowfullscreen></iframe>
 
                     <h3 class="apod__title">${apod.title}</h3>
 
                     <span class="apod__copyright">by ${apod.copyright}</span>
+
+                    <span class="apod__date">${apodDateFormatted}</span>
                     
                     <p class="apod__description">${apod.explanation}</p>
                 `

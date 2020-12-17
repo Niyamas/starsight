@@ -1,8 +1,11 @@
 {% extends 'starsight/base.html' %}
-{% load wagtailimages_tags wagtailcore_tags %}  {% comment %} wagtailcore_tags for blocks {% endcomment %}
+{% load static wagtailimages_tags wagtailcore_tags %}  {% comment %} wagtailcore_tags for blocks {% endcomment %}
 
 
 {% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'articles/css/articles.css' %}">
+
 {% endblock extra_css %}
 
 

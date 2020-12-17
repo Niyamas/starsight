@@ -136,28 +136,45 @@
 }
 
 .apod__banner {
+  margin-bottom: 19px;
   font-size: 20px;
+  letter-spacing: 1px;
+  color: #4FC0C0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto minmax(20px, 1fr);
+      grid-template-columns: auto minmax(20px, 1fr);
+  grid-column-gap: 15px;
+}
+
+.apod__banner::after {
+  content: "";
+  border-top: 1px solid #4FC0C0;
+  -webkit-transform: translateY(50%);
+          transform: translateY(50%);
 }
 
 .apod__date {
-  font-size: 16px;
-  letter-spacing: 3px;
-  color: #7e7e7e;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: #050404;
 }
 
 .apod__title {
-  font-size: 20px;
+  margin-bottom: 5px;
+  font-size: 25px;
+  letter-spacing: 1px;
 }
 
 .apod__copyright {
-  margin-bottom: 0.5rem;
-  font-size: 16px;
-  color: #7e7e7e;
+  color: #4FC0C0;
+  text-transform: uppercase;
 }
 
 .apod__description, .apod__description.p {
   position: relative;
   z-index: 1;
+  margin-top: 10px;
   margin-bottom: 0;
   line-height: 2.1;
   max-height: 120px;

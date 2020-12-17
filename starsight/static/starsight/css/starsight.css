@@ -172,7 +172,7 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 17px;
+  gap: 25px;
 }
 
 .footer__left__link {
@@ -183,7 +183,7 @@ body {
 }
 
 .footer__left__link:hover {
-  fill: #4FC0C0;
+  fill: #5de4e4;
 }
 
 .footer__middle {
@@ -197,7 +197,7 @@ body {
 }
 
 .footer__middle:hover {
-  color: #4FC0C0 !important;
+  color: #5de4e4 !important;
 }
 
 .footer__right {
@@ -205,7 +205,7 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 17px;
+  gap: 25px;
 }
 
 .footer__right__link {
@@ -219,6 +219,6 @@ body {
 }
 
 .footer__right__link:hover {
-  color: #4FC0C0 !important;
+  color: #5de4e4 !important;
 }
 /*# sourceMappingURL=starsight.css.map */
