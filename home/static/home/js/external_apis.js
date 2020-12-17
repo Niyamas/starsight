@@ -73,7 +73,11 @@ class ExternalAPIS {
             }
 
             let date = new Date()
-            let dateTimeNow = ( date.getMonth() + 1) + '-' + date.getDate() + '-' + date.getFullYear()
+
+            let options = { year:'numeric', month:'long', day:'numeric' }
+            let dateTimeNow = date.toLocaleDateString('en-US', options)
+
+            //let dateTimeNow = ( date.getMonth() + 1) + '-' + date.getDate() + '-' + date.getFullYear()
 
             let apodHTML
 
@@ -89,9 +93,9 @@ class ExternalAPIS {
 
                     <h3 class="apod__title">${defaultAPODTitle}</h3>
 
-                    <span class="apod__date">(updating) ${dateTimeNow}</span>
+                    <span class="apod__copyright">by ${defaultAPODCredits}&nbsp;</span>
 
-                    <span class="apod__copyright">by ${defaultAPODCredits}</span>
+                    <span class="apod__date">${dateTimeNow}</span>
 
                     <div class="apod__description">${defaultAPODText}</div>
                 `
@@ -108,9 +112,9 @@ class ExternalAPIS {
 
                     <h3 class="apod__title">${defaultAPODTitle}</h3>
 
-                    <span class="apod__date">(updating) ${dateTimeNow}</span>
+                    <span class="apod__copyright">by ${defaultAPODCredits}&nbsp;</span>
 
-                    <span class="apod__copyright">by ${defaultAPODCredits}</span>
+                    <span class="apod__date">${dateTimeNow}</span>
 
                     <div class="apod__description">${defaultAPODText}</div>
                 `
@@ -136,7 +140,7 @@ class ExternalAPIS {
             //console.log('includes:', apodYTCheck)
 
             let apodDate = new Date(apod.date)
-            const options = { year:'numeric', month:'long', day:'numeric' }
+            let options = { year:'numeric', month:'long', day:'numeric' }
             let apodDateFormatted = apodDate.toLocaleDateString('en-US', options)
 
             // If APOD description is > 276 characters and it's not a YouTube link, add blur and read more button.
@@ -153,7 +157,7 @@ class ExternalAPIS {
 
                     <h3 class="apod__title">${apod.title}</h3>
 
-                    <span class="apod__copyright">by ${apod.copyright}</span>
+                    <span class="apod__copyright">by ${apod.copyright}&nbsp;</span>
 
                     <span class="apod__date">${apodDateFormatted}</span>
 
@@ -176,7 +180,7 @@ class ExternalAPIS {
 
                     <h3 class="apod__title">${apod.title}</h3>
 
-                    <span class="apod__copyright">by ${apod.copyright}</span>
+                    <span class="apod__copyright">by ${apod.copyright}&nbsp;</span>
 
                     <span class="apod__date">${apodDateFormatted}</span>
 
@@ -192,7 +196,7 @@ class ExternalAPIS {
 
                     <h3 class="apod__title">${apod.title}</h3>
 
-                    <span class="apod__copyright">by ${apod.copyright}</span>
+                    <span class="apod__copyright">by ${apod.copyright}&nbsp;</span>
 
                     <span class="apod__date">${apodDateFormatted}</span>
 
@@ -213,7 +217,7 @@ class ExternalAPIS {
 
                     <h3 class="apod__title">${apod.title}</h3>
 
-                    <span class="apod__copyright">by ${apod.copyright}</span>
+                    <span class="apod__copyright">by ${apod.copyright}&nbsp;</span>
 
                     <span class="apod__date">${apodDateFormatted}</span>
                     
