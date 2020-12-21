@@ -6,7 +6,8 @@ class Animations {
 
     static nav() {
         /**
-         * 
+         * Adds transition classes to the navbar after scrolling 70 units.
+         * Will remove these classes once the user scrolls back to the top.
          */
 
         console.log('Running Animations.nav()')
@@ -40,7 +41,6 @@ class Animations {
             }
         })
     }
-
 
 }
 

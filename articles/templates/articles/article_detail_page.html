@@ -15,13 +15,37 @@
 
 {% block content %}
 
-<h1>article detail page</h1>
 
-{% image self.image fill-900x400 as article_image %}
+<div class="article-banner">
 
-<img src="{{ article_image.url }}" alt="{{ article_image.alt }}">
+    {% image self.image fill-900x400 as article_image %}
+    <img class="article-banner__img" src="{{ article_image.url }}" alt="{{ article_image.alt }}">
 
-<div class="container">
+</div>
+
+<div class="article">
+
+    <span class="article__topic">
+        {{ self.topic.name|upper }}
+        <span class="article__date">{{ self.first_published_at|date:"F d, Y" }}</span>
+    </span>
+
+    <h1 class="article__title">{{ self.title }}</h1>
+    <h2 class="article__subtitle">{{ self.banner_text|richtext }}</h2>
+
+    <div class="article__blocks">
+
+        {% for block in self.content %}
+            {% include_block block %}
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+
+{% comment %} <div class="container">
     <div class="text-center">
         <h1>{{ self.title }}</h1>
     </div>
@@ -49,17 +73,7 @@
         {% endfor %}
 
     </ul>
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-            {% for block in self.content %}
-                {% include_block block %}
-            {% endfor %}
-        </div>
-    </div>
-</div>
+</div> {% endcomment %}
 
 
 

@@ -64,6 +64,10 @@ body {
   color: #050404;
 }
 
+html {
+  font-size: 18px;
+}
+
 /* .nav {
     margin: 0 margin(slim);
 
@@ -106,6 +110,7 @@ body {
   transition: height ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
   transition: height ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   transition: height ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+  will-change: height, box-shadow;
 }
 
 .nav__links {
@@ -142,8 +147,13 @@ body {
   font-size: 30px;
   font-weight: 300;
   letter-spacing: 5px;
-  -webkit-transition: font-size ease-in-out 0.15s;
-  transition: font-size ease-in-out 0.15s;
+  -webkit-transition: color ease-in-out 0.2s, font-size ease-in-out 0.15s;
+  transition: color ease-in-out 0.2s, font-size ease-in-out 0.15s;
+  will-change: color, font-size;
+}
+
+.nav__links__starsight h1:hover {
+  color: #4FC0C0;
 }
 
 .nav__links__starsight h1.sticky {
@@ -161,9 +171,9 @@ body {
   font-size: 20px;
   font-weight: 300;
   letter-spacing: 1px;
-  -webkit-transition: color ease-in-out 0.15s, font-size ease-in-out 0.15s;
-  transition: color ease-in-out 0.15s, font-size ease-in-out 0.15s;
-  will-change: color;
+  -webkit-transition: color ease-in-out 0.2s, font-size ease-in-out 0.15s;
+  transition: color ease-in-out 0.2s, font-size ease-in-out 0.15s;
+  will-change: color, font-size;
 }
 
 .nav__links__link:hover {

@@ -29,6 +29,7 @@
     <!-- Bootstrap 5 beta CSS (https://getbootstrap.com/docs/5.0/getting-started/introduction/) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
+    <link rel="preload" as="script" href="{% static 'home/js/animations.js' %}">
 
     {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
@@ -177,6 +178,8 @@
     {# Global javascript #}        
     <!-- Bootstrap 5 beta JS bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+    <script defer type="text/javascript" src="{% static 'home/js/animations.js' %}"></script>
 
     {% block extra_js %}
         {# Override this in templates to add extra javascript #}

@@ -162,6 +162,10 @@ body {
     color: color(text);
 }
 
+html {
+    font-size: 18px;
+}
+
 // base.html scss
 /* .nav {
     margin: 0 margin(slim);
@@ -211,6 +215,7 @@ body {
     background-color: white;
 
     transition: height ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    will-change: height, box-shadow;
 
     &__links {
         margin-left: margin(slim) !important;
@@ -221,8 +226,6 @@ body {
         display: flex;
         justify-content: space-between;
         align-items: center;
-
-        //border: 1px solid green;
 
         & li {
             height: 100%;
@@ -239,7 +242,12 @@ body {
                 font-weight: 300;
                 letter-spacing: 5px;
 
-                transition: font-size ease-in-out 0.15s;
+                transition: color ease-in-out 0.2s, font-size ease-in-out 0.15s;
+                will-change: color, font-size;
+
+                &:hover {
+                    color: color(cool-green);
+                }
 
                 &.sticky {
                     font-size: 25.5px;
@@ -256,8 +264,8 @@ body {
             font-weight: 300;
             letter-spacing: 1px;
 
-            transition: color ease-in-out 0.15s, font-size ease-in-out 0.15s;
-            will-change: color;
+            transition: color ease-in-out 0.2s, font-size ease-in-out 0.15s;
+            will-change: color, font-size;
 
             &:hover {
                 color: color(cool-green) !important;
