@@ -68,10 +68,12 @@ $margins: (
 
         font-size: 27px;
         letter-spacing: 1px;
+        line-height: 1.7;
         color: color(text-faded);
     }
 
-    &.p {
+    &__blocks {
         letter-spacing: 1px;
+        line-height: 2;
     }
 }

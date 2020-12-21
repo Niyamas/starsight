@@ -39,10 +39,12 @@
   margin: 30px 0;
   font-size: 27px;
   letter-spacing: 1px;
+  line-height: 1.7;
   color: #05040481;
 }
 
-.article.p {
+.article__blocks {
   letter-spacing: 1px;
+  line-height: 2;
 }
 /*# sourceMappingURL=articles.css.map */
