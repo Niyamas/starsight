@@ -21,6 +21,10 @@
     {% image self.image fill-900x400 as article_image %}
     <img class="article-banner__img" src="{{ article_image.url }}" alt="{{ article_image.alt }}">
 
+    <div class="article-banner__content">
+        <div class="article-banner__content__credits">Image by: {{ self.image_credits }}</div>
+    </div>
+
 </div>
 
 <div class="article">

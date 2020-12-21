@@ -70,6 +70,7 @@ class ArticleDetailPage(Page):
     template = 'articles/article_detail_page.html'
 
     banner_text = RichTextField(features=['bold', 'italic'], max_length=200, null=True, blank=False)
+    topic = models.ForeignKey('articles.ArticleTopic', null=True, blank=True, on_delete=models.SET_NULL)
     image = models.ForeignKey(
         'wagtailimages.Image',
         blank=False,
@@ -77,8 +78,7 @@ class ArticleDetailPage(Page):
         on_delete=models.SET_NULL,
         related_name='+',
     )
-    #topics = ParentalManyToManyField('articles.ArticleTopic', blank=True)
-    topic = models.ForeignKey('articles.ArticleTopic', null=True, blank=True, on_delete=models.SET_NULL)
+    image_credits = models.CharField(max_length=100, blank=False, null=True, help_text="Acknowledge the image's producer")
     content = StreamField(
         [
             ('title_and_text', blocks.TitleAndTextBlock()),
@@ -94,9 +94,14 @@ class ArticleDetailPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('banner_text'),
-        ImageChooserPanel('image'),
-        #FieldPanel('topic'),
         SnippetChooserPanel('topic'),
+        MultiFieldPanel(
+            [
+                ImageChooserPanel('image'),
+                FieldPanel('image_credits')
+            ],
+            heading='Header Image'
+        ),
         MultiFieldPanel(
             [
                 InlinePanel('article_authors', label='Author', min_num=1, max_num=3)

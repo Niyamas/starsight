@@ -46,8 +46,32 @@ class RichTextBlock(blocks.RichTextBlock):
         icon = 'doc-full'
         label = 'Full Rich Text'
 
+"""     def __init__(self, required=True, help_text=None, editor='default', features=None, validators=(), **kwargs):
+        super().__init__(**kwargs)
+        self.features = [
+            'bold',
+            'italic',
+            'h2',
+            'h3',
+            'h4',
+            'code',
+            'center',
+            'ol',
+            'ul',
+            'hr',
+            'link',
+            'document-link',
+            'image',
+            'embed'
+        ] """
+
 class SimpleRichTextBlock(blocks.RichTextBlock):
     """Richtext with limited Draftail features."""
+
+    class Meta:
+        template = 'streams/richtext_block.html'
+        icon = 'edit'
+        label = 'Simple Rich Text'
 
     def __init__(self, required=True, help_text=None, editor='default', features=None, validators=(), **kwargs):
         super().__init__(**kwargs)
@@ -56,11 +80,6 @@ class SimpleRichTextBlock(blocks.RichTextBlock):
             'italic',
             'link',
         ]
-
-    class Meta:
-        template = 'streams/richtext_block.html'
-        icon = 'edit'
-        label = 'Simple Rich Text'
 
 
 class CTABlock(blocks.StructBlock):
