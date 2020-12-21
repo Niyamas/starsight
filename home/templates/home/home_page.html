@@ -126,7 +126,7 @@
 
     {% endfor %}
 
-    <a href="/articles"></a>
+    <a class="more-grid__btn btn btn-primary shadow-none" href="{% slugurl 'articles' %}">Read more articles</a>
 
 </div>
 
@@ -310,8 +310,8 @@
 
 
 
-<a href="{% routablepageurl self 'subscribe_page' %}">Subscribe</a>
-<h2>Link is {{ test_link }}</h2>
+{% comment %} <a href="{% routablepageurl self 'subscribe_page' %}">Subscribe</a>
+<h2>Link is {{ test_link }}</h2> {% endcomment %}
 
 
 {% endblock content %}
