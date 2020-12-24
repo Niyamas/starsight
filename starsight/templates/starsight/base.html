@@ -51,7 +51,7 @@
             {% for nav_link in navigation_main.navigation_items.all %}
 
                 <li>
-                    <a id="navLink" class="nav__links__link" href="{{ nav_link.link }}" {% if item.open_in_new_tab %} target="_blank" {% endif %}>
+                    <a id="navLink" class="nav__links__link" href="{{ nav_link.link }}" {% if nav_link.open_in_new_tab %} target="_blank" {% endif %}>
                         {{ nav_link.link_title }}
                     </a>
                 </li>

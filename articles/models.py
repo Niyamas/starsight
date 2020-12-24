@@ -54,8 +54,8 @@ class ArticleListingPage(Page):
         if topic_slug:
             articles = articles.filter(topic__slug=topic_slug)
 
-        # Create paginator and paginate by 2
-        paginator = Paginator(articles, 2)
+        # Create paginator and paginate by 7
+        paginator = Paginator(articles, 7)
         page = request.GET.get('page')
 
         try:
