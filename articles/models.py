@@ -48,6 +48,12 @@ class ArticleListingPage(Page):
         # Query all articles for paginator
         articles = ArticleDetailPage.objects.live().public().order_by('-first_published_at')
 
+        # Filter articles by the topic selected by the user
+        # Has an issue with pagination
+        topic_slug = request.GET.get('topic', None)
+        if topic_slug:
+            articles = articles.filter(topic__slug=topic_slug)
+
         # Create paginator and paginate by 2
         paginator = Paginator(articles, 2)
         page = request.GET.get('page')
@@ -62,6 +68,12 @@ class ArticleListingPage(Page):
         context['articles'] = articles_paginated
 
         context['topics'] = ArticleTopic.objects.all()
+
+        # For passing the topic slug when the user selects a topic
+        context['topic_pagination'] = topic_slug
+
+        print(context['topic_pagination'])
+
         return context
 
 class ArticleDetailPage(Page):

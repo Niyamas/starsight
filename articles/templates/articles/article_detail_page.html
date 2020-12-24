@@ -29,10 +29,10 @@
 
 <div class="article">
 
-    <span class="article__topic">
+    <a class="article__topic" href="{{ self.get_parent.url }}?topic={{ self.topic.slug }}">
         {{ self.topic.name|upper }}
         <span class="article__date">{{ self.first_published_at|date:"F d, Y" }}</span>
-    </span>
+    </a>
 
     <h1 class="article__title">{{ self.title }}</h1>
     <h2 class="article__subtitle">{{ self.banner_text|richtext }}</h2>

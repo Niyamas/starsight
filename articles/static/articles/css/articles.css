@@ -35,7 +35,14 @@
 
 .article__topic {
   letter-spacing: 3px;
-  color: #4FC0C0;
+  color: #4FC0C0 !important;
+  -webkit-transition: color ease-in-out 0.2s;
+  transition: color ease-in-out 0.2s;
+  will-change: color;
+}
+
+.article__topic:hover {
+  color: #5de4e4 !important;
 }
 
 .article__date {
@@ -61,6 +68,16 @@
 .article__blocks > p {
   letter-spacing: 1px;
   line-height: 2;
+}
+
+.article__blocks > div {
+  max-width: 100%;
+  height: auto;
+}
+
+.article__blocks div > iframe {
+  width: 100%;
+  height: 100%;
 }
 
 .richtext-image {

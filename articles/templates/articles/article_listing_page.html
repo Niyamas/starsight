@@ -14,104 +14,113 @@
 
 <h1>article listing page</h1>
 
-{% for topic in topics %}
+<ul>
 
-    <ul>
+    {% for topic in topics %}
+
         <li><a href="?topic={{ topic.slug }}">{{ topic.name }}</a></li>
-    </ul>
-
-{% endfor %}
-
-<div class="container">
-
-    {% for article in articles %}
-
-        <div class="row">
-            <div class="col-sm-3">
-
-                {% image article.image fill-250x250 as article_img %}
-
-                <a href="{{ article.url }}">
-                    <img src="{{ article_img.url }}" alt="{{ article_img.alt }}">
-                </a>
-            </div>
-
-            <div class="col-sm-9">
-                <a href="{{ article.url }}">
-                    {{ article.title }}
-                </a>
-
-                {% if article.specific.strange_quote %}
-                    <p>{{ article.specific.strange_quote }}</p>
-                {% endif %}
-            </div>
-
-        </div>
-        <br>
-
+        
     {% endfor %}
 
-</div>
+</ul>
 
+<h1>{{ topic_pagination }}</h1>
 
+{% if articles %}
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12">
+    <div class="container">
 
-            {% if articles.paginator.num_pages > 1 %}
-            
-                <div class="pagination">
+        {% for article in articles %}
 
-                    {% if articles.has_previous %}
+            <div class="row">
+                <div class="col-sm-3">
 
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ articles.previous_page_number }}">
-                                <span>&laquo;</span>
-                            </a>
-                        </li>
+                    {% image article.image fill-250x250 as article_img %}
 
-                    {% endif %}
-
-                    {% for page_num in articles.paginator.page_range %}
-                    
-                        <li class="page-item {% if page_num == articles.number %}active{% endif %}">
-                            <a class="page-link" href="?page={{ page_num }}">
-                                {{ page_num }}
-                            </a>
-                        </li>                    
-                    
-                    {% endfor %}
-
-
-
-                    {% if articles.has_next %}
-
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ articles.next_page_number }}">
-                                <span>&raquo;</span>
-                            </a>
-                        </li>        
-                    
-                    {% endif %}
-
-
-
-
-
+                    <a href="{{ article.url }}">
+                        <img src="{{ article_img.url }}" alt="{{ article_img.alt }}">
+                    </a>
                 </div>
-            
-            {% endif %}
+
+                <div class="col-sm-9">
+                    <a href="{{ article.url }}">
+                        {{ article.title }}
+                    </a>
+
+                    {% if article.specific.strange_quote %}
+                        <p>{{ article.specific.strange_quote }}</p>
+                    {% endif %}
+                </div>
+
+            </div>
+            <br>
+
+        {% endfor %}
+
+    </div>
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+
+                {% if articles.paginator.num_pages > 1 %}
+                
+                    <div class="pagination">
+
+                        {% if articles.has_previous %}
+
+                            <li class="page-item">
+                                <a class="page-link" href="{% if topic_pagination %}?topic={{ topic_pagination }}{% endif %}&page={{ articles.previous_page_number }}">
+                                    <span>&laquo;</span>
+                                </a>
+                            </li>
+
+                        {% endif %}
+
+                        {% for page_num in articles.paginator.page_range %}
+                        
+                            <li class="page-item {% if page_num == articles.number %}active{% endif %}">
+                                <a class="page-link" href="{% if topic_pagination %}?topic={{ topic_pagination }}{% endif %}&page={{ page_num }}">
+                                    {{ page_num }}
+                                </a>
+                            </li>                    
+                        
+                        {% endfor %}
+
+
+
+                        {% if articles.has_next %}
+
+                            <li class="page-item">
+                                <a class="page-link" href="{% if topic_pagination %}?topic={{ topic_pagination }}{% endif %}&page={{ articles.next_page_number }}">
+                                    <span>&raquo;</span>
+                                </a>
+                            </li>        
+                        
+                        {% endif %}
 
 
 
 
 
+                    </div>
+                
+                {% endif %}
 
 
+            </div>
         </div>
     </div>
-</div>
+
+{% else %}
+
+    <h1>No articles for this topic</h1>
+
+{% endif %}
+
+
 
 
 {% endblock content %}
