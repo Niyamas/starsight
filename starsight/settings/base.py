@@ -53,9 +53,12 @@ INSTALLED_APPS = [
     'wagtail.contrib.modeladmin',
     'wagtail.contrib.routable_page',
     'wagtail.contrib.sitemaps',
+    'wagtail.api.v2',
 
+    # Non-Wagtail additions
     'modelcluster',
     'taggit',
+    'rest_framework',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -190,12 +193,12 @@ MEDIA_URL = '/media/'
 # Django DB caching
 # https://data-flair.training/blogs/django-caching/
 # See: https://www.youtube.com/watch?v=TjTneEpBhEI&list=PLMQHMcNi6ocsS8Bfnuy_IDgJ4bHRRrvub&index=32&ab_channel=CodingForEverybody
-CACHES = {
+""" CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
         'LOCATION': '127.0.0.1:11211',
     }
-}
+} """
 
 
 # Wagtail settings

@@ -13,7 +13,7 @@ from streams import blocks
 from articles.models import (
     ArticleDetailPage,
     ArticleAuthor
-) 
+)
 
 from decouple import config
 

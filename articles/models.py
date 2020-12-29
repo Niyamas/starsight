@@ -19,13 +19,16 @@ from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.models import register_snippet
 
+from wagtail.api import APIField
+
 from modelcluster.fields import (
     ParentalKey,
     #ParentalManyToManyField
 )
-#from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 
 from streams import blocks
+
+from rest_framework import serializers
 
 # Create your models here.
 
@@ -120,6 +123,16 @@ class ArticleDetailPage(Page):
         ),
         StreamFieldPanel('content'),
         FieldPanel('date')
+    ]
+
+    # URL for this API:
+    # http://localhost:8000/api/v2/pages/?type=articles.ArticleDetailPage&fields=title,banner_text,topic,image
+    api_fields = [
+        APIField('title'),
+        APIField('banner_text'),
+        APIField('topic', serializer=serializers.StringRelatedField(many=False)),
+        APIField('image'),
+        #APIField('first_published_at'),
     ]
 
 
