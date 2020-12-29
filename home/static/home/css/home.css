@@ -78,7 +78,14 @@
   top: -30px;
   left: 0px;
   letter-spacing: 3px;
-  color: #4FC0C0;
+  color: #4FC0C0 !important;
+  -webkit-transition: color ease-in-out 0.2s;
+  transition: color ease-in-out 0.2s;
+  will-change: color;
+}
+
+.featured-article__topic:hover {
+  color: #5de4e4 !important;
 }
 
 .featured-article__date {
@@ -346,7 +353,14 @@
 
 .older-article__content__topic {
   letter-spacing: 3px;
-  color: #4FC0C0;
+  color: #4FC0C0 !important;
+  -webkit-transition: color ease-in-out 0.2s;
+  transition: color ease-in-out 0.2s;
+  will-change: color;
+}
+
+.older-article__content__topic:hover {
+  color: #5de4e4 !important;
 }
 
 .older-article__content__date {

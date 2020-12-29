@@ -24,7 +24,7 @@
 
 </ul>
 
-<h1>{{ topic_pagination }}</h1>
+<h1>{{ topic_slug }}</h1>
 
 {% if articles %}
 
@@ -72,7 +72,7 @@
                         {% if articles.has_previous %}
 
                             <li class="page-item">
-                                <a class="page-link" href="{% if topic_pagination %}?topic={{ topic_pagination }}{% endif %}&page={{ articles.previous_page_number }}">
+                                <a class="page-link" href="{% if topic_slug %}?topic={{ topic_slug }}&page={{ articles.previous_page_number }}{% else %}?page={{ articles.previous_page_number }}{% endif %}">
                                     <span>&laquo;</span>
                                 </a>
                             </li>
@@ -82,7 +82,7 @@
                         {% for page_num in articles.paginator.page_range %}
                         
                             <li class="page-item {% if page_num == articles.number %}active{% endif %}">
-                                <a class="page-link" href="{% if topic_pagination %}?topic={{ topic_pagination }}{% endif %}&page={{ page_num }}">
+                                <a class="page-link" href="{% if topic_slug %}?topic={{ topic_slug }}&page={{ page_num }}{% else %}?page={{ page_num }}{% endif %}">
                                     {{ page_num }}
                                 </a>
                             </li>                    
@@ -94,16 +94,12 @@
                         {% if articles.has_next %}
 
                             <li class="page-item">
-                                <a class="page-link" href="{% if topic_pagination %}?topic={{ topic_pagination }}{% endif %}&page={{ articles.next_page_number }}">
+                                <a class="page-link" href="{% if topic_slug %}?topic={{ topic_slug }}&page={{ articles.next_page_number }}{% else %}?page={{ articles.next_page_number }}{% endif %}">
                                     <span>&raquo;</span>
                                 </a>
                             </li>        
                         
                         {% endif %}
-
-
-
-
 
                     </div>
                 

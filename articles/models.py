@@ -55,7 +55,7 @@ class ArticleListingPage(Page):
             articles = articles.filter(topic__slug=topic_slug)
 
         # Create paginator and paginate by 7
-        paginator = Paginator(articles, 7)
+        paginator = Paginator(articles, 2)
         page = request.GET.get('page')
 
         try:
@@ -70,9 +70,7 @@ class ArticleListingPage(Page):
         context['topics'] = ArticleTopic.objects.all()
 
         # For passing the topic slug when the user selects a topic
-        context['topic_pagination'] = topic_slug
-
-        print(context['topic_pagination'])
+        context['topic_slug'] = topic_slug
 
         return context
 

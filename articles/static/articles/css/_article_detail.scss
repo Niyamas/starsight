@@ -1,0 +1,104 @@
+.article-banner {
+    position: relative;
+    margin: 70px auto;
+    display: block;
+    width: 100%;
+    height: 700px;
+
+    &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__content {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+        padding: 12px;
+        pointer-events: none;
+
+        background-color: color(featured-text-box);
+
+        &__credits {
+            font-size: 0.9rem;
+            //font-weight: 300;
+            color: color(white-text);
+        }
+    }
+}
+
+.article {
+    margin: 0 auto;
+    width: 31vw;
+
+    color: color(text);
+
+    &__topic {
+        letter-spacing: 3px;
+        color: color(cool-green) !important;
+
+        transition: color ease-in-out 0.2s;
+        will-change: color;
+
+        &:hover {
+            color: color(cooler-green) !important;
+        }
+    }
+
+    &__date {
+        font-weight: 300;
+        letter-spacing: 2px;
+        color: color(text);
+    }
+
+    &__title {
+        margin: 7px 0 0 0;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+
+    &__subtitle {
+        margin: 30px 0;
+
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+        line-height: 1.7;
+        color: color(text-faded);
+    }
+
+    &__blocks {
+
+        // Style the richtext text
+        & > p {
+            letter-spacing: 1px;
+            line-height: 2;
+        }
+
+        // Style the container div for the iframe
+        & > div {
+            max-width: 100%;
+            height: auto;
+        }
+
+        // Style the embedded video iframe element
+        & div > iframe {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__blocks > p {
+
+    }
+
+    &__blocks div iframe {
+        //width: 700px !important;
+
+    }
+}
+
+.richtext-image {
+    max-width: 100%;
+    height: auto;
+}

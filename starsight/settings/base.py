@@ -187,6 +187,17 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
+# Django DB caching
+# https://data-flair.training/blogs/django-caching/
+# See: https://www.youtube.com/watch?v=TjTneEpBhEI&list=PLMQHMcNi6ocsS8Bfnuy_IDgJ4bHRRrvub&index=32&ab_channel=CodingForEverybody
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
+
+
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "starsight"

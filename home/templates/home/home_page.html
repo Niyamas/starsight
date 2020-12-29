@@ -1,6 +1,6 @@
 {% extends "starsight/base.html" %}
 {% load static %}       <!-- Remove after removing article images -->
-{% load wagtailcore_tags wagtailimages_tags wagtailroutablepage_tags %}
+{% load wagtailcore_tags wagtailimages_tags wagtailroutablepage_tags cache %}
 
 
 {% block body_class %}template-homepage{% endblock %}
@@ -47,10 +47,10 @@
     {% for article in articles|slice:'0:1' %}
     
         <article class="featured-article">
-            <span class="featured-article__topic">
+            <a class="featured-article__topic" href="{% slugurl 'articles' %}?topic={{ article.topic.slug }}">
                 {{ article.topic.name|upper }}
                 <span class="featured-article__date">{{ article.first_published_at|date:"F d, Y" }}</span>
-            </span>
+            </a>
 
             <a href="{{ article.url }}">
                 {% image article.image original as article_img %}
@@ -113,10 +113,10 @@
             <div class="older-article__content older-article__content--{{ forloop.counter }}">
                 <h2 class="older-article__content__title">{{ article.title }}</h2>
 
-                <span class="older-article__content__topic">
+                <a class="older-article__content__topic" href="{% slugurl 'articles' %}?topic={{ article.topic.slug }}">
                     {{ article.topic.name|upper }}
                     <span class="older-article__content__date">{{ article.first_published_at|date:"F d, Y" }}</span>
-                </span>
+                </a>
 
                 <div class="older-article__content__text">{{ article.banner_text|richtext }}</div> 
             </div>
