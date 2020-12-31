@@ -1,12 +1,18 @@
 {% extends 'starsight/base.html' %}
-{% load wagtailimages_tags %}
+{% load wagtailimages_tags static %}
 
 
 {% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'articles/css/articles.css' %}">
+
 {% endblock extra_css %}
 
 
 {% block head_js %}
+
+<link rel="preload" as="script" href="{% static 'articles/js/articles.js' %}">
+
 {% endblock head_js %}
 
 
@@ -14,7 +20,42 @@
 
 <h1>article listing page</h1>
 
-<ul>
+<ul class="topics">
+
+    {% for topic in topics %}
+
+        <li class="topics__topic topics__topic--{{ forloop.counter }}">{{ topic.name }}</li>
+
+    {% endfor %}
+
+</ul>
+
+
+<div class="listings">
+
+    <article class="article">
+
+        <a href="#">
+            <img class="article__img" src="{% static 'home/images/aperture-vintage-SshYpuf607g-unsplash.jpg' %}" alt="">
+        </a>
+
+        <div class="article__content">
+            <h2 class="article__content__title"><a href="#">Beautiful View in the Sky</a></h2>
+
+            <a class="article__content__topic" href="#">STARS</a>
+            <span class="article__content__date">December 30, 2020</span>
+
+            <p class="article__content__text" href="#">Constellations hold symbols of the universe through the lens of humanity.</p>
+        </div>
+
+    </article>
+
+
+
+</div>
+
+
+{% comment %} <ul>
 
     {% for topic in topics %}
 
@@ -114,7 +155,7 @@
 
     <h1>No articles for this topic</h1>
 
-{% endif %}
+{% endif %} {% endcomment %}
 
 
 
@@ -123,4 +164,7 @@
 
 
 {% block extra_js %}
+
+<script defer type="text/javascript" src="{% static 'articles/js/articles.js' %}"></script>
+
 {% endblock extra_js %}

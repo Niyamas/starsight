@@ -1,3 +1,15 @@
+.starsight-btn {
+  color: #ffffff !important;
+  background-color: #4FC0C0;
+  border-color: #4FC0C0;
+}
+
+.starsight-btn:hover, .starsight-btn:focus, .starsight-btn:active {
+  color: #ffffff !important;
+  background-color: #5cdddd !important;
+  border-color: #5cdddd !important;
+}
+
 .hero {
   position: relative;
   margin-top: 70px;
@@ -73,10 +85,13 @@
   position: relative;
 }
 
-.featured-article__topic {
+.featured-article__top {
   position: absolute;
   top: -30px;
   left: 0px;
+}
+
+.featured-article__top__topic {
   letter-spacing: 3px;
   color: #4FC0C0 !important;
   -webkit-transition: color ease-in-out 0.2s;
@@ -84,11 +99,11 @@
   will-change: color;
 }
 
-.featured-article__topic:hover {
+.featured-article__top__topic:hover {
   color: #5de4e4 !important;
 }
 
-.featured-article__date {
+.featured-article__top__date {
   font-weight: 300;
   letter-spacing: 2px;
   color: #050404;
@@ -284,15 +299,15 @@
   left: 0px;
   margin-left: 7vw;
   letter-spacing: 1px;
-  color: #ffffff !important;
-  background-color: #4FC0C0;
-  border-color: #4FC0C0;
-}
+  /*     color: color(white-text) !important;
+    background-color: color(cool-green);
+    border-color: color(cool-green);
 
-.more-grid__btn:hover, .more-grid__btn:focus, .more-grid__btn:active {
-  color: #ffffff !important;
-  background-color: #5cdddd !important;
-  border-color: #5cdddd !important;
+    &:hover, &:focus, &:active {
+        color: color(white-text) !important;
+        background-color: #5cdddd !important;
+        border-color: #5cdddd !important;
+    } */
 }
 
 .older-article {
@@ -345,7 +360,7 @@
   width: 100%;
 }
 
-.older-article__content__title {
+.older-article__content__title a {
   font-size: 25px;
   font-weight: 600;
   letter-spacing: 1px;

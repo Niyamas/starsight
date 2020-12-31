@@ -26,6 +26,20 @@ $margins: (
     slim: 7vw
 );
 
+// Utility Classes
+.starsight-btn {
+    // Add with btn & btn-primary to change the default colors
+    color: color(white-text) !important;
+    background-color: color(cool-green);
+    border-color: color(cool-green);
+
+    &:hover, &:focus, &:active {
+        color: color(white-text) !important;
+        background-color: #5cdddd !important;
+        border-color: #5cdddd !important;
+    }
+}
+
 
 .hero {
     position: relative;
@@ -100,26 +114,28 @@ $margins: (
 .featured-article {
     position: relative;
 
-    &__topic {
+    &__top {
         position: absolute;
         top: -30px;
         left: 0px;
 
-        letter-spacing: 3px;
-        color: color(cool-green) !important;
-
-        transition: color ease-in-out 0.2s;
-        will-change: color;
-
-        &:hover {
-            color: color(cooler-green) !important;
+        &__topic {
+            letter-spacing: 3px;
+            color: color(cool-green) !important;
+    
+            transition: color ease-in-out 0.2s;
+            will-change: color;
+    
+            &:hover {
+                color: color(cooler-green) !important;
+            }
         }
-    }
-
-    &__date {
-        font-weight: 300;
-        letter-spacing: 2px;
-        color: color(text);
+    
+        &__date {
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: color(text);
+        }
     }
 
     &__img {
@@ -346,7 +362,7 @@ $margins: (
 
     letter-spacing: 1px;
 
-    color: color(white-text) !important;
+/*     color: color(white-text) !important;
     background-color: color(cool-green);
     border-color: color(cool-green);
 
@@ -354,7 +370,7 @@ $margins: (
         color: color(white-text) !important;
         background-color: #5cdddd !important;
         border-color: #5cdddd !important;
-    }
+    } */
 }
 
 .older-article {
@@ -399,7 +415,7 @@ $margins: (
 
         width: 100%;
 
-        &__title {
+        &__title a {
             font-size: 25px;
             font-weight: 600;
             letter-spacing: 1px;

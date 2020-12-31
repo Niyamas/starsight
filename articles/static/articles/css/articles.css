@@ -1,3 +1,15 @@
+.starsight-btn {
+  color: #ffffff !important;
+  background-color: #4FC0C0;
+  border-color: #4FC0C0;
+}
+
+.starsight-btn:hover, .starsight-btn:focus, .starsight-btn:active {
+  color: #ffffff !important;
+  background-color: #5cdddd !important;
+  border-color: #5cdddd !important;
+}
+
 .article-banner {
   position: relative;
   margin: 70px auto;
@@ -27,13 +39,13 @@
   color: #ffffff;
 }
 
-.article {
+.article-detail {
   margin: 0 auto;
   width: 31vw;
   color: #050404;
 }
 
-.article__topic {
+.article-detail__topic {
   letter-spacing: 3px;
   color: #4FC0C0 !important;
   -webkit-transition: color ease-in-out 0.2s;
@@ -41,23 +53,23 @@
   will-change: color;
 }
 
-.article__topic:hover {
+.article-detail__topic:hover {
   color: #5de4e4 !important;
 }
 
-.article__date {
+.article-detail__date {
   font-weight: 300;
   letter-spacing: 2px;
   color: #050404;
 }
 
-.article__title {
+.article-detail__title {
   margin: 7px 0 0 0;
   font-weight: 600;
   letter-spacing: 1px;
 }
 
-.article__subtitle {
+.article-detail__subtitle {
   margin: 30px 0;
   font-size: 1.5rem;
   letter-spacing: 1px;
@@ -65,23 +77,95 @@
   color: #05040463;
 }
 
-.article__blocks > p {
+.article-detail__blocks > p {
   letter-spacing: 1px;
   line-height: 2;
 }
 
-.article__blocks > div {
+.article-detail__blocks > div:not(.d-block) {
   max-width: 100%;
-  height: auto;
+  height: 450px;
 }
 
-.article__blocks div > iframe {
+.article-detail__blocks div > iframe {
   width: 100%;
   height: 100%;
+}
+
+.article-detail__tags {
+  margin-top: 1.7rem;
 }
 
 .richtext-image {
   max-width: 100%;
   height: auto;
+}
+
+.topics {
+  margin: 200px auto 100px auto !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 30%;
+  border: 1px solid green;
+}
+
+.listings {
+  margin: 0 20vw;
+  height: 1100px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (1fr)[2];
+      grid-template-rows: repeat(2, 1fr);
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  grid-row-gap: 70px;
+  grid-column-gap: 70px;
+}
+
+.article__img {
+  width: 100%;
+  height: auto;
+  border-radius: 1px;
+}
+
+.article__content {
+  margin-top: 0.5rem;
+}
+
+.article__content__title a {
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.article__content__topic {
+  letter-spacing: 3px;
+  color: #4FC0C0 !important;
+  -webkit-transition: color ease-in-out 0.2s;
+  transition: color ease-in-out 0.2s;
+  will-change: color;
+}
+
+.article__content__topic:hover {
+  color: #5de4e4 !important;
+}
+
+.article__content__date {
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: #050404;
+}
+
+.article__content__text {
+  margin-top: 0.5rem;
+  letter-spacing: 1px;
+  line-height: 2.1;
 }
 /*# sourceMappingURL=articles.css.map */

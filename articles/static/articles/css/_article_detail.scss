@@ -28,7 +28,7 @@
     }
 }
 
-.article {
+.article-detail {
     margin: 0 auto;
     width: 31vw;
 
@@ -76,9 +76,12 @@
         }
 
         // Style the container div for the iframe
-        & > div {
+        // There are 2 divs, the one for d-block text-center
+        // and the one that houses the iframe.
+        & > div:not(.d-block) {
             max-width: 100%;
-            height: auto;
+            //height: auto;
+            height: 450px;
         }
 
         // Style the embedded video iframe element
@@ -88,13 +91,8 @@
         }
     }
 
-    &__blocks > p {
-
-    }
-
-    &__blocks div iframe {
-        //width: 700px !important;
-
+    &__tags {
+        margin-top: 1.7rem;
     }
 }
 

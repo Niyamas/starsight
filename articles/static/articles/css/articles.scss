@@ -23,10 +23,93 @@ $colors: (
 );
 
 $margins: (
+    superwide: 20vw,
     wide: 9.5vw,
     slim: 7vw
 );
 
+// Utility Classes
+.starsight-btn {
+    // Add with btn & btn-primary to change the default colors
+    color: color(white-text) !important;
+    background-color: color(cool-green);
+    border-color: color(cool-green);
+
+    &:hover, &:focus, &:active {
+        color: color(white-text) !important;
+        background-color: #5cdddd !important;
+        border-color: #5cdddd !important;
+    }
+}
+
 // Imports
 @import 'article_detail';
 
+
+.topics {
+    margin: 200px auto 100px auto !important;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 30%;
+
+    border: 1px solid green;
+}
+
+.listings {
+    margin: 0 margin(superwide);
+
+    height: 1100px;
+
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: 70px;
+    grid-column-gap: 70px;
+}
+
+.article {
+
+    &__img {
+        width: 100%;
+        height: auto;
+        border-radius: 1px;
+    }
+
+    &__content {
+        margin-top: 0.5rem;
+
+        &__title a {
+            font-size: 25px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        &__topic {
+            letter-spacing: 3px;
+            color: color(cool-green) !important;
+
+            transition: color ease-in-out 0.2s;
+            will-change: color;
+    
+            &:hover {
+                color: color(cooler-green) !important;
+            }
+        }
+
+        &__date {
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: color(text);
+        }
+
+        &__text {
+            margin-top: 0.5rem;
+
+            letter-spacing: 1px;
+            line-height: 2.1;
+        }
+    }
+}

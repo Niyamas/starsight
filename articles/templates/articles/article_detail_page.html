@@ -27,20 +27,30 @@
 
 </div>
 
-<div class="article">
+<div class="article-detail">
 
-    <a class="article__topic" href="{{ self.get_parent.url }}?topic={{ self.topic.slug }}">
+    <a class="article-detail__topic" href="{{ self.get_parent.url }}?topic={{ self.topic.slug }}">
         {{ self.topic.name|upper }}
-        <span class="article__date">{{ self.first_published_at|date:"F d, Y" }}</span>
+        <span class="article-detail__date">{{ self.first_published_at|date:"F d, Y" }}</span>
     </a>
 
-    <h1 class="article__title">{{ self.title }}</h1>
-    <h2 class="article__subtitle">{{ self.banner_text|richtext }}</h2>
+    <h1 class="article-detail__title">{{ self.title }}</h1>
+    <h2 class="article-detail__subtitle">{{ self.banner_text|richtext }}</h2>
 
-    <div class="article__blocks">
+    <div class="article-detail__blocks">
 
         {% for block in self.content %}
             {% include_block block %}
+        {% endfor %}
+
+    </div>
+
+    <div class="article-detail__tags">
+
+        {% for tag in self.tags.all %}
+        
+            <a class="starsight-btn btn btn-primary btn-sm" href="#">{{ tag }}</a>
+        
         {% endfor %}
 
     </div>

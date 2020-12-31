@@ -21,10 +21,10 @@ from wagtail.snippets.models import register_snippet
 
 from wagtail.api import APIField
 
-from modelcluster.fields import (
-    ParentalKey,
-    #ParentalManyToManyField
-)
+from modelcluster.fields import ParentalKey
+from modelcluster.contrib.taggit import ClusterTaggableManager
+
+from taggit.models import TaggedItemBase
 
 from streams import blocks
 
@@ -77,6 +77,17 @@ class ArticleListingPage(Page):
 
         return context
 
+
+class ArticlePageTag(TaggedItemBase):
+    """Add tags to the ArticleDetailPage."""
+
+    content_object = ParentalKey(
+        'ArticleDetailPage',
+        related_name='tagged_items',
+        on_delete=models.CASCADE
+    )
+
+
 class ArticleDetailPage(Page):
     """Article detail page."""
 
@@ -103,6 +114,7 @@ class ArticleDetailPage(Page):
         null=True,
         blank=True
     )
+    tags = ClusterTaggableManager(through=ArticlePageTag, blank=True)
     date = models.DateTimeField(default=timezone.now)
 
     content_panels = Page.content_panels + [
@@ -122,17 +134,23 @@ class ArticleDetailPage(Page):
             heading='Author(s)'
         ),
         StreamFieldPanel('content'),
+        FieldPanel('tags'),
         FieldPanel('date')
     ]
 
     # URL for this API:
     # http://localhost:8000/api/v2/pages/?type=articles.ArticleDetailPage&fields=title,banner_text,topic,image
+    # With meta data omissions:
+    # http://localhost:8000/api/v2/pages/?type=articles.ArticleDetailPage&fields=title,banner_text,topic,image,-type,-detail_url,-slug
+    # Same as previous, but start with blank slate (use * instead of _ to get all fields) and order:
+    # http://localhost:8000/api/v2/pages/?type=articles.ArticleDetailPage&fields=_,id,title,banner_text,topic,image,html_url,first_published_at&order=-first_published_at
+    # Pagination with rest framework using limit and offset (@7:52): https://www.youtube.com/watch?v=KURq8uhmeBg&list=PLMQHMcNi6ocsS8Bfnuy_IDgJ4bHRRrvub&index=36&ab_channel=CodingForEverybody
+    # v2 API usage: https://docs.wagtail.io/en/stable/advanced_topics/api/v2/usage.html#pagination
     api_fields = [
         APIField('title'),
         APIField('banner_text'),
         APIField('topic', serializer=serializers.StringRelatedField(many=False)),
         APIField('image'),
-        #APIField('first_published_at'),
     ]
 
 
@@ -160,6 +178,7 @@ class VideoArticlePage(ArticleDetailPage):
         ),
         FieldPanel('youtube_video_id'),
         StreamFieldPanel('content'),
+        FieldPanel('tags'),
         FieldPanel('date')
     ]
 
@@ -184,6 +203,7 @@ class ArticleDetailPageStrange(ArticleDetailPage):
             heading='Author(s)'
         ),
         StreamFieldPanel('content'),
+        FieldPanel('tags'),
         FieldPanel('date')
     ]
 
@@ -259,7 +279,6 @@ class ArticleAuthor(models.Model):
         """
         return self.name
 
-#register_snippet(ArticleAuthor)
 
 @register_snippet
 class ArticleTopic(models.Model):
@@ -296,5 +315,3 @@ class ArticleTopic(models.Model):
 
     def __str__(self):
         return self.name
-
-#register_snippet(ArticleTopic)
