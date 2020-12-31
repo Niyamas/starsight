@@ -120,6 +120,7 @@ $margins: (
         left: 0px;
 
         &__topic {
+            font-size: 0.95rem;
             letter-spacing: 3px;
             color: color(cool-green) !important;
     
@@ -132,6 +133,7 @@ $margins: (
         }
     
         &__date {
+            font-size: 0.95rem;
             font-weight: 300;
             letter-spacing: 2px;
             color: color(text);
@@ -165,7 +167,7 @@ $margins: (
         pointer-events: none;
 
         &__title {
-            font-size: 25px;
+            font-size: 1.5rem;
             font-weight: 600;
             letter-spacing: 1px;
             color: color(white-text);
@@ -202,7 +204,7 @@ $margins: (
     &__banner {
         margin-bottom: 19px;
 
-        font-size: 20px;
+        font-size: 1.2rem;
         letter-spacing: 1px;
         color: color(cool-green);
 
@@ -219,7 +221,7 @@ $margins: (
     }
 
     &__date {
-        //font-size: 16px;
+        font-size: 0.95rem;
         font-weight: 300;
         letter-spacing: 2px;
         color: color(text);
@@ -227,16 +229,14 @@ $margins: (
 
     &__title {
         margin-bottom: 5px;
-        font-size: 25px;
+        font-size: 1.5rem;
         letter-spacing: 1px;
+        line-height: 1.7rem;
     }
 
     &__copyright {
-        //margin-bottom: 17px;
-        //font-size: 20px;
-        //color: #7e7e7e;
+        font-size: 0.95rem;
         color: color(cool-green);
-        //text-transform: uppercase;
     }
 
     &__description, &__description.p {
@@ -339,7 +339,7 @@ $margins: (
         grid-template-columns: auto minmax(20px, 1fr);
         grid-column-gap: 15px;
 
-        font-size: 20px;
+        font-size: 1.2rem;
         letter-spacing: 1px;
         color: color(cool-green);
 
@@ -415,13 +415,19 @@ $margins: (
 
         width: 100%;
 
-        &__title a {
-            font-size: 25px;
-            font-weight: 600;
-            letter-spacing: 1px;
+        &__title {
+            margin-bottom: 5;
+            line-height: 1.7rem;
+
+            a {
+                font-size: 1.5rem;
+                font-weight: 600;
+                letter-spacing: 1px;
+            }
         }
 
         &__topic {
+            font-size: 0.95rem;
             letter-spacing: 3px;
             color: color(cool-green) !important;
 
@@ -434,14 +440,14 @@ $margins: (
         }
 
         &__date {
+            font-size: 0.95rem;
             font-weight: 300;
             letter-spacing: 2px;
             color: color(text);
         }
 
-        &__text {
-            margin-top: 0.5rem;
-
+        &__text p {
+            margin-top: 10px;
             letter-spacing: 1px;
             line-height: 2.1;
         }

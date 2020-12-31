@@ -102,7 +102,7 @@
 }
 
 .topics {
-  margin: 200px auto 100px auto !important;
+  margin: calc(200px + 70px) auto 100px auto !important;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -113,6 +113,7 @@
       -ms-flex-align: center;
           align-items: center;
   width: 30%;
+  font-size: 1.5rem;
   border: 1px solid green;
 }
 
@@ -136,11 +137,16 @@
 }
 
 .article__content {
-  margin-top: 0.5rem;
+  margin-top: 12px;
+}
+
+.article__content__title {
+  margin-bottom: 5px;
+  line-height: 1.7rem;
 }
 
 .article__content__title a {
-  font-size: 25px;
+  font-size: 1.5rem;
   font-weight: 600;
   letter-spacing: 1px;
 }
@@ -163,8 +169,8 @@
   color: #050404;
 }
 
-.article__content__text {
-  margin-top: 0.5rem;
+.article__content__text p {
+  margin-top: 10px;
   letter-spacing: 1px;
   line-height: 2.1;
 }

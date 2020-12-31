@@ -47,13 +47,15 @@ $margins: (
 
 
 .topics {
-    margin: 200px auto 100px auto !important;
+    margin: calc(200px + 70px) auto 100px auto !important;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     width: 30%;
+
+    font-size: 1.5rem;
 
     border: 1px solid green;
 }
@@ -79,15 +81,23 @@ $margins: (
     }
 
     &__content {
-        margin-top: 0.5rem;
+        margin-top: 12px;
 
-        &__title a {
-            font-size: 25px;
-            font-weight: 600;
-            letter-spacing: 1px;
+        &__title {
+            margin-bottom: 5px;
+            line-height: 1.7rem;
+
+            a {
+                font-size: 1.5rem;
+                font-weight: 600;
+                letter-spacing: 1px;
+                
+            }
+
         }
 
         &__topic {
+            font-size: 0.95rem;
             letter-spacing: 3px;
             color: color(cool-green) !important;
 
@@ -100,16 +110,19 @@ $margins: (
         }
 
         &__date {
+            font-size: 0.95rem;
             font-weight: 300;
             letter-spacing: 2px;
             color: color(text);
         }
 
         &__text {
-            margin-top: 0.5rem;
 
-            letter-spacing: 1px;
-            line-height: 2.1;
+            p {
+                margin-top: 10px;
+                letter-spacing: 1px;
+                line-height: 2.1;
+            }
         }
     }
 }
