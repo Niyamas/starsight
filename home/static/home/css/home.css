@@ -92,7 +92,7 @@
 }
 
 .featured-article__top__topic {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   letter-spacing: 3px;
   color: #4FC0C0 !important;
   -webkit-transition: color ease-in-out 0.2s;
@@ -105,7 +105,7 @@
 }
 
 .featured-article__top__date {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 300;
   letter-spacing: 2px;
   color: #050404;
@@ -180,7 +180,7 @@
 }
 
 .apod__date {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 300;
   letter-spacing: 2px;
   color: #050404;
@@ -194,7 +194,7 @@
 }
 
 .apod__copyright {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #4FC0C0;
 }
 
@@ -377,7 +377,7 @@
 }
 
 .older-article__content__topic {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   letter-spacing: 3px;
   color: #4FC0C0 !important;
   -webkit-transition: color ease-in-out 0.2s;
@@ -390,7 +390,7 @@
 }
 
 .older-article__content__date {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 300;
   letter-spacing: 2px;
   color: #050404;

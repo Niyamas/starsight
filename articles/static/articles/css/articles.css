@@ -152,6 +152,7 @@
 }
 
 .article__content__topic {
+  font-size: 0.9rem;
   letter-spacing: 3px;
   color: #4FC0C0 !important;
   -webkit-transition: color ease-in-out 0.2s;
@@ -164,6 +165,7 @@
 }
 
 .article__content__date {
+  font-size: 0.9rem;
   font-weight: 300;
   letter-spacing: 2px;
   color: #050404;
