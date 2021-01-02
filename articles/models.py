@@ -145,6 +145,7 @@ class ArticleDetailPage(Page):
     # Same as previous, but start with blank slate (use * instead of _ to get all fields) and order:
     # http://localhost:8000/api/v2/pages/?type=articles.ArticleDetailPage&fields=_,id,title,banner_text,topic,image,html_url,first_published_at&order=-first_published_at
     # Pagination with rest framework using limit and offset (@7:52): https://www.youtube.com/watch?v=KURq8uhmeBg&list=PLMQHMcNi6ocsS8Bfnuy_IDgJ4bHRRrvub&index=36&ab_channel=CodingForEverybody
+    # http://localhost:8000/api/v2/pages/?type=articles.ArticleDetailPage&fields=_,id,title,banner_text,topic,image,html_url,first_published_at&order=-first_published_at&limit=6
     # v2 API usage: https://docs.wagtail.io/en/stable/advanced_topics/api/v2/usage.html#pagination
     api_fields = [
         APIField('title'),

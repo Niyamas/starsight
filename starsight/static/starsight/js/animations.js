@@ -10,7 +10,7 @@ class Animations {
          * Will remove these classes once the user scrolls back to the top.
          */
 
-        console.log('Running Animations.nav()')
+        //console.log('Running Animations.nav()')
 
         const nav = document.getElementById('nav')
         const navStarsight = document.getElementById('navStarsight')
