@@ -150,7 +150,8 @@ class ArticleDetailPage(Page):
     api_fields = [
         APIField('title'),
         APIField('banner_text'),
-        APIField('topic', serializer=serializers.StringRelatedField(many=False)),
+        APIField('topic', serializer=serializers.PrimaryKeyRelatedField(many=False, read_only=True)),
+        APIField('topic_name', serializer=serializers.StringRelatedField(many=False)),
         APIField('image'),
     ]
 

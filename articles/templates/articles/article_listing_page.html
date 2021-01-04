@@ -20,9 +20,11 @@
 
 <ul class="topics">
 
+    <li id="topicsAll" class="topics__topic topics__topic--all topics__topic--all" data-topic_name="all">All</li>
+
     {% for topic in topics %}
 
-        <li class="topics__topic topics__topic--{{ topic.slug }}">{{ topic.name }}</li>
+        <li class="topics__topic topics__topic--{{ topic.slug }} topics__topic--topic" data-topic_id="{{ topic.id }}" data-topic_name="{{ topic.name }}">{{ topic.name }}</li>
 
     {% endfor %}
 
