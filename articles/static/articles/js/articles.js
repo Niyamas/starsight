@@ -52,6 +52,9 @@ class Articles {
 
                     articleTopic = ''
                 }
+                else {
+                    articleTopic = article['topic'].toUpperCase()
+                }
 
                 articleInfo += `
                     <article class="article">
@@ -125,6 +128,10 @@ class Articles {
 
                     articleTopic = ''
                 }
+                else {
+
+                    articleTopic = article['topic'].toUpperCase()
+                }
 
                 articleInfo += `
                     <article class="article">
@@ -180,3 +187,6 @@ class Articles {
 }
 
 Articles.getArticles()
+
+// 1/3/2020
+// Work on finding a way to filter via foreign key (string representation) on the API

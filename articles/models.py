@@ -150,8 +150,7 @@ class ArticleDetailPage(Page):
     api_fields = [
         APIField('title'),
         APIField('banner_text'),
-        APIField('topic', serializer=serializers.PrimaryKeyRelatedField(many=False, read_only=True)),
-        APIField('topic_name', serializer=serializers.StringRelatedField(many=False)),
+        APIField('topic', serializer=serializers.StringRelatedField(many=False)),
         APIField('image'),
     ]
 
@@ -289,12 +288,6 @@ class ArticleTopic(models.Model):
     """
 
     name = models.CharField(max_length=100)
-    #slug = models.SlugField(
-    #    max_length=150,
-    #    verbose_name='slug',
-    #    allow_unicode=True,
-    #    help_text='A slug to identify articles by this topic.'
-    #)
 
     slug = AutoSlugField(
         populate_from='name',
