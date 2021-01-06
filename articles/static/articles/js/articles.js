@@ -22,7 +22,7 @@ class Articles {
         .then( (response) => response.json() )
         .then( (articleList) => {
 
-            let articleInfo = ''
+            let articleHTML = ''
             let months = {
                 0: 'January',
                 1: 'February',
@@ -62,7 +62,7 @@ class Articles {
                     articleTopic = article['topic'].toUpperCase()
                 }
 
-                articleInfo += `
+                articleHTML += `
                     <article class="article">
                         <a href="${article['meta']['html_url']}">
                             <img class="article__img" src="${article['image']['meta']['download_url']}" alt="">
@@ -79,12 +79,13 @@ class Articles {
                     </article>
                 `
 
-                document.getElementById('listings').innerHTML = articleInfo
+                document.getElementById('listings').innerHTML = articleHTML
 
             })
 
             // Call the pagination generation here
             console.log('Number of articles:', this.articleTotalNumber)
+            this.createPagination()
         })
 
     }
@@ -106,7 +107,7 @@ class Articles {
         .then( (response) => response.json() )
         .then( (articleList) => {
 
-            let articleInfo = ''
+            let articleHTML = ''
             let months = {
                 0: 'January',
                 1: 'February',
@@ -145,7 +146,7 @@ class Articles {
                     articleTopic = article['topic'].toUpperCase()
                 }
 
-                articleInfo += `
+                articleHTML += `
                     <article class="article">
                         <a href="${article['meta']['html_url']}">
                             <img class="article__img" src="${article['image']['meta']['download_url']}" alt="">
@@ -162,11 +163,12 @@ class Articles {
                     </article>
                 `
 
-                document.getElementById('listings').innerHTML = articleInfo
+                document.getElementById('listings').innerHTML = articleHTML
             })
 
             // Call the pagination generation here
             console.log('Number of articles:', this.articleTotalNumber)
+            this.createPagination()
         })
         
     }
@@ -184,6 +186,55 @@ class Articles {
                 sibling.classList.remove('clicked')
             }
         }
+    }
+
+    static createPagination() {
+        /**
+         * 
+         */
+        console.log('createPagination() quotient:', Math.floor(this.articleTotalNumber / 6))
+        console.log('createPagination() remainder:', this.articleTotalNumber % 6)
+
+        let articleQuotient = Math.floor(this.articleTotalNumber / 6)
+        let articleRemainder = this.articleTotalNumber % 6
+        let paginationHTML = ``
+
+        // If there are more than 6 articles and there are a remainder of articles,
+        // add the correct number of pages and the next button.
+        if (articleQuotient > 0 && articleRemainder > 0) {
+
+            for ( let i = 0; i < articleQuotient + 1; i++ ) {
+
+                paginationHTML += '<li class="pagination__page">' + (i + 1) + '</li>'
+                console.log(i)
+            }
+
+            paginationHTML += `
+                <li class="pagination__next">
+                    <svg class="pagination__btn__svg" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </li>
+            `
+
+            document.getElementById('pagination').innerHTML = paginationHTML
+        }
+        // If there is less than 6 articles, but there are a remainder of articles,
+        // only add one page and omit the next button.
+        else if (articleQuotient === 0 && articleRemainder > 0) {
+
+            paginationHTML = '<li class="pagination__btn">1</li>'
+
+            document.getElementById('pagination').innerHTML = paginationHTML
+        }
+
+        // Add event listeners to each page number
+        // Call function to update list of articles
+        let pages = Array.from( document.getElementsByClassName('pagination__page') )
+
+        // Add an event listener to the next button if it exists
+        // Call function to update list of articles
+
     }
 
     static async getArticles() {

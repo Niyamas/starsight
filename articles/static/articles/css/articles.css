@@ -195,6 +195,7 @@
 }
 
 .pagination {
+  margin-top: 100px !important;
   margin-left: 20vw !important;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -202,7 +203,7 @@
   border-radius: 7px;
 }
 
-.pagination__btn {
+.pagination__page, .pagination__next {
   width: 36px;
   height: 39px;
   display: -webkit-box;
@@ -219,10 +220,9 @@
   transition: color ease-in-out 0.2s;
   will-change: color;
   border-radius: 7px;
-  border: 1px solid green;
 }
 
-.pagination__btn:hover {
+.pagination__page:hover, .pagination__next:hover {
   color: #4FC0C0;
 }
 /*# sourceMappingURL=articles.css.map */

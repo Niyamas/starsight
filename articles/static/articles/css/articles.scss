@@ -149,12 +149,13 @@ $margins: (
 }
 
 .pagination {
+    margin-top: 100px !important;
     margin-left: margin(superwide) !important;
 
     width: fit-content;
     border-radius: 7px;
 
-    &__btn {
+    &__page, &__next {
         width: 36px;
         height: 39px;
 
@@ -169,7 +170,7 @@ $margins: (
 
         border-radius: 7px;
 
-        border: 1px solid green;
+        //border: 1px solid green;
 
         &:hover {
             color: color(cool-green);
