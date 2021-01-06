@@ -55,9 +55,30 @@ $margins: (
 
     width: 30%;
 
-    font-size: 1.5rem;
+    //border: 1px solid green;
 
-    border: 1px solid green;
+    &__topic {
+        padding: 0.3rem 0;
+        //width: auto;
+        width: 130px;
+
+        text-align: center;
+        font-size: 1.5rem;
+
+        cursor: pointer;
+
+        border-radius: 7px;
+
+        //border: 1px solid purple;
+
+        transition: color ease-in-out 0.2s, background-color ease-in-out 0.2s;
+        will-change: color, background-color;
+
+        &.clicked {
+            color: color(white-text);
+            background-color: color(cool-green);
+        }
+    }
 }
 
 .listings {
@@ -123,6 +144,35 @@ $margins: (
                 letter-spacing: 1px;
                 line-height: 2.1;
             }
+        }
+    }
+}
+
+.pagination {
+    margin-left: margin(superwide) !important;
+
+    width: fit-content;
+    border-radius: 7px;
+
+    &__btn {
+        width: 36px;
+        height: 39px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        cursor: pointer;
+
+        transition: color ease-in-out 0.2s;
+        will-change: color;
+
+        border-radius: 7px;
+
+        border: 1px solid green;
+
+        &:hover {
+            color: color(cool-green);
         }
     }
 }

@@ -20,121 +20,79 @@
 
 <ul class="topics">
 
-    <li id="topicsAll" class="topics__topic topics__topic--all topics__topic--all" data-topic_name="all">All</li>
+    <li id="topicsAll" class="topics__topic topics__topic--all topics__topic--all" data-topic_name="all">
+        All
+    </li>
 
     {% for topic in topics %}
 
-        <li class="topics__topic topics__topic--{{ topic.slug }} topics__topic--topic" data-topic_id="{{ topic.id }}" data-topic_name="{{ topic.name }}">{{ topic.name }}</li>
+        <li class="topics__topic topics__topic--{{ topic.slug }} topics__topic--topic" data-topic_id="{{ topic.id }}" data-topic_name="{{ topic.name }}">
+            {{ topic.name }}
+        </li>
 
     {% endfor %}
 
 </ul>
 
 <div id="listings" class="listings">
+{% comment %} Add articles from articles.js {% endcomment %}
+</div>
 
-    {% comment %} <article class="article">
 
-        <a href="#">
-            <img class="article__img" src="{% static 'home/images/aperture-vintage-SshYpuf607g-unsplash.jpg' %}" alt="">
-        </a>
+<ul class="pagination">
 
-        <div class="article__content">
-            <h2 class="article__content__title"><a href="#">Beautiful View in the Sky for All to See</a></h2>
+    <li class="pagination__btn">1</li>
+    <li class="pagination__btn">2</li>
+    <li class="pagination__btn">3</li>
 
-            <a class="article__content__topic" href="#">STARS</a>
-            <span class="article__content__date">December 30, 2020</span>
+    <li class="pagination__btn">
+        <svg class="pagination__btn__svg" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
+    </li>
 
-            <a class="article__content__text" href="#"><p>Constellations hold symbols of the universe through the lens of humanity. We have a very beautiful showing tonight. What will it bring?</p></a>
+</ul>
+
+
+<div class="container">
+
+    {% if articles.paginator.num_pages > 1 %}
+    
+        <div class="pagination">
+
+            {% if articles.has_previous %}
+
+                <li class="page-item">
+                    <a class="page-link" href="{% if topic_slug %}?topic={{ topic_slug }}&page={{ articles.previous_page_number }}{% else %}?page={{ articles.previous_page_number }}{% endif %}">
+                        <span>&laquo;</span>
+                    </a>
+                </li>
+
+            {% endif %}
+
+            {% for page_num in articles.paginator.page_range %}
+            
+                <li class="page-item {% if page_num == articles.number %}active{% endif %}">
+                    <a class="page-link" href="{% if topic_slug %}?topic={{ topic_slug }}&page={{ page_num }}{% else %}?page={{ page_num }}{% endif %}">
+                        {{ page_num }}
+                    </a>
+                </li>                    
+            
+            {% endfor %}
+
+            {% if articles.has_next %}
+
+                <li class="page-item">
+                    <a class="page-link" href="{% if topic_slug %}?topic={{ topic_slug }}&page={{ articles.next_page_number }}{% else %}?page={{ articles.next_page_number }}{% endif %}">
+                        <span>&raquo;</span>
+                    </a>
+                </li>        
+            
+            {% endif %}
+
         </div>
-
-    </article>
-
-    <article class="article">
-
-        <a href="#">
-            <img class="article__img" src="{% static 'home/images/aperture-vintage-SshYpuf607g-unsplash.jpg' %}" alt="">
-        </a>
-
-        <div class="article__content">
-            <h2 class="article__content__title"><a href="#">Beautiful View in the Sky</a></h2>
-
-            <a class="article__content__topic" href="#">STARS</a>
-            <span class="article__content__date">December 30, 2020</span>
-
-            <a class="article__content__text" href="#"><p>Constellations hold symbols of the universe through the lens of humanity.</p></a>
-        </div>
-
-    </article>
-
-    <article class="article">
-
-        <a href="#">
-            <img class="article__img" src="{% static 'home/images/aperture-vintage-SshYpuf607g-unsplash.jpg' %}" alt="">
-        </a>
-
-        <div class="article__content">
-            <h2 class="article__content__title"><a href="#">Beautiful View in the Sky</a></h2>
-
-            <a class="article__content__topic" href="#">STARS</a>
-            <span class="article__content__date">December 30, 2020</span>
-
-            <a class="article__content__text" href="#"><p>Constellations hold symbols of the universe through the lens of humanity.</p></a>
-        </div>
-
-    </article>
-
-    <article class="article">
-
-        <a href="#">
-            <img class="article__img" src="{% static 'home/images/aperture-vintage-SshYpuf607g-unsplash.jpg' %}" alt="">
-        </a>
-
-        <div class="article__content">
-            <h2 class="article__content__title"><a href="#">Beautiful View in the Sky</a></h2>
-
-            <a class="article__content__topic" href="#">STARS</a>
-            <span class="article__content__date">December 30, 2020</span>
-
-            <a class="article__content__text" href="#"><p>Constellations hold symbols of the universe through the lens of humanity.</p></a>
-        </div>
-
-    </article>
-
-    <article class="article">
-
-        <a href="#">
-            <img class="article__img" src="{% static 'home/images/aperture-vintage-SshYpuf607g-unsplash.jpg' %}" alt="">
-        </a>
-
-        <div class="article__content">
-            <h2 class="article__content__title"><a href="#">Beautiful View in the Sky</a></h2>
-
-            <a class="article__content__topic" href="#">STARS</a>
-            <span class="article__content__date">December 30, 2020</span>
-
-            <a class="article__content__text" href="#"><p>Constellations hold symbols of the universe through the lens of humanity.</p></a>
-        </div>
-
-    </article>
-
-    <article class="article">
-
-        <a href="#">
-            <img class="article__img" src="{% static 'home/images/aperture-vintage-SshYpuf607g-unsplash.jpg' %}" alt="">
-        </a>
-
-        <div class="article__content">
-            <h2 class="article__content__title"><a href="#">Beautiful View in the Sky</a></h2>
-
-            <a class="article__content__topic" href="#">STARS</a>
-            <span class="article__content__date">December 30, 2020</span>
-
-            <a class="article__content__text" href="#"><p>Constellations hold symbols of the universe through the lens of humanity.</p></a>
-        </div>
-
-    </article> {% endcomment %}
-
-
+    
+    {% endif %}
 
 </div>
 
