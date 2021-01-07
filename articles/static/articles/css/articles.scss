@@ -169,12 +169,21 @@ $margins: (
         transition: color ease-in-out 0.2s;
         will-change: color;
 
+        // Re-enable once you figure out how to add transition when fetching pagination stuff
+        //transition: color ease-in-out 0.2s, background-color ease-in-out 0.2s;
+        //will-change: color, background-color;
+
         border-radius: 7px;
 
         //border: 1px solid green;
 
-        &:hover {
+        &:not(.focused):hover {
             color: color(cool-green);
+        }
+
+        &.focused {
+            color: color(white-text);
+            background-color: color(cool-green);
         }
     }
 }

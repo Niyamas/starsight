@@ -1,22 +1,33 @@
 class Articles {
 
-    constructor() {
+    static constructor() {
 
+        // Apparently this isn't needed?!
         // Article variables
-        this.articleTotalNumber = undefined
+/*         this.articleTotalNumber = undefined
         this.currentTopic = undefined
         this.currentTopicID = undefined
 
         // Pagination variables
-        this.currentPageNumber = 1
-        this.articleQuotient = undefined
-        this.articleRemainder = undefined
+        this.pageTotal = undefined
+        this.currentPageNumber = 1 */
     }
+
+    // Article variables
+    static articleTotalNumber = undefined
+    static currentTopic = undefined
+    static currentTopicID = undefined
+
+    // Pagination variables
+    static pageTotal = undefined
+    static currentPageNumber = 1
+
 
     static async fetchArticles(url) {
         /**
          * 
          */
+        console.log('running this.fetchArticles... this.currentPageNumber=', this.currentPageNumber)
         await fetch(url)
         .then( (response) => response.json() )
         .then( (articleList) => {
@@ -30,8 +41,6 @@ class Articles {
             // If zero articles are fetched, add a notice to the HTML,
             // and if there are, fetch the articles from the given url.
             if (this.articleTotalNumber === 0) {
-
-                console.log('no articles')
 
                 articleHTML = `
                     <div>There are no articles for this topic.</div>
@@ -108,17 +117,35 @@ class Articles {
         /**
          * 
          */
-        this.articleQuotient = Math.floor(this.articleTotalNumber / 6)       // Number of pages (6 articles per page)
-        this.articleRemainder = this.articleTotalNumber % 6                  // If multiples of 6 can't be reached, will show remainder of articles in the last page
+        let articleQuotient = Math.floor(this.articleTotalNumber / 6)       // Number of pages (6 articles per page)
+        let articleRemainder = this.articleTotalNumber % 6                  // If multiples of 6 can't be reached, will show remainder of articles in the last page
+
+        if (articleQuotient > 0 && articleRemainder > 0) {
+
+            // If there are more than 6 articles and there are a remainder of articles,
+            // add the correct number of pages, which is one more than the articleQuotient
+            // to account for the article spillover to the next page.
+            this.pageTotal = articleQuotient + 1
+        }
+        else if (articleQuotient > 0 && articleRemainder === 0) {
+
+            // More than 6 articles and no remainder articles means that there all of the
+            // fetched articles are multiples of 6, which is a perfect fit for the pages.
+            this.pageTotal = articleQuotient
+        }
+        else {
+
+            // All other variances means that there's only one page.
+            this.pageTotal = 1
+        }
+
         let paginationHTML = ``
 
-        //console.log('this.articleQuotient=', this.articleQuotient, 'this.articleRemainder=', this.articleRemainder)
+        // If there's more than one page, create the pages
+        // and add the next button
+        if (this.pageTotal > 1) {
 
-        // If there are more than 6 articles and there are a remainder of articles,
-        // add the correct number of pages and the next button.
-        if (this.articleQuotient > 0 && this.articleRemainder > 0) {
-
-            for ( let i = 0; i < this.articleQuotient + 1; i++ ) {
+            for ( let i = 0; i < this.pageTotal; i++ ) {
 
                 paginationHTML += '<li class="pagination__page">' + (i + 1) + '</li>'
             }
@@ -133,28 +160,8 @@ class Articles {
 
             document.getElementById('pagination').innerHTML = paginationHTML
         }
-        // If there are more than 6 articles and there are no remainder of articles,
-        // add the correct number of pages and the next button.
-        else if (this.articleQuotient > 0 && this.articleRemainder === 0) {
-
-            for ( let i = 0; i < this.articleQuotient; i++ ) {
-
-                paginationHTML += '<li class="pagination__page">' + (i + 1) + '</li>'
-            }
-
-            paginationHTML += `
-                <li id="pageNext" class="pagination__next">
-                    <svg class="pagination__btn__svg" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-                    </svg>
-                </li>
-            `
-
-            document.getElementById('pagination').innerHTML = paginationHTML
-        }
-        // If there are less than 6 articles, but there are a remainder of articles,
-        // only add one page and omit the next button.
-        else if (this.articleQuotient === 0 && this.articleRemainder > 0) {
+        // If there's only one page, just show page 1.
+        else if (this.pageTotal === 1) {
 
             paginationHTML = '<li class="pagination__page">1</li>'
 
@@ -162,39 +169,55 @@ class Articles {
         }
 
         // Add event listeners to each page number
-        // Call function to update list of articles
+        // Call pageChange to go to the next page (if there is one)
         let pageNumbers = Array.from( document.getElementsByClassName('pagination__page') )
 
         pageNumbers.forEach( (pageNumber) => {
+            
+            // Add page number focused class that shows user what page they currently on
+            if (this.currentPageNumber === parseInt(pageNumber.innerHTML)) {
+
+                pageNumber.classList.add('focused')
+            }
 
             pageNumber.addEventListener('click', () => {
 
+                console.log('page number clicked. current page number=', parseInt(pageNumber.innerHTML))
+
                 // Store the page number clicked and get all articles on that page
                 this.currentPageNumber = parseInt(pageNumber.innerHTML)
-                this.pageNumberClick(this.currentPageNumber)
+                this.pageChange(this.currentPageNumber)
             })
         })
 
         // Add an event listener to the next button if it exists
-        // Call function to update list of articles
+        // Call pageChange to go to the next page (if there is one)
         let pageNext = document.getElementById('pageNext')
 
         if (pageNext != null) {
 
             pageNext.addEventListener('click', () => {
 
-                console.log('page next clicked!')
-                this.pageNextClick(this.currentPageNumber)
+                console.log('page next clicked! Current page number=', this.currentPageNumber)
+
+                // Increase currentPageNumber by 1 if it's less than the pageTotal.
+                if (this.currentPageNumber < this.pageTotal) {
+
+                    this.currentPageNumber += 1
+                    this.pageChange(this.currentPageNumber)
+                }
             })
         }
 
     }
 
-    static pageNumberClick(currentPageNumber) {
+    static pageChange(currentPageNumber) {
         /**
-         * 
+         * Gets articles for a specific page, as
+         * specified by the passed-in variable:
+         * currentPageNumber
          */
-        console.log('Running pageNumberClick()... Page:', currentPageNumber, 'Current topic:', this.currentTopicID, this.currentTopic)
+        console.log('Running pageChange()... Page:', currentPageNumber, 'Current topic:', this.currentTopicID, this.currentTopic)
 
         let APIFilterTopic = ''
 
@@ -210,26 +233,6 @@ class Articles {
 
         this.fetchArticles(url)
     }
-
-    static pageNextClick(currentPageNumber) {
-        /**
-         * 
-         */
-        console.log('pageNextClick()... ')
-        console.log('this.articleQuotient=', this.articleQuotient)
-        console.log('this.articleRemainder=', this.articleRemainder)
-        console.log('pageNumber=', currentPageNumber)
-
-        // If the current page number is less than or equal to the 
-        if (currentPageNumber <= this.articleQuotient && this.articleRemainder > 0) {
-
-            console.log('go to next page')
-        }
-        else {
-
-            console.log('do not go to next page')
-        }
-    } 
 
     static topicTransitions(topic) {
         /**
@@ -256,9 +259,6 @@ class Articles {
 
         // Highlight "All" topic on page load
         topicsAll.classList.add('clicked')
-
-        // Set default pageNumber on load to 1
-        this.currentPageNumber = 1
 
         // Get all articles on page load
         let url = 'http://localhost:8000/api/v2/pages/?type=articles.ArticleDetailPage&fields=_,id,title,banner_text,topic,image,html_url,first_published_at&order=-first_published_at&limit=6'

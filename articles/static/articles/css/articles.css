@@ -222,7 +222,12 @@
   border-radius: 7px;
 }
 
-.pagination__page:hover, .pagination__next:hover {
+.pagination__page:not(.focused):hover, .pagination__next:not(.focused):hover {
   color: #4FC0C0;
+}
+
+.pagination__page.focused, .pagination__next.focused {
+  color: #ffffff;
+  background-color: #4FC0C0;
 }
 /*# sourceMappingURL=articles.css.map */
