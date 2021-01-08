@@ -102,7 +102,7 @@ class ArticleDetailPage(Page):
         on_delete=models.SET_NULL,
         related_name='+',
     )
-    image_credits = models.CharField(max_length=100, blank=False, null=True, help_text="Acknowledge the image's producer")
+    image_credits = models.CharField(max_length=100, blank=True, null=True, help_text="Acknowledge the image's producer")
     content = StreamField(
         [
             ('title_and_text', blocks.TitleAndTextBlock()),

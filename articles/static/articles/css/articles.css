@@ -203,7 +203,7 @@
   border-radius: 7px;
 }
 
-.pagination__page, .pagination__next {
+.pagination__page, .pagination__next, .pagination__before {
   width: 36px;
   height: 39px;
   display: -webkit-box;
@@ -222,11 +222,11 @@
   border-radius: 7px;
 }
 
-.pagination__page:not(.focused):hover, .pagination__next:not(.focused):hover {
+.pagination__page:not(.focused):hover, .pagination__next:not(.focused):hover, .pagination__before:not(.focused):hover {
   color: #4FC0C0;
 }
 
-.pagination__page.focused, .pagination__next.focused {
+.pagination__page.focused, .pagination__next.focused, .pagination__before.focused {
   color: #ffffff;
   background-color: #4FC0C0;
 }

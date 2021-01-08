@@ -1,18 +1,5 @@
 class Articles {
 
-    static constructor() {
-
-        // Apparently this isn't needed?!
-        // Article variables
-/*         this.articleTotalNumber = undefined
-        this.currentTopic = undefined
-        this.currentTopicID = undefined
-
-        // Pagination variables
-        this.pageTotal = undefined
-        this.currentPageNumber = 1 */
-    }
-
     // Article variables
     static articleTotalNumber = undefined
     static currentTopic = undefined
@@ -115,8 +102,14 @@ class Articles {
 
     static createPagination() {
         /**
+         * Creates the pagination items after running fetchArticles().
          * 
+         * Rewrite this into 2 separate pagination methods:
+         * 1) Creating pagination for topic change. This will reload this part via async
+         * 2) Updating the page number when the user clicks a page number. This won't reload and thus can use transitions similar to the topic transitions
          */
+
+        //1. Calculate total number of pages.
         let articleQuotient = Math.floor(this.articleTotalNumber / 6)       // Number of pages (6 articles per page)
         let articleRemainder = this.articleTotalNumber % 6                  // If multiples of 6 can't be reached, will show remainder of articles in the last page
 
@@ -139,11 +132,17 @@ class Articles {
             this.pageTotal = 1
         }
 
+
+
+
+
+
+        // 2. Print pagination items to the URL.
         let paginationHTML = ``
 
-        // If there's more than one page, create the pages
-        // and add the next button
-        if (this.pageTotal > 1) {
+        // If the current page number is 1 and it is less than the page total,
+        // print the pages and the next button only.
+        if (this.pageTotal > 1 && this.currentPageNumber === 1 && this.currentPageNumber < this.pageTotal) {
 
             for ( let i = 0; i < this.pageTotal; i++ ) {
 
@@ -160,6 +159,52 @@ class Articles {
 
             document.getElementById('pagination').innerHTML = paginationHTML
         }
+        // If the current page number is somewhere in the middle, but still less than
+        // the page total, print all pages and the before and next buttons.
+        else if (this.pageTotal > 1 && this.currentPageNumber > 1 && this.currentPageNumber < this.pageTotal ) {
+
+            paginationHTML += `
+                <li id="pageBefore" class="pagination__before">
+                    <svg class="pagination__btn__svg" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                    </svg>
+                </li>
+            `
+
+            for ( let i = 0; i < this.pageTotal; i++ ) {
+
+                paginationHTML += '<li class="pagination__page">' + (i + 1) + '</li>'
+            }
+
+            paginationHTML += `
+                <li id="pageNext" class="pagination__next">
+                    <svg class="pagination__btn__svg" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </li>
+            `
+
+            document.getElementById('pagination').innerHTML = paginationHTML
+        }
+        // Once the user is on the last page, omit the next button and just print out
+        // the page numbers and the before button.
+        else if (this.pageTotal > 1 && this.currentPageNumber > 1 && this.currentPageNumber === this.pageTotal) {
+
+            paginationHTML += `
+                <li id="pageBefore" class="pagination__before">
+                    <svg class="pagination__btn__svg" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                    </svg>
+                </li>
+            `
+
+            for ( let i = 0; i < this.pageTotal; i++ ) {
+
+                paginationHTML += '<li class="pagination__page">' + (i + 1) + '</li>'
+            }
+
+            document.getElementById('pagination').innerHTML = paginationHTML
+        }
         // If there's only one page, just show page 1.
         else if (this.pageTotal === 1) {
 
@@ -168,6 +213,11 @@ class Articles {
             document.getElementById('pagination').innerHTML = paginationHTML
         }
 
+
+
+
+
+        // 3. Add event listeners to each pagination item.
         // Add event listeners to each page number
         // Call pageChange to go to the next page (if there is one)
         let pageNumbers = Array.from( document.getElementsByClassName('pagination__page') )
@@ -198,12 +248,31 @@ class Articles {
 
             pageNext.addEventListener('click', () => {
 
-                console.log('page next clicked! Current page number=', this.currentPageNumber)
+                console.log('page next clicked! current page number=', this.currentPageNumber)
 
                 // Increase currentPageNumber by 1 if it's less than the pageTotal.
                 if (this.currentPageNumber < this.pageTotal) {
 
                     this.currentPageNumber += 1
+                    this.pageChange(this.currentPageNumber)
+                }
+            })
+        }
+
+        // Add an event listener to the before button if it exists
+        // Call pageChange to go to the next page (if there is one)
+        let pageBefore = document.getElementById('pageBefore')
+
+        if (pageBefore != null) {
+
+            pageBefore.addEventListener('click', () => {
+
+                console.log('page before clicked! current page number=', this.currentPageNumber)
+
+                // Decrease currentPageNumber by 1 if it's greater than 1.
+                if (this.currentPageNumber > 1) {
+
+                    this.currentPageNumber -= 1
                     this.pageChange(this.currentPageNumber)
                 }
             })
@@ -268,6 +337,9 @@ class Articles {
         // Also applies background & color transition on topic click.
         topicsAll.addEventListener('click', () => {
 
+            // Set the current page number to 1
+            this.currentPageNumber = 1
+
             // Apply topic transitions
             this.topicTransitions(topicsAll)
 
@@ -285,6 +357,9 @@ class Articles {
         topics.forEach( (topic) => {
 
             topic.addEventListener('click', () => {
+
+                // Set the current page number to 1
+                this.currentPageNumber = 1
 
                 // Apply topic transitions
                 this.topicTransitions(topic)
