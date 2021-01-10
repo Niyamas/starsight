@@ -36,6 +36,7 @@ class Articles {
                 `
 
                 document.getElementById('listings').innerHTML = articleHTML
+                this.createPagination()
             }
             else {
 
@@ -133,10 +134,15 @@ class Articles {
             // fetched articles are multiples of 6, which is a perfect fit for the pages.
             this.pageTotal = articleQuotient
         }
+        else if (articleQuotient < 0 && articleRemainder > 0) {
+
+            
+            this.pageTotal = 1
+        }
         else {
 
-            // All other variances means that there's only one page.
-            this.pageTotal = 1
+            // All other variances means that there's no articles (i.e. no pages)
+            this.pageTotal = 0
         }
 
 
@@ -147,9 +153,48 @@ class Articles {
         // 2. Print pagination items to the URL.
         let paginationHTML = ``
 
+        // If there are pages, print the correct pagination objects and if not
+        // leave the pagination div blank.
+        if (this.pageTotal !== 0) {
+
+            paginationHTML += `
+                <li id="pageBefore" class="pagination__before">
+                    <svg class="pagination__btn__svg" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                    </svg>
+                </li>
+            `
+
+            for ( let i = 0; i < this.pageTotal; i++ ) {
+
+                paginationHTML += '<li class="pagination__page">' + (i + 1) + '</li>'
+            }
+
+            paginationHTML += `
+                <li id="pageNext" class="pagination__next">
+                    <svg class="pagination__btn__svg" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </li>
+            `
+
+            document.getElementById('pagination').innerHTML = paginationHTML
+
+        }
+        else {
+
+            document.getElementById('pagination').innerHTML = ''
+        }
+
+
+
+
+
+
+        // Enable this version if you want the disappearing chevrons when at the first and last pages.
         // If the current page number is 1 and it is less than the page total,
         // print the pages and the next button only.
-        if (this.pageTotal > 1 && this.currentPageNumber === 1 && this.currentPageNumber < this.pageTotal) {
+        /* if (this.pageTotal > 1 && this.currentPageNumber === 1 && this.currentPageNumber < this.pageTotal) {
 
             for ( let i = 0; i < this.pageTotal; i++ ) {
 
@@ -218,9 +263,9 @@ class Articles {
             paginationHTML = '<li class="pagination__page">1</li>'
 
             document.getElementById('pagination').innerHTML = paginationHTML
-        }
-
-
+        } */
+ 
+        console.log('this.pageTotal=', this.pageTotal)
 
 
 
@@ -317,6 +362,7 @@ class Articles {
                 console.log('page before clicked! current page number=', this.currentPageNumber)
 
                 // Decrease currentPageNumber by 1 if it's greater than 1
+                // (can't have a page 0)
                 if (this.currentPageNumber > 1) {
 
                     this.currentPageNumber -= 1
