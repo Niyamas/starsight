@@ -121,6 +121,9 @@ class Articles {
         let articleQuotient = Math.floor(this.articleTotalNumber / 6)       // Number of pages (6 articles per page)
         let articleRemainder = this.articleTotalNumber % 6                  // If multiples of 6 can't be reached, will show remainder of articles in the last page
 
+        console.log('articleQuotient=', articleQuotient)
+        console.log('articleRemainder=', articleRemainder)
+
         if (articleQuotient > 0 && articleRemainder > 0) {
 
             // If there are more than 6 articles and there are a remainder of articles,
@@ -134,7 +137,7 @@ class Articles {
             // fetched articles are multiples of 6, which is a perfect fit for the pages.
             this.pageTotal = articleQuotient
         }
-        else if (articleQuotient < 0 && articleRemainder > 0) {
+        else if (articleQuotient === 0 && articleRemainder > 0) {
 
             
             this.pageTotal = 1
