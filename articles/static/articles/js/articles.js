@@ -121,9 +121,6 @@ class Articles {
         let articleQuotient = Math.floor(this.articleTotalNumber / 6)       // Number of pages (6 articles per page)
         let articleRemainder = this.articleTotalNumber % 6                  // If multiples of 6 can't be reached, will show remainder of articles in the last page
 
-        console.log('articleQuotient=', articleQuotient)
-        console.log('articleRemainder=', articleRemainder)
-
         if (articleQuotient > 0 && articleRemainder > 0) {
 
             // If there are more than 6 articles and there are a remainder of articles,
@@ -267,8 +264,6 @@ class Articles {
 
             document.getElementById('pagination').innerHTML = paginationHTML
         } */
- 
-        console.log('this.pageTotal=', this.pageTotal)
 
 
 
@@ -458,6 +453,9 @@ class Articles {
 
         // Highlight "All" topic on page load
         topicsAll.classList.add('clicked')
+
+        // Show the loading spinner on page load before getting the articles
+        this.loading()
 
         // Get all articles on page load
         let url = 'http://localhost:8000/api/v2/pages/?type=articles.ArticleDetailPage&fields=_,id,title,banner_text,topic,image,html_url,first_published_at&order=-first_published_at&limit=6'

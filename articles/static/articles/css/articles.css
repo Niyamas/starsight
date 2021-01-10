@@ -227,9 +227,9 @@
       -ms-flex-align: center;
           align-items: center;
   cursor: pointer;
-  -webkit-transition: color ease-in-out 0.2s;
-  transition: color ease-in-out 0.2s;
-  will-change: color;
+  -webkit-transition: color ease-in-out 0.2s, background-color ease-in-out 0.2s;
+  transition: color ease-in-out 0.2s, background-color ease-in-out 0.2s;
+  will-change: color, background-color;
   border-radius: 7px;
 }
 
