@@ -82,6 +82,7 @@ $margins: (
 }
 
 .listings {
+    position: relative;
     margin: 0 margin(superwide);
 
     height: 1100px;
@@ -91,6 +92,21 @@ $margins: (
     grid-template-columns: repeat(3, 1fr);
     grid-row-gap: 70px;
     grid-column-gap: 70px;
+
+    &__no-articles {
+        position: absolute;
+
+        // Center a fixed element. Ty: https://css-tricks.com/quick-css-trick-how-to-center-an-object-exactly-in-the-center/
+        top: 120px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        color: rgb(126, 126, 126);
+
+        //width: 100%;
+        //text-align: center;
+        font-size: 1.5rem;
+    }
 }
 
 .article {
@@ -185,5 +201,53 @@ $margins: (
             color: color(white-text);
             background-color: color(cool-green);
         }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+.spinner{
+    position: absolute;
+    z-index: 2;
+
+    // Center a fixed element. Ty: https://css-tricks.com/quick-css-trick-how-to-center-an-object-exactly-in-the-center/
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+
+    margin:auto;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    //position:fixed;
+
+    width: 20rem;
+    height: 20rem;
+    display: inline-block;
+
+    border: 3px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    border-top-color: color(cool-green);
+
+    animation: 1s spin ease-in-out infinite;
+
+    //display: none;
+}
+
+@keyframes spin{
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(359deg);
     }
 }

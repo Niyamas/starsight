@@ -12,9 +12,11 @@ class Articles {
 
     static async fetchArticles(url) {
         /**
-         * 
+         * Gets the list of articles from the API and prints to the listings
+         * div based on the url passed.
          */
-        console.log('running this.fetchArticles... this.currentPageNumber=', this.currentPageNumber)
+
+        //console.log('running this.fetchArticles... this.currentPageNumber=', this.currentPageNumber)
         await fetch(url)
         .then( (response) => response.json() )
         .then( (articleList) => {
@@ -30,7 +32,7 @@ class Articles {
             if (this.articleTotalNumber === 0) {
 
                 articleHTML = `
-                    <div>There are no articles for this topic.</div>
+                    <div class="listings__no-articles">There are no articles for this topic at this moment.</div>
                 `
 
                 document.getElementById('listings').innerHTML = articleHTML
@@ -106,10 +108,15 @@ class Articles {
          * 
          * Rewrite this into 2 separate pagination methods:
          * 1) Creating pagination for topic change. This will reload this part via async
-         * 2) Updating the page number when the user clicks a page number. This won't reload and thus can use transitions similar to the topic transitions
+         * 2) Updating the current page number when the user clicks a page number. This won't reload and thus can use focus transitions similar to the topic transitions
+         * 
+         * https://stackoverflow.com/questions/6594014/javascript-innerhtml-adding-instead-of-replacing
+         * 
+         * Is there a way to have a transition that covers 1) and 2)? To make it all smooth-like? It could be loosely tied to:
+         * https://dev.to/vaishnavme/displaying-loading-animation-on-fetch-api-calls-1e5m
          */
 
-        //1. Calculate total number of pages.
+        // 1. Calculate total number of pages.
         let articleQuotient = Math.floor(this.articleTotalNumber / 6)       // Number of pages (6 articles per page)
         let articleRemainder = this.articleTotalNumber % 6                  // If multiples of 6 can't be reached, will show remainder of articles in the last page
 
@@ -234,9 +241,27 @@ class Articles {
 
                 console.log('page number clicked. current page number=', parseInt(pageNumber.innerHTML))
 
-                // Store the page number clicked and get all articles on that page
-                this.currentPageNumber = parseInt(pageNumber.innerHTML)
-                this.pageChange(this.currentPageNumber)
+                // Only change the page if it's a different page
+                if (this.currentPageNumber != parseInt(pageNumber.innerHTML)) {
+
+                    // Add color transition to the page number when the user clicks it.
+                    // Also removes the transition for the previous page.
+                    pageNumber.classList.add('focused')
+                    for (let sibling of pageNumber.parentNode.children) {
+
+                        if (sibling !== pageNumber) {
+                            sibling.classList.remove('focused')
+                        }
+                    }
+
+                    // Show the loading spinner after clicking one of the page numbers
+                    this.loading()
+
+                    // Store the page number clicked and get all articles on that page
+                    this.currentPageNumber = parseInt(pageNumber.innerHTML)
+                    this.pageChange(this.currentPageNumber)
+                }
+
             })
         })
 
@@ -250,10 +275,32 @@ class Articles {
 
                 console.log('page next clicked! current page number=', this.currentPageNumber)
 
-                // Increase currentPageNumber by 1 if it's less than the pageTotal.
+                // Increase currentPageNumber by 1 if it's less than the pageTotal,
+                // add the focused transition to the right page and remove it from the
+                // other page numbers, and finally get the articles in the next page
                 if (this.currentPageNumber < this.pageTotal) {
 
                     this.currentPageNumber += 1
+
+                    pageNumbers.forEach( (pageNumber) => {
+
+                        if (parseInt(pageNumber.innerHTML) === this.currentPageNumber) {
+
+
+                            pageNumber.classList.add('focused')
+                            for (let sibling of pageNumber.parentNode.children) {
+        
+                                if (sibling !== pageNumber) {
+                                    sibling.classList.remove('focused')
+                                }
+                            }
+                        }
+                    })
+
+                    // Show loading spinner after clicking the next button
+                    this.loading()
+
+                    // Get articles for a specific page
                     this.pageChange(this.currentPageNumber)
                 }
             })
@@ -269,10 +316,30 @@ class Articles {
 
                 console.log('page before clicked! current page number=', this.currentPageNumber)
 
-                // Decrease currentPageNumber by 1 if it's greater than 1.
+                // Decrease currentPageNumber by 1 if it's greater than 1
                 if (this.currentPageNumber > 1) {
 
                     this.currentPageNumber -= 1
+
+                    pageNumbers.forEach( (pageNumber) => {
+
+                        if (parseInt(pageNumber.innerHTML) === this.currentPageNumber) {
+
+
+                            pageNumber.classList.add('focused')
+                            for (let sibling of pageNumber.parentNode.children) {
+        
+                                if (sibling !== pageNumber) {
+                                    sibling.classList.remove('focused')
+                                }
+                            }
+                        }
+                    })
+
+                    // Show loading spinner after clicking the before button
+                    this.loading()
+
+                    // Get articles for a specific page
                     this.pageChange(this.currentPageNumber)
                 }
             })
@@ -284,7 +351,9 @@ class Articles {
         /**
          * Gets articles for a specific page, as
          * specified by the passed-in variable:
-         * currentPageNumber
+         * currentPageNumber. Does this by setting
+         * all of the fields for the API url, which then
+         * is passed to this.fetchArticles().
          */
         console.log('Running pageChange()... Page:', currentPageNumber, 'Current topic:', this.currentTopicID, this.currentTopic)
 
@@ -318,6 +387,18 @@ class Articles {
         }
     }
 
+
+    static loading() {
+        /**
+         * Write the loading spinner to the listings div.
+         */
+
+        document.getElementById('listings').innerHTML = `
+            <div id="spinner" class="spinner"></div>
+        `
+    }
+
+
     static async getArticles() {
         /**
          * Main method for loading articles. Adds event listeners
@@ -342,6 +423,9 @@ class Articles {
 
             // Apply topic transitions
             this.topicTransitions(topicsAll)
+
+            // Show the loading spinner when clicking "All"
+            this.loading()
 
             // Store the topic name and ID (used in pagination)
             this.currentTopic = 'All'
@@ -368,6 +452,11 @@ class Articles {
                 this.currentTopic = topic.dataset.topic_name
                 this.currentTopicID = parseInt(topic.dataset.topic_id)
 
+                // Show the loading spinner when clicking "Topic"
+                this.loading()
+
+                //document.getElementById('listings').innerHTML = ``
+
                 // Adds a filter parameter to the API url
                 let APIFilterTopic = `&topic=${topic.dataset.topic_id}`
                 let url = `http://localhost:8000/api/v2/pages/?type=articles.ArticleDetailPage&fields=_,id,title,banner_text,topic,image,html_url,first_published_at&order=-first_published_at&limit=6`
@@ -383,3 +472,6 @@ class Articles {
 }
 
 Articles.getArticles()
+
+// Un-comment to test loading spinner
+//Articles.loading()
