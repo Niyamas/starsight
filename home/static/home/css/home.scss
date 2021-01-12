@@ -38,7 +38,7 @@ $colors: (
 $margins: (
     wide: 9.5vw,
     slim: 7vw,
-    superslim: 5vw,
+    super-slim: 5vw,
 );
 
 // Utility Classes
@@ -82,7 +82,7 @@ $margins: (
         pointer-events: none;
 
         @include verge(1700) {
-            left: margin(superslim);
+            left: margin(super-slim);
         }
     }
 
@@ -99,7 +99,7 @@ $margins: (
         pointer-events: none;
 
         @include verge(1700) {
-            right: calc( #{margin(superslim)} + 3vw );
+            right: calc( #{margin(super-slim)} + 3vw );
         }
     }
 }
@@ -139,7 +139,7 @@ $margins: (
     }
 
     @include verge(1700) {
-        margin: 70px margin(superslim) 0 margin(superslim);
+        margin: 70px margin(super-slim) 0 margin(super-slim);
         grid-template-columns: 2fr 1fr;
         grid-column-gap: 100px;
     }
@@ -333,6 +333,11 @@ $margins: (
         cursor: pointer;
         //color: #2c8a94;
         color: color(cool-green);
+
+        transition: color ease-in-out 0.2s;
+        will-change: color;
+
+        // Transition done in external_apis.js
     }
 }
 
@@ -355,7 +360,7 @@ $margins: (
     grid-column-gap: 140px;
 
     @include verge(1700) {
-        margin: 150px margin(superslim) 63px margin(superslim);
+        margin: 150px margin(super-slim) 63px margin(super-slim);
         grid-column: 100px;
     }
 }
@@ -489,6 +494,14 @@ $margins: (
             margin-top: 10px;
             letter-spacing: 1px;
             line-height: 2.1;
+        }
+
+        @include verge(1980) {
+            margin-left: 85px;
+        }
+
+        @include verge(1700) {
+            margin-left: 70px;
         }
     }
 }

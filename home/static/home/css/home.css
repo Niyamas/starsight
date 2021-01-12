@@ -276,6 +276,9 @@
   font-weight: 700;
   cursor: pointer;
   color: #4FC0C0;
+  -webkit-transition: color ease-in-out 0.2s;
+  transition: color ease-in-out 0.2s;
+  will-change: color;
 }
 
 .more-grid {
@@ -437,5 +440,17 @@
   margin-top: 10px;
   letter-spacing: 1px;
   line-height: 2.1;
+}
+
+@media only screen and (max-width: 1980px) {
+  .older-article__content {
+    margin-left: 85px;
+  }
+}
+
+@media only screen and (max-width: 1700px) {
+  .older-article__content {
+    margin-left: 70px;
+  }
 }
 /*# sourceMappingURL=home.css.map */

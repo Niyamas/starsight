@@ -43,7 +43,8 @@ $colors: (
 $margins: (
     wide: 9.5vw,
     slim: 7vw,
-    superslim: 5vw,
+    super-slim: 5vw,
+    omega-slim: 3vw,
 );
 
 // Special classes
@@ -208,7 +209,8 @@ body {
         }
 
         @include verge(1700) {
-            margin-left: margin(superslim) !important;
+            margin-left: margin(super-slim) !important;
+            width: 75%;
         }
     }
 
@@ -245,7 +247,7 @@ body {
         }
 
         @include verge(1700) {
-            margin-left: margin(superslim);
+            margin-left: margin(super-slim);
         }
     }
 
@@ -284,7 +286,7 @@ body {
         }
 
         @include verge(1700) {
-            margin-right: margin(superslim);
+            margin-right: margin(super-slim);
         }
     }
 }

@@ -160,6 +160,7 @@ body {
 @media only screen and (max-width: 1700px) {
   .nav__links {
     margin-left: 5vw !important;
+    width: 75%;
   }
 }
 

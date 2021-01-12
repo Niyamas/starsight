@@ -18,9 +18,7 @@ class ExternalAPIS {
 
         readMore.addEventListener('click', () => {
 
-            //console.log('read more clicked!')
-
-            // Toggle between "Read more" and "Show less" when clicked.
+            // Toggle between "Read more" and "Show less" when clicking the read more button
             if (readMore.innerHTML === 'Read more') {
                 
                 readMore.innerHTML = 'Show less'
@@ -34,10 +32,9 @@ class ExternalAPIS {
             descriptionFade.classList.toggle('apod__description__fade--animation')
         })
 
+        // Toggle between "Read more" and "Show less" when clicking the faded text
         descriptionFade.addEventListener('click', () => {
 
-            //console.log('fade clicked!')
-
             // Toggle between "Read more" and "Show less" when clicked.
             if (readMore.innerHTML === 'Read more') {
                 
@@ -51,6 +48,37 @@ class ExternalAPIS {
             description.classList.toggle('apod__description--animation')
             descriptionFade.classList.toggle('apod__description__fade--animation')
         })
+
+
+        // Change read more button to cooler-green on button hover
+        readMore.addEventListener('mouseover', () => {
+
+            // cooler-green
+            readMore.style.color = '#5de4e4'
+        })
+
+        // Change read more button back to cool-green on button hover out
+        readMore.addEventListener('mouseout', () => {
+
+            // cool-green
+            readMore.style.color = '#4FC0C0'
+        })
+
+        // Change read more button to cooler-green on fade hover
+        descriptionFade.addEventListener('mouseover', () => {
+
+            // cooler-green
+            readMore.style.color = '#5de4e4'
+        })
+
+        // Change read more button back to cool-green on fade hover out
+        descriptionFade.addEventListener('mouseout', () => {
+
+            // cool-green
+            readMore.style.color = '#4FC0C0'
+        })
+
+
 
     }
 
