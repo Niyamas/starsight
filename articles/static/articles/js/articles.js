@@ -2,7 +2,7 @@ class Articles {
 
     // Article variables
     static articleTotalNumber = undefined
-    static currentTopic = undefined
+    static currentTopic = 'All'
     static currentTopicID = undefined
 
     // Pagination variables
@@ -484,9 +484,6 @@ class Articles {
         let queryParams = new URLSearchParams(window.location.search)
         topicsAll.addEventListener('click', () => {
 
-            // Set the current page number to 1
-            this.currentPageNumber = 1
-
             // Apply topic transitions
             this.topicTransitions(topicsAll)
 
@@ -494,16 +491,25 @@ class Articles {
             queryParams.delete('topic')
             history.replaceState(null, null, '/articles/'+queryParams.toString())        // Can use pushState, but it allows back button to previous URL, unlike replaceState
 
-            // Show the loading spinner when clicking "All"
-            this.loading()
+            console.log(this.currentPageNumber)
 
-            // Store the topic name and ID (used in pagination)
+            // Prevent fetching the API if the topic clicked is the same one.
+            // Will however, fetch the articles again (back to page 1) if the the current page is not 1.
+            if ( topicsAll.dataset.topic_name !== this.currentTopic || (topicsAll.dataset.topic_name === this.currentTopic && this.currentPageNumber !== 1) ) {
+                
+                // Show the loading spinner when clicking "All"
+                this.loading()
+
+                // Load articles
+                let url = 'http://localhost:8000/api/v2/pages/?type=articles.ArticleDetailPage&fields=_,id,title,banner_text,topic,image,html_url,first_published_at&order=-first_published_at&limit=6'
+                this.fetchArticles(url)
+            }
+
+            // Store the current page number, topic name and ID (used in pagination)
+            this.currentPageNumber = 1
             this.currentTopic = 'All'
             this.currentTopicID = undefined
 
-            // Get articles
-            let url = 'http://localhost:8000/api/v2/pages/?type=articles.ArticleDetailPage&fields=_,id,title,banner_text,topic,image,html_url,first_published_at&order=-first_published_at&limit=6'
-            this.fetchArticles(url)
         })
 
         // For each non-all topic clicked, fetch the respective articles.
@@ -511,9 +517,6 @@ class Articles {
         topics.forEach( (topic) => {
 
             topic.addEventListener('click', () => {
-
-                // Set the current page number to 1
-                this.currentPageNumber = 1
 
                 // Apply topic transitions
                 this.topicTransitions(topic)
@@ -524,22 +527,26 @@ class Articles {
                 history.replaceState(null, null, "?"+queryParams.toString())        // Can use pushState, but it allows back button to previous URL, unlike replaceState
 
 
-                // Store the topic name and ID (used in pagination)
+                // Prevent fetching the API if the topic clicked is the same one.
+                // Will however, fetch the articles again (back to page 1) if the the current page is not 1.
+                if ( topic.dataset.topic_name !== this.currentTopicc || (topic.dataset.topic_name === this.currentTopic && this.currentPageNumber !== 1) ) {
+
+                    // Show the loading spinner when clicking a topic
+                    this.loading()
+
+                    // Adds a filter parameter to the API url
+                    let APIFilterTopic = `&topic=${topic.dataset.topic_id}`
+                    let url = `http://localhost:8000/api/v2/pages/?type=articles.ArticleDetailPage&fields=_,id,title,banner_text,topic,image,html_url,first_published_at&order=-first_published_at&limit=6`
+                    url += APIFilterTopic
+
+                    // Load articles
+                    this.fetchArticles(url)
+                }
+
+                // Store the current page number, topic name and ID (used in pagination)
+                this.currentPageNumber = 1
                 this.currentTopic = topic.dataset.topic_name
                 this.currentTopicID = parseInt(topic.dataset.topic_id)
-
-                // Show the loading spinner when clicking "Topic"
-                this.loading()
-
-                //document.getElementById('listings').innerHTML = ``
-
-                // Adds a filter parameter to the API url
-                let APIFilterTopic = `&topic=${topic.dataset.topic_id}`
-                let url = `http://localhost:8000/api/v2/pages/?type=articles.ArticleDetailPage&fields=_,id,title,banner_text,topic,image,html_url,first_published_at&order=-first_published_at&limit=6`
-                url += APIFilterTopic
-
-                // Get articles
-                this.fetchArticles(url)
             })
         })
 
@@ -560,39 +567,11 @@ class Articles {
             let url = 'http://localhost:8000/api/v2/pages/?type=articles.ArticleDetailPage&fields=_,id,title,banner_text,topic,image,html_url,first_published_at&order=-first_published_at&limit=6'
             this.fetchArticles(url)
         }
-
-
-
-
-
-
-
-
-
-    }
-
-    static updateTopicURLParameter() {
-        /**
-         * Parses the URL and looks for the value
-         */
-
-        //let articlesURL = new URL(window.location.href)
-        //let topicParameter = articlesURL.searchParams.get('topic')
-
-        let topicParameter = new URL(window.location.href).searchParams.get('topic')
-
-        if (topicParameter !== null) {
-
-            let topicHTML = document.getElementsByClassName(`topics__topic--${topicParameter}`)[0]
-            topicHTML.click()
-        }
     }
 
 }
 
 Articles.getArticles()
-
-//Articles.updateTopicURLParameter()
 
 // Un-comment to test loading spinner
 //Articles.loading()
