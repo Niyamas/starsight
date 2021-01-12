@@ -85,6 +85,15 @@ body {
   width: 100%;
   height: 70px;
   background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
   -webkit-transition: height ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
   transition: height ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
   transition: height ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
@@ -92,26 +101,8 @@ body {
   will-change: height, box-shadow;
 }
 
-.nav__links {
-  margin-left: 7vw !important;
-  width: 60%;
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.nav__links li {
-  height: 100%;
-}
-
-.nav__links__starsight {
+.nav__starsight {
+  margin-left: 7vw;
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -121,7 +112,7 @@ body {
           align-items: center;
 }
 
-.nav__links__starsight h1 {
+.nav__starsight h1 {
   margin-bottom: 0;
   font-size: 1.76rem;
   font-weight: 300;
@@ -131,12 +122,35 @@ body {
   will-change: color, font-size;
 }
 
-.nav__links__starsight h1:hover {
+.nav__starsight h1:hover {
   color: #4FC0C0;
 }
 
-.nav__links__starsight h1.sticky {
+.nav__starsight h1.sticky {
   font-size: 1.5rem;
+}
+
+.nav__links {
+  margin-left: 5vw !important;
+  width: 40%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border: 1px solid green;
+}
+
+.nav__links li {
+  height: 100%;
+}
+
+@media only screen and (max-width: 1250px) {
+  .nav__links li {
+    height: auto;
+  }
 }
 
 .nav__links__link {
@@ -163,10 +177,55 @@ body {
   font-size: 1rem;
 }
 
+@media only screen and (max-width: 1250px) {
+  .nav__links__link.sticky {
+    height: auto;
+    font-size: 1.3rem;
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  .nav__links__link {
+    height: auto;
+    font-size: 1.3rem;
+  }
+}
+
+@media only screen and (max-width: 1980px) {
+  .nav__links {
+    width: 50%;
+  }
+}
+
 @media only screen and (max-width: 1700px) {
   .nav__links {
-    margin-left: 5vw !important;
-    width: 75%;
+    width: 55%;
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  .nav__links {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-left: 0;
+    padding: 0 7vw !important;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: 100vh;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+    background-color: white;
+    border: 1px solid blue;
   }
 }
 

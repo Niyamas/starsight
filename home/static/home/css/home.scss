@@ -13,8 +13,16 @@
         @media only screen and (max-width: 1500px) { @content; }
     }
 
-}
+    @else if $point == 1350 {
+        @media only screen and (max-width: 1350px) { @content; }
+    }
 
+    @else if $point == 1250 {
+        @media only screen and (max-width: 1250) { @content; }
+    }
+
+
+}
 
 // Functions
 @function color($color-name) {
@@ -135,6 +143,11 @@ $margins: (
         grid-template-rows: 1fr;
         grid-template-columns: 2fr 1fr;
         grid-column-gap: 60px;
+
+        @include verge(1500) {
+            grid-template-columns: 1.65fr 1fr;
+            grid-column-gap: 50px;
+        }
     }
 
     @include verge(1980) {
@@ -249,12 +262,16 @@ $margins: (
         // Grid + ::after creates a line that extends to the right of the text
         display: grid;
         grid-template-columns: auto minmax(20px, 1fr);
-        grid-column-gap: 15px;
+        grid-column-gap: 10px;
 
         &::after {
             content: "";
             border-top: 1px solid color(cool-green);
             transform: translateY(50%);
+        }
+
+        @include verge(1350) {
+            font-size: 1.1rem
         }
     }
 
@@ -385,7 +402,7 @@ $margins: (
 
         display: grid;
         grid-template-columns: auto minmax(20px, 1fr);
-        grid-column-gap: 15px;
+        grid-column-gap: 10px;
 
         font-size: 1.2rem;
         letter-spacing: 1px;
@@ -398,6 +415,10 @@ $margins: (
             border-top: 1px solid color(cool-green);
             transform: translateY(50%);
         }
+    }
+
+    @include verge(1350) {
+        font-size: 1.1rem
     }
 }
 

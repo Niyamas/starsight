@@ -491,8 +491,6 @@ class Articles {
             queryParams.delete('topic')
             history.replaceState(null, null, '/articles/'+queryParams.toString())        // Can use pushState, but it allows back button to previous URL, unlike replaceState
 
-            console.log(this.currentPageNumber)
-
             // Prevent fetching the API if the topic clicked is the same one.
             // Will however, fetch the articles again (back to page 1) if the the current page is not 1.
             if ( topicsAll.dataset.topic_name !== this.currentTopic || (topicsAll.dataset.topic_name === this.currentTopic && this.currentPageNumber !== 1) ) {
@@ -529,7 +527,7 @@ class Articles {
 
                 // Prevent fetching the API if the topic clicked is the same one.
                 // Will however, fetch the articles again (back to page 1) if the the current page is not 1.
-                if ( topic.dataset.topic_name !== this.currentTopicc || (topic.dataset.topic_name === this.currentTopic && this.currentPageNumber !== 1) ) {
+                if ( topic.dataset.topic_name !== this.currentTopic || (topic.dataset.topic_name === this.currentTopic && this.currentPageNumber !== 1) ) {
 
                     // Show the loading spinner when clicking a topic
                     this.loading()

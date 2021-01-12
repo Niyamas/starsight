@@ -20,13 +20,13 @@
 
 <ul class="topics">
 
-    <li id="topicsAll" class="topics__topic topics__topic--all topics__topic--all" data-topic_name="All">
+    <li id="topicsAll" class="topics__topic topics__topic--all topics__topic--all no-select" data-topic_name="All">
         All
     </li>
 
     {% for topic in topics %}
 
-        <li class="topics__topic topics__topic--{{ topic.slug }} topics__topic--topic" data-topic_id="{{ topic.id }}" data-topic_name="{{ topic.name }}" data-topic_slug="{{ topic.slug }}">
+        <li class="topics__topic topics__topic--{{ topic.slug }} topics__topic--topic no-select" data-topic_id="{{ topic.id }}" data-topic_name="{{ topic.name }}" data-topic_slug="{{ topic.slug }}">
             {{ topic.name }}
         </li>
 

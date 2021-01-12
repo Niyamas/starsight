@@ -1,5 +1,4 @@
 // Media queries for responsive website
-
 @mixin verge($point) {
 
     @if $point == 1980 {
@@ -14,6 +13,14 @@
         @media only screen and (max-width: 1500px) { @content; }
     }
 
+    @else if $point == 1350 {
+        @media only screen and (max-width: 1350px) { @content; }
+    }
+
+    @else if $point == 1250 {
+        @media only screen and (max-width: 1250px) { @content; }
+    }
+
 }
 
 // Functions
@@ -24,7 +31,6 @@
 @function margin($margin-name) {
     @return map-get($margins, $margin-name)
 };
-
 
 // Variables
 $colors: (
@@ -150,44 +156,62 @@ body {
 
     background-color: white;
 
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
     transition: height ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
     will-change: height, box-shadow;
 
-    &__links {
-        margin-left: margin(slim) !important;
+    //border: 1px solid purple;
 
-        width: 60%;
+
+    &__starsight {
+        margin-left: margin(slim);
+        height: 100%;
+        display: flex;
+        align-items: center;
+
+        //border: 1px solid orange;
+
+        & h1 {
+            margin-bottom: 0;
+            font-size: 1.76rem;
+            font-weight: 300;
+            letter-spacing: 5px;
+
+            transition: color ease-in-out 0.2s, font-size ease-in-out 0.15s;
+            will-change: color, font-size;
+
+            &:hover {
+                color: color(cool-green);
+            }
+
+            &.sticky {
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    &__links {
+        //margin-left: margin(slim) !important;
+        margin-left: 5vw !important;
+
+        width: 40%;
         height: 100%;
 
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        //align-items: center;
+
+        border: 1px solid green;
 
         & li {
             height: 100%;
-        }
 
-        &__starsight {
-            height: 100%;
-            display: flex;
-            align-items: center;
-
-            & h1 {
-                margin-bottom: 0;
-                font-size: 1.76rem;
-                font-weight: 300;
-                letter-spacing: 5px;
-
-                transition: color ease-in-out 0.2s, font-size ease-in-out 0.15s;
-                will-change: color, font-size;
-
-                &:hover {
-                    color: color(cool-green);
-                }
-
-                &.sticky {
-                    font-size: 1.5rem;
-                }
+            // For ham house
+            @include verge(1250) {
+                height: auto;
             }
         }
 
@@ -203,18 +227,58 @@ body {
             transition: color ease-in-out 0.2s, font-size ease-in-out 0.15s;
             will-change: color, font-size;
 
+            //border: 1px solid green;
+
             &:hover {
                 color: color(cool-green) !important;
             }
 
             &.sticky {
                 font-size: 1rem;
+
+                // For ham house
+                @include verge(1250) {
+                    height: auto;
+                    font-size: 1.3rem;
+                }
             }
+
+            // For ham house
+            @include verge(1250) {
+                height: auto;
+                font-size: 1.3rem;
+            }
+
         }
 
+        @include verge(1980) {
+            width: 50%;
+        }
+
+
         @include verge(1700) {
-            margin-left: margin(super-slim) !important;
-            width: 75%;
+            //margin-left: margin(super-slim) !important;
+            width: 55%;
+        }
+
+        // For ham house
+        @include verge(1250) {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin-left: 0;
+            padding: 0 margin(slim) !important;
+
+            width: fit-content;
+            height: 100vh;
+
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-end;
+
+            background-color: white;
+
+            border: 1px solid blue;
         }
     }
 
