@@ -325,10 +325,11 @@ class Articles {
 
                     this.currentPageNumber += 1
 
+                    // Find the correct page number to highlight and remove the highlight
+                    // from the other page number.
                     pageNumbers.forEach( (pageNumber) => {
 
                         if (parseInt(pageNumber.innerHTML) === this.currentPageNumber) {
-
 
                             pageNumber.classList.add('focused')
                             for (let sibling of pageNumber.parentNode.children) {
@@ -365,10 +366,11 @@ class Articles {
 
                     this.currentPageNumber -= 1
 
+                    // Find the correct page number to highlight and remove the highlight
+                    // from the other page number.
                     pageNumbers.forEach( (pageNumber) => {
 
                         if (parseInt(pageNumber.innerHTML) === this.currentPageNumber) {
-
 
                             pageNumber.classList.add('focused')
                             for (let sibling of pageNumber.parentNode.children) {

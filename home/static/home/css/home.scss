@@ -1,3 +1,17 @@
+// Media queries
+@mixin verge($point) {
+
+    @if $point == 1980 {
+        @media only screen and (max-width: 1980px) { @content; }
+    }
+
+    @else if $point == 1700 {
+        @media only screen and (max-width: 1700px) { @content; }
+    }
+
+}
+
+
 // Functions
 @function color($color-name) {
     @return map-get($colors, $color-name)
@@ -23,7 +37,8 @@ $colors: (
 
 $margins: (
     wide: 9.5vw,
-    slim: 7vw
+    slim: 7vw,
+    superslim: 5vw,
 );
 
 // Utility Classes
@@ -58,13 +73,17 @@ $margins: (
         top: 30%;
         left: margin(slim);
 
-        font-size: 25px;
+        font-size: 1.47rem;
         font-weight: 400;
         letter-spacing: 5px;
         line-height: 2;
         color: color(white-text);
 
         pointer-events: none;
+
+        @include verge(1700) {
+            left: margin(superslim);
+        }
     }
 
     &__text-right {
@@ -72,12 +91,16 @@ $margins: (
         top: 45%;
         right: calc( #{margin(slim)} + 3vw );
 
-        font-size: 70px;
+        font-size: 4.12rem;
         font-weight: 700;
         letter-spacing: 15px;
         color: color(white-text);
 
         pointer-events: none;
+
+        @include verge(1700) {
+            right: calc( #{margin(superslim)} + 3vw );
+        }
     }
 }
 
@@ -108,6 +131,17 @@ $margins: (
         grid-template-rows: 1fr;
         grid-template-columns: 2fr 1fr;
         grid-column-gap: 60px;
+    }
+
+    @include verge(1980) {
+        grid-template-columns: 2.2fr 1fr;
+        grid-column-gap: 120px;
+    }
+
+    @include verge(1700) {
+        margin: 70px margin(superslim) 0 margin(superslim);
+        grid-template-columns: 2fr 1fr;
+        grid-column-gap: 100px;
     }
 }
 
@@ -319,6 +353,11 @@ $margins: (
         "article-4   widgets-more";
     grid-row-gap: 35px;
     grid-column-gap: 140px;
+
+    @include verge(1700) {
+        margin: 150px margin(superslim) 63px margin(superslim);
+        grid-column: 100px;
+    }
 }
 
 .more-grid__banner {

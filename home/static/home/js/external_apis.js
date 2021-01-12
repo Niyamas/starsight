@@ -18,7 +18,7 @@ class ExternalAPIS {
 
         readMore.addEventListener('click', () => {
 
-            console.log('read more clicked!')
+            //console.log('read more clicked!')
 
             // Toggle between "Read more" and "Show less" when clicked.
             if (readMore.innerHTML === 'Read more') {
@@ -36,7 +36,7 @@ class ExternalAPIS {
 
         descriptionFade.addEventListener('click', () => {
 
-            console.log('fade clicked!')
+            //console.log('fade clicked!')
 
             // Toggle between "Read more" and "Show less" when clicked.
             if (readMore.innerHTML === 'Read more') {
@@ -130,7 +130,7 @@ class ExternalAPIS {
         .then( (response) => response.json() )
         .then( (apod) => {
 
-            console.log(`apod data structure = ${apod}`)
+            //console.log(`apod data structure = ${apod}`)
 
             // Store HTML image for APOD
             let apodHTML
@@ -225,7 +225,7 @@ class ExternalAPIS {
                 `
             }
 
-            console.log(`apod.url = ${apod.url}`)
+            //console.log(`apod.url = ${apod.url}`)
 
             // Place apodHTML in innerHTML of div with ID='apod'
             document.getElementById('apod').innerHTML = apodHTML
@@ -234,6 +234,27 @@ class ExternalAPIS {
             this.addReadMoreAnimation()
         })
     }
+
+    static async getCNEOS() {
+        /**
+         * https://ssd-api.jpl.nasa.gov/doc/cad.html
+         * 
+         * Currently, there are no comets that will be less than 0.05 au
+         * in the next 60 days, but keep checking. Wait to build the comet
+         * watch graph widget.
+         */
+
+        //let url = 'https://ssd-api.jpl.nasa.gov/cad.api?api_key=' + nasaAPIKey
+        let url = 'https://ssd-api.jpl.nasa.gov/cad.api?comet=true'
+        await fetch(url)
+        .then( (response) => response.json() )
+        .then( (CAD) => {
+
+            console.log('CAD', CAD)
+        })
+    }
+
 }
 
 ExternalAPIS.getAPOD()
+ExternalAPIS.getCNEOS()
