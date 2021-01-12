@@ -1,5 +1,5 @@
 {% extends 'starsight/base.html' %}
-{% load wagtailimages_tags static %}
+{% load wagtailcore_tags wagtailimages_tags static %}
 
 
 {% block extra_css %}
@@ -26,7 +26,7 @@
 
     {% for topic in topics %}
 
-        <li class="topics__topic topics__topic--{{ topic.slug }} topics__topic--topic" data-topic_id="{{ topic.id }}" data-topic_name="{{ topic.name }}">
+        <li class="topics__topic topics__topic--{{ topic.slug }} topics__topic--topic" data-topic_id="{{ topic.id }}" data-topic_name="{{ topic.name }}" data-topic_slug="{{ topic.slug }}">
             {{ topic.name }}
         </li>
 
@@ -51,6 +51,10 @@
 
 
 {% block extra_js %}
+
+<script>
+    let articlesURL = "{% slugurl 'articles' %}"
+</script>
 
 <script defer type="text/javascript" src="{% static 'articles/js/articles.js' %}"></script>
 

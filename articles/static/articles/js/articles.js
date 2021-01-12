@@ -82,12 +82,12 @@ class Articles {
                             </a>
                     
                             <div class="article__content">
-                                <h2 class="article__content__title"><a href="#">${article['title']}</a></h2>
+                                <h2 class="article__content__title"><a href="${article['meta']['html_url']}">${article['title']}</a></h2>
                     
-                                <a class="article__content__topic" href="#">${articleTopic}</a>
+                                <span class="article__content__topic">${articleTopic}</span>
                                 <span class="article__content__date">${firstPublishedAt}</span>
                     
-                                <a class="article__content__text" href="#">${article['banner_text']}</a>
+                                <a class="article__content__text" href="${article['meta']['html_url']}">${article['banner_text']}</a>
                             </div>
                         </article>
                     `
@@ -98,6 +98,22 @@ class Articles {
     
                 // Call the pagination generation here where this.articleTotalNumber is successfully updated
                 this.createPagination()
+
+                // When clicking an article topic, simulate a click on one of the header topics
+                let articleTopicHTMLs = Array.from( document.getElementsByClassName('article__content__topic') )
+
+                articleTopicHTMLs.forEach( (articleTopicHTML) => {
+
+                    articleTopicHTML.addEventListener('click', () => {
+
+                        // Slugify topic innerHTML
+                        let topicSlug = articleTopicHTML.innerHTML.replace(/\s+/g, '-').toLowerCase()
+
+                        let topicHTML = document.getElementsByClassName(`topics__topic--${topicSlug}`)[0]
+                        topicHTML.click()
+                    })
+                })
+
             }
 
         })
@@ -453,18 +469,19 @@ class Articles {
         let topicsAll = document.getElementById('topicsAll')
         let topics = Array.from( document.getElementsByClassName('topics__topic--topic') )
 
-        // Highlight "All" topic on page load
+        // Highlight "All" topic on page load as the default
         topicsAll.classList.add('clicked')
 
         // Show the loading spinner on page load before getting the articles
         this.loading()
 
-        // Get all articles on page load
-        let url = 'http://localhost:8000/api/v2/pages/?type=articles.ArticleDetailPage&fields=_,id,title,banner_text,topic,image,html_url,first_published_at&order=-first_published_at&limit=6'
-        this.fetchArticles(url)
+
+
+
 
         // When the user clicks "All", gets all the articles and displays them
         // Also applies background & color transition on topic click.
+        let queryParams = new URLSearchParams(window.location.search)
         topicsAll.addEventListener('click', () => {
 
             // Set the current page number to 1
@@ -472,6 +489,10 @@ class Articles {
 
             // Apply topic transitions
             this.topicTransitions(topicsAll)
+
+            // Removes the topic URL parameter
+            queryParams.delete('topic')
+            history.replaceState(null, null, '/articles/'+queryParams.toString())        // Can use pushState, but it allows back button to previous URL, unlike replaceState
 
             // Show the loading spinner when clicking "All"
             this.loading()
@@ -497,6 +518,12 @@ class Articles {
                 // Apply topic transitions
                 this.topicTransitions(topic)
 
+                // Update the URL parameters when clicking a topic to display the
+                // correct topic slug
+                queryParams.set('topic', `${topic.dataset.topic_slug}`)
+                history.replaceState(null, null, "?"+queryParams.toString())        // Can use pushState, but it allows back button to previous URL, unlike replaceState
+
+
                 // Store the topic name and ID (used in pagination)
                 this.currentTopic = topic.dataset.topic_name
                 this.currentTopicID = parseInt(topic.dataset.topic_id)
@@ -516,11 +543,56 @@ class Articles {
             })
         })
 
+
+
+
+
+        // Get all articles on page load if there is no topic parameter in the URL.
+        // If there is, simulate a click on the topic specified in the URL.
+        let topicParameter = new URL(window.location.href).searchParams.get('topic')
+        if (topicParameter !== null) {
+
+            let topicHTML = document.getElementsByClassName(`topics__topic--${topicParameter}`)[0]
+            topicHTML.click()
+        }
+        else {
+
+            let url = 'http://localhost:8000/api/v2/pages/?type=articles.ArticleDetailPage&fields=_,id,title,banner_text,topic,image,html_url,first_published_at&order=-first_published_at&limit=6'
+            this.fetchArticles(url)
+        }
+
+
+
+
+
+
+
+
+
+    }
+
+    static updateTopicURLParameter() {
+        /**
+         * Parses the URL and looks for the value
+         */
+
+        //let articlesURL = new URL(window.location.href)
+        //let topicParameter = articlesURL.searchParams.get('topic')
+
+        let topicParameter = new URL(window.location.href).searchParams.get('topic')
+
+        if (topicParameter !== null) {
+
+            let topicHTML = document.getElementsByClassName(`topics__topic--${topicParameter}`)[0]
+            topicHTML.click()
+        }
     }
 
 }
 
 Articles.getArticles()
+
+//Articles.updateTopicURLParameter()
 
 // Un-comment to test loading spinner
 //Articles.loading()

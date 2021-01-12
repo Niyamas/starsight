@@ -186,6 +186,7 @@
   -webkit-transition: color ease-in-out 0.2s;
   transition: color ease-in-out 0.2s;
   will-change: color;
+  cursor: pointer;
 }
 
 .article__content__topic:hover {

@@ -141,6 +141,8 @@ $margins: (
 
             transition: color ease-in-out 0.2s;
             will-change: color;
+
+            cursor: pointer;
     
             &:hover {
                 color: color(cooler-green) !important;

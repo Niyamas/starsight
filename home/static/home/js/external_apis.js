@@ -78,8 +78,6 @@ class ExternalAPIS {
             readMore.style.color = '#4FC0C0'
         })
 
-
-
     }
 
     static async getAPOD() {
@@ -93,9 +91,7 @@ class ExternalAPIS {
         await fetch(url)
         .then( (response) => {
 
-           
-
-            // If no API errors, proceed to the next promise
+            // If no API errors, proceed to the next promise (i.e. .then)
             if (response.ok) {
                 return response
             }

@@ -50,6 +50,12 @@ html::-webkit-scrollbar-thumb {
   }
 }
 
+@media only screen and (max-width: 1500px) {
+  html {
+    font-size: 14px;
+  }
+}
+
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;

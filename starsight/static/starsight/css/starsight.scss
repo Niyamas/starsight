@@ -10,8 +10,8 @@
         @media only screen and (max-width: 1700px) { @content; }
     }
 
-    @else if $point == 1450 {
-        @media only screen and (max-width: 1450px) { @content; }
+    @else if $point == 1500 {
+        @media only screen and (max-width: 1500px) { @content; }
     }
 
 }
@@ -103,6 +103,10 @@ html {
 
     @include verge(1980) {
         font-size: 16px;
+    }
+
+    @include verge(1500) {
+        font-size: 14px;
     }
 }
 
