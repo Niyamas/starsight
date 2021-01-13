@@ -198,20 +198,40 @@ body {
         margin-left: 5vw !important;
 
         width: 40%;
-        height: 100%;
+        //height: 100%;
 
         display: flex;
         justify-content: space-between;
         //align-items: center;
 
-        border: 1px solid green;
+        //border: 1px solid green;
 
         & li {
             height: 100%;
 
             // For ham house
             @include verge(1250) {
-                height: auto;
+                height: 70px;
+                width: 100%;
+
+                border: 1px solid orange;
+            }
+
+            &:first-child {
+
+                &.sticky{
+
+                    @include verge(1250) {
+                        margin-top: 55px;
+                    }
+                }
+
+                @include verge(1250) {
+                    margin-top: 70px;
+
+                    transition: margin-top ease-in-out 0.15s
+
+                }
             }
         }
 
@@ -238,15 +258,25 @@ body {
 
                 // For ham house
                 @include verge(1250) {
-                    height: auto;
+                    //height: auto;
                     font-size: 1.3rem;
+                    
                 }
             }
 
             // For ham house
             @include verge(1250) {
-                height: auto;
+                width: 100%;
+                //height: 100%;
+
+                //vertically center and right-align text in dropdown menu
+                display: flex;
+                justify-content: flex-end;
+
                 font-size: 1.3rem;
+                text-align: right;
+
+                //border: 1px solid green;
             }
 
         }
@@ -267,14 +297,14 @@ body {
             top: 0;
             right: 0;
             margin-left: 0;
-            padding: 0 margin(slim) !important;
+            //padding: 0 margin(slim) !important;
 
-            width: fit-content;
+            width: 23vw;
             height: 100vh;
 
             flex-direction: column;
             justify-content: flex-start;
-            align-items: flex-end;
+            //align-items: flex-end;
 
             background-color: white;
 
@@ -283,7 +313,7 @@ body {
     }
 
     &.sticky {
-        height: 49px;
+        height: 55px;
         box-shadow: 0px 1px 5px rgb(207, 207, 207);
     }
 }

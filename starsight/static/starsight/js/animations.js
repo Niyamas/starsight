@@ -16,10 +16,16 @@ class Animations {
         const navStarsight = document.getElementById('navStarsight')
         const navLinks = Array.from( document.getElementsByClassName('nav__links__link') )
 
+        const navLinkFirst = Array.from( document.getElementsByClassName('nav__links__li') )[0]
+
+        
+
         window.addEventListener('scroll', () => {
             //console.log('scrollY = ', window.scrollY)
 
             if (window.scrollY > 70) {
+
+                console.log('navLinkFirst=', navLinkFirst)
 
                 nav.classList.add('sticky')
                 navStarsight.classList.add('sticky')
@@ -28,6 +34,8 @@ class Animations {
 
                     link.classList.add('sticky')
                 })
+
+                navLinkFirst.classList.add('sticky')
             }
             else {
 
@@ -38,6 +46,8 @@ class Animations {
 
                     link.classList.remove('sticky')
                 })
+
+                navLinkFirst.classList.remove('sticky')
             }
         })
     }
