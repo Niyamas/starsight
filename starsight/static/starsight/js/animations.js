@@ -17,6 +17,8 @@ class Animations {
         const navLinks = Array.from( document.getElementsByClassName('nav__links__link') )
 
         const navLinkFirst = Array.from( document.getElementsByClassName('nav__links__li') )[0]
+        const navHamHouse = document.getElementById('navHamHouse')
+        //let navHamburgerBefore = getComputedStyle(document.getElementById('navHamburger'), '::before').getPropertyValue('transform')
 
         
 
@@ -25,7 +27,7 @@ class Animations {
 
             if (window.scrollY > 70) {
 
-                console.log('navLinkFirst=', navLinkFirst)
+                //console.log('navHamburgerBefore=', navHamburgerBefore)
 
                 nav.classList.add('sticky')
                 navStarsight.classList.add('sticky')
@@ -36,6 +38,7 @@ class Animations {
                 })
 
                 navLinkFirst.classList.add('sticky')
+                navHamHouse.classList.add('sticky')
             }
             else {
 
@@ -48,6 +51,7 @@ class Animations {
                 })
 
                 navLinkFirst.classList.remove('sticky')
+                navHamHouse.classList.remove('sticky')
             }
         })
     }

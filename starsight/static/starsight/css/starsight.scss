@@ -53,6 +53,18 @@ $margins: (
     omega-slim: 3vw,
 );
 
+// SASS @ extend
+%hamburger_style {
+    //
+    //https://www.youtube.com/watch?v=dIyVTjJAkLw
+    //
+
+    width: 40px;
+    height: 2px;
+    background: color(text);
+    border-radius: 5px;
+}
+
 // Special classes
 .no-select {
     //https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting
@@ -211,10 +223,11 @@ body {
 
             // For ham house
             @include verge(1250) {
+                padding-right: margin(slim) !important;
                 height: 70px;
                 width: 100%;
 
-                border: 1px solid orange;
+                //border: 1px solid orange;
             }
 
             &:first-child {
@@ -299,7 +312,7 @@ body {
             margin-left: 0;
             //padding: 0 margin(slim) !important;
 
-            width: 23vw;
+            width: 26vw;
             height: 100vh;
 
             flex-direction: column;
@@ -311,6 +324,60 @@ body {
             border: 1px solid blue;
         }
     }
+
+    &__ham-house {
+        position: absolute;
+        z-index: 6;
+        top: 0;
+        right: margin(slim);
+
+        width: 40px;
+        height: 70px;
+
+        display: flex;
+        justify-content: right;
+        align-items: center;
+
+        cursor: pointer;
+
+        transition: height ease-in-out 0.15s;
+
+        //border: 1px solid purple;
+
+        &__hamburger {
+            @extend %hamburger_style;
+
+            &::before {
+                position: absolute;
+                content: '';
+                @extend %hamburger_style;
+        
+                transform: translateY(-7px);
+                transition: transform 0.27s ease-in-out;
+            }
+
+            &::after {
+                position: absolute;
+                content: '';
+                @extend %hamburger_style;
+        
+                transform: translateY(7px);
+                transition: transform 0.17s ease-in-out;
+            }
+        }
+
+        &.sticky {
+            height: 55px;
+        }
+
+    }
+
+
+
+
+
+
+
 
     &.sticky {
         height: 55px;
