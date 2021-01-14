@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
-.nav__ham-house__hamburger, .nav__ham-house__hamburger::before, .nav__ham-house__hamburger::after {
+.nav__ham-house__hamburger, .nav__ham-house__hamburger__top, .nav__ham-house__hamburger__bottom {
   width: 40px;
   height: 2px;
   background: #050404;
@@ -271,26 +271,34 @@ body {
   transition: height ease-in-out 0.15s;
 }
 
-.nav__ham-house__hamburger::before {
+.nav__ham-house__hamburger__top {
   position: absolute;
-  content: '';
-  -webkit-transform: translateY(-7px);
-          transform: translateY(-7px);
-  -webkit-transition: -webkit-transform 0.27s ease-in-out;
-  transition: -webkit-transform 0.27s ease-in-out;
-  transition: transform 0.27s ease-in-out;
-  transition: transform 0.27s ease-in-out, -webkit-transform 0.27s ease-in-out;
+  -webkit-transform: translateY(-11px);
+          transform: translateY(-11px);
+  -webkit-transition: -webkit-transform 0.15s ease-in-out;
+  transition: -webkit-transform 0.15s ease-in-out;
+  transition: transform 0.15s ease-in-out;
+  transition: transform 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
 }
 
-.nav__ham-house__hamburger::after {
+.nav__ham-house__hamburger__top.sticky {
+  -webkit-transform: translateY(-7px);
+          transform: translateY(-7px);
+}
+
+.nav__ham-house__hamburger__bottom {
   position: absolute;
-  content: '';
+  -webkit-transform: translateY(11px);
+          transform: translateY(11px);
+  -webkit-transition: -webkit-transform 0.15s ease-in-out;
+  transition: -webkit-transform 0.15s ease-in-out;
+  transition: transform 0.15s ease-in-out;
+  transition: transform 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
+}
+
+.nav__ham-house__hamburger__bottom.sticky {
   -webkit-transform: translateY(7px);
           transform: translateY(7px);
-  -webkit-transition: -webkit-transform 0.17s ease-in-out;
-  transition: -webkit-transform 0.17s ease-in-out;
-  transition: transform 0.17s ease-in-out;
-  transition: transform 0.17s ease-in-out, -webkit-transform 0.17s ease-in-out;
 }
 
 .nav__ham-house.sticky {

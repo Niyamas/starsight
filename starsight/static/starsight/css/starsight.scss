@@ -347,22 +347,28 @@ body {
         &__hamburger {
             @extend %hamburger_style;
 
-            &::before {
+            &__top {
                 position: absolute;
-                content: '';
                 @extend %hamburger_style;
-        
-                transform: translateY(-7px);
-                transition: transform 0.27s ease-in-out;
+
+                transform: translateY(-11px);
+                transition: transform 0.15s ease-in-out;
+
+                &.sticky {
+                    transform: translateY(-7px);
+                }
             }
 
-            &::after {
+            &__bottom {
                 position: absolute;
-                content: '';
                 @extend %hamburger_style;
-        
-                transform: translateY(7px);
-                transition: transform 0.17s ease-in-out;
+
+                transform: translateY(11px);
+                transition: transform 0.15s ease-in-out;
+
+                &.sticky {
+                    transform: translateY(7px);
+                }
             }
         }
 

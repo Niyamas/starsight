@@ -17,8 +17,10 @@ class Animations {
         const navLinks = Array.from( document.getElementsByClassName('nav__links__link') )
 
         const navLinkFirst = Array.from( document.getElementsByClassName('nav__links__li') )[0]
+
         const navHamHouse = document.getElementById('navHamHouse')
-        //let navHamburgerBefore = getComputedStyle(document.getElementById('navHamburger'), '::before').getPropertyValue('transform')
+        const navHamburgerTop = document.getElementById('navHamburgerTop')
+        const navHamburgerBottom = document.getElementById('navHamburgerBottom')
 
         
 
@@ -39,6 +41,8 @@ class Animations {
 
                 navLinkFirst.classList.add('sticky')
                 navHamHouse.classList.add('sticky')
+                navHamburgerTop.classList.add('sticky')
+                navHamburgerBottom.classList.add('sticky')
             }
             else {
 
@@ -52,6 +56,8 @@ class Animations {
 
                 navLinkFirst.classList.remove('sticky')
                 navHamHouse.classList.remove('sticky')
+                navHamburgerTop.classList.remove('sticky')
+                navHamburgerBottom.classList.remove('sticky')
             }
         })
     }
