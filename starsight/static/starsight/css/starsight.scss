@@ -220,7 +220,7 @@ body {
 
         //border: 1px solid green;
 
-        & li {
+        &__li {
             height: 100%;
 
             &:first-child {
@@ -234,9 +234,7 @@ body {
 
                 @include verge(1250) {
                     margin-top: 70px;
-
-                    transition: margin-top ease-in-out 0.15s
-
+                    transition: margin-top ease-in-out 0.15s !important;                    
                 }
             }
 
@@ -300,30 +298,6 @@ body {
                     //transition: transform ease-in-out 0.7s 0.2s, opacity ease-in-out 0.7s 0.2s;
                 }
             }
-
-
-
-
-
-            /* @for $i from 1 through 10 {
-
-                @include verge(1250) {
-
-                    &::nth-child(#{i}).open {
-
-                        transform: translateY(0px);
-                        transition: transform ease-in-out (0.21s + ($i*0.1))
-                    }
-                }
-            } */
-
-            
-
-
-
-
-
-
         }
 
         &__link {
@@ -411,78 +385,55 @@ body {
         }
     }
 
-    &__ham-house {
-        position: absolute;
-        z-index: 6;
-        top: 0;
-        right: margin(slim);
+    &.sticky {
+        height: 55px;
+        box-shadow: 0px 1px 5px rgb(207, 207, 207);
+    }
+}
 
-        width: 40px;
-        height: 70px;
 
-        display: flex;
-        justify-content: right;
-        align-items: center;
 
-        cursor: pointer;
 
-        transition: height ease-in-out 0.15s;
 
-        //border: 1px solid purple;
+.nav__ham-house {
+    position: absolute;
+    z-index: 6;
+    top: 0;
+    right: margin(slim);
 
-        &__hamburger {
-            position: relative;
+    width: 40px;
+    height: 70px;
+
+    display: flex;
+    justify-content: right;
+    align-items: center;
+
+    cursor: pointer;
+
+    transition: height ease-in-out 0.15s, width ease-in-out 0.15s;
+
+    //border: 1px solid purple;
+
+    &__hamburger {
+        position: relative;
+        @extend %hamburger_style;
+
+        transition: all 0.27s ease-in-out;
+        will-change: background;
+
+        &__top {
+            position: absolute;
             @extend %hamburger_style;
 
-            transition: all 0.27s ease-in-out;
-            will-change: background;
+            transform: translateY(-11px);
+            transition: transform 0.15s ease-in-out, width 0.15s ease-in-out;
 
-            &__top {
-                position: absolute;
-                @extend %hamburger_style;
-
-                transform: translateY(-11px);
-                transition: transform 0.15s ease-in-out, width 0.15s ease-in-out;
-
-                &.sticky {
-                    transform: translateY(-7px);
-                }
-
-                &.open {
-                    //width: 30px;
-                    transform: rotate(45deg) translate(35px, -35px);
-                }
-
-                &.sticky.open {
-                    width: 30px;
-                }
-            }
-
-            &__bottom {
-                position: absolute;
-                @extend %hamburger_style;
-
-                transform: translateY(11px);
-                transition: transform 0.15s ease-in-out, width 0.15s ease-in-out;
-
-                &.sticky {
-                    transform: translateY(7px);
-                }
-
-                &.open {
-                    //width: 30px;
-                    transform: rotate(-45deg) translate(35px, 35px);
-                }
-
-                &.sticky.open {
-                    width: 30px;
-                }
+            &.sticky {
+                transform: translateY(-7px);
             }
 
             &.open {
-                //width: 30px;
-                transform: translateX(-50px);
-                background: transparent;
+                transform: rotate(45deg) translate(35px, -35px);
             }
 
             &.sticky.open {
@@ -490,21 +441,82 @@ body {
             }
         }
 
-        &.sticky {
-            height: 55px;
+        &__bottom {
+            position: absolute;
+            @extend %hamburger_style;
+
+            transform: translateY(11px);
+            transition: transform 0.15s ease-in-out, width 0.15s ease-in-out;
+
+            &.sticky {
+                transform: translateY(7px);
+            }
+
+            &.open {
+                transform: rotate(-45deg) translate(35px, 35px);
+            }
+
+            &.sticky.open {
+                width: 30px;
+            }
         }
 
-        @include verge(desktop) {
-            display: none;
+        &.open {
+            //width: 30px;
+            transform: translateX(-50px);
+            background: transparent;
         }
 
+        &.sticky.open {
+            width: 30px;
+        }
     }
 
     &.sticky {
         height: 55px;
-        box-shadow: 0px 1px 5px rgb(207, 207, 207);
     }
+
+    &.sticky.open {
+        width: 30px;
+    }
+
+    @include verge(desktop) {
+        display: none;
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .footer {
     margin-top: 200px;

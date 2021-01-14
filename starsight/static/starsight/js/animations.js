@@ -77,6 +77,7 @@ class Animations {
 
         navHamHouse.addEventListener('click', () => {
 
+            navHamHouse.classList.toggle('open')
             navHamburger.classList.toggle('open')
             navHamburgerTop.classList.toggle('open')
             navHamburgerBottom.classList.toggle('open')

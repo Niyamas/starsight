@@ -148,37 +148,26 @@ body {
           justify-content: space-between;
 }
 
-.nav__links li {
+.nav__links__li {
   height: 100%;
-  /* @for $i from 1 through 10 {
-
-                @include verge(1250) {
-
-                    &::nth-child(i).open {
-
-                        transform: translateY(0px);
-                        transition: transform ease-in-out (0.21s + ($i*0.1))
-                    }
-                }
-            } */
 }
 
 @media only screen and (max-width: 1250px) {
-  .nav__links li:first-child.sticky {
+  .nav__links__li:first-child.sticky {
     margin-top: 55px;
   }
 }
 
 @media only screen and (max-width: 1250px) {
-  .nav__links li:first-child {
+  .nav__links__li:first-child {
     margin-top: 70px;
-    -webkit-transition: margin-top ease-in-out 0.15s;
-    transition: margin-top ease-in-out 0.15s;
+    -webkit-transition: margin-top ease-in-out 0.15s !important;
+    transition: margin-top ease-in-out 0.15s !important;
   }
 }
 
 @media only screen and (max-width: 1250px) {
-  .nav__links li {
+  .nav__links__li {
     padding-right: 7vw !important;
     height: 70px;
     width: 100%;
@@ -186,7 +175,7 @@ body {
     -webkit-transform: translateY(40px);
             transform: translateY(40px);
   }
-  .nav__links li:nth-child(1).open {
+  .nav__links__li:nth-child(1).open {
     opacity: 1;
     -webkit-transform: translateY(0px);
             transform: translateY(0px);
@@ -195,7 +184,7 @@ body {
     transition: transform ease-in-out 0.21s, opacity ease-in-out 0.21s;
     transition: transform ease-in-out 0.21s, opacity ease-in-out 0.21s, -webkit-transform ease-in-out 0.21s;
   }
-  .nav__links li:nth-child(2).open {
+  .nav__links__li:nth-child(2).open {
     opacity: 1;
     -webkit-transform: translateY(0px);
             transform: translateY(0px);
@@ -204,7 +193,7 @@ body {
     transition: transform ease-in-out 0.31s, opacity ease-in-out 0.31s;
     transition: transform ease-in-out 0.31s, opacity ease-in-out 0.31s, -webkit-transform ease-in-out 0.31s;
   }
-  .nav__links li:nth-child(3).open {
+  .nav__links__li:nth-child(3).open {
     opacity: 1;
     -webkit-transform: translateY(0px);
             transform: translateY(0px);
@@ -213,7 +202,7 @@ body {
     transition: transform ease-in-out 0.41s, opacity ease-in-out 0.41s;
     transition: transform ease-in-out 0.41s, opacity ease-in-out 0.41s, -webkit-transform ease-in-out 0.41s;
   }
-  .nav__links li:nth-child(4).open {
+  .nav__links__li:nth-child(4).open {
     opacity: 1;
     -webkit-transform: translateY(0px);
             transform: translateY(0px);
@@ -222,7 +211,7 @@ body {
     transition: transform ease-in-out 0.51s, opacity ease-in-out 0.51s;
     transition: transform ease-in-out 0.51s, opacity ease-in-out 0.51s, -webkit-transform ease-in-out 0.51s;
   }
-  .nav__links li:nth-child(5).open {
+  .nav__links__li:nth-child(5).open {
     opacity: 1;
     -webkit-transform: translateY(0px);
             transform: translateY(0px);
@@ -231,7 +220,7 @@ body {
     transition: transform ease-in-out 0.61s, opacity ease-in-out 0.61s;
     transition: transform ease-in-out 0.61s, opacity ease-in-out 0.61s, -webkit-transform ease-in-out 0.61s;
   }
-  .nav__links li:nth-child(6).open {
+  .nav__links__li:nth-child(6).open {
     opacity: 1;
     -webkit-transform: translateY(0px);
             transform: translateY(0px);
@@ -240,7 +229,7 @@ body {
     transition: transform ease-in-out 0.71s, opacity ease-in-out 0.71s;
     transition: transform ease-in-out 0.71s, opacity ease-in-out 0.71s, -webkit-transform ease-in-out 0.71s;
   }
-  .nav__links li:nth-child(7).open {
+  .nav__links__li:nth-child(7).open {
     opacity: 1;
     -webkit-transform: translateY(0px);
             transform: translateY(0px);
@@ -336,6 +325,12 @@ body {
   }
 }
 
+.nav.sticky {
+  height: 55px;
+  -webkit-box-shadow: 0px 1px 5px #cfcfcf;
+          box-shadow: 0px 1px 5px #cfcfcf;
+}
+
 .nav__ham-house {
   position: absolute;
   z-index: 6;
@@ -353,8 +348,8 @@ body {
       -ms-flex-align: center;
           align-items: center;
   cursor: pointer;
-  -webkit-transition: height ease-in-out 0.15s;
-  transition: height ease-in-out 0.15s;
+  -webkit-transition: height ease-in-out 0.15s, width ease-in-out 0.15s;
+  transition: height ease-in-out 0.15s, width ease-in-out 0.15s;
 }
 
 .nav__ham-house__hamburger {
@@ -426,16 +421,14 @@ body {
   height: 55px;
 }
 
+.nav__ham-house.sticky.open {
+  width: 30px;
+}
+
 @media only screen and (min-width: 1250px) {
   .nav__ham-house {
     display: none;
   }
-}
-
-.nav.sticky {
-  height: 55px;
-  -webkit-box-shadow: 0px 1px 5px #cfcfcf;
-          box-shadow: 0px 1px 5px #cfcfcf;
 }
 
 .footer {
