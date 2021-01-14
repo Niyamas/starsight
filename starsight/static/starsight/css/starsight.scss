@@ -21,6 +21,10 @@
         @media only screen and (max-width: 1250px) { @content; }
     }
 
+    @else if $point == desktop {
+        @media only screen and (min-width: 1250px) { @content; }
+    }
+
 }
 
 // Functions
@@ -210,25 +214,14 @@ body {
         margin-left: 5vw !important;
 
         width: 40%;
-        //height: 100%;
 
         display: flex;
         justify-content: space-between;
-        //align-items: center;
 
         //border: 1px solid green;
 
         & li {
             height: 100%;
-
-            // For ham house
-            @include verge(1250) {
-                padding-right: margin(slim) !important;
-                height: 70px;
-                width: 100%;
-
-                //border: 1px solid orange;
-            }
 
             &:first-child {
 
@@ -246,6 +239,91 @@ body {
 
                 }
             }
+
+            // For ham house
+            @include verge(1250) {
+                padding-right: margin(slim) !important;
+                height: 70px;
+                width: 100%;
+
+                opacity: 0;
+                transform: translateY(40px);
+
+                //border: 1px solid orange;
+
+                &:nth-child(1).open {
+                    opacity: 1;
+                    transform: translateY(0px);
+                    transition: transform ease-in-out 0.21s, opacity ease-in-out 0.21s;
+                    //transition: transform ease-in-out 0.1s 0.2s, opacity ease-in-out 0.1s 0.2s;
+                }
+
+                &:nth-child(2).open {
+                    opacity: 1;
+                    transform: translateY(0px);
+                    transition: transform ease-in-out 0.31s, opacity ease-in-out 0.31s;
+                    //transition: transform ease-in-out 0.2s 0.2s, opacity ease-in-out 0.2s 0.2s;
+                }
+
+                &:nth-child(3).open {
+                    opacity: 1;
+                    transform: translateY(0px);
+                    transition: transform ease-in-out 0.41s, opacity ease-in-out 0.41s;
+                    //transition: transform ease-in-out 0.3s 0.2s, opacity ease-in-out 0.3s 0.2s;
+                }
+
+                &:nth-child(4).open {
+                    opacity: 1;
+                    transform: translateY(0px);
+                    transition: transform ease-in-out 0.51s, opacity ease-in-out 0.51s;
+                    //transition: transform ease-in-out 0.4s 0.2s, opacity ease-in-out 0.4s 0.2s;
+                }
+
+                &:nth-child(5).open {
+                    opacity: 1;
+                    transform: translateY(0px);
+                    transition: transform ease-in-out 0.61s, opacity ease-in-out 0.61s;
+                    //transition: transform ease-in-out 0.5s 0.2s, opacity ease-in-out 0.5s 0.2s;
+                }
+
+                &:nth-child(6).open {
+                    opacity: 1;
+                    transform: translateY(0px);
+                    transition: transform ease-in-out 0.71s, opacity ease-in-out 0.71s;
+                    //transition: transform ease-in-out 0.6s 0.2s, opacity ease-in-out 0.6s 0.2s;
+                }
+
+                &:nth-child(7).open {
+                    opacity: 1;
+                    transform: translateY(0px);
+                    transition: transform ease-in-out 0.81s, opacity ease-in-out 0.81s;
+                    //transition: transform ease-in-out 0.7s 0.2s, opacity ease-in-out 0.7s 0.2s;
+                }
+            }
+
+
+
+
+
+            /* @for $i from 1 through 10 {
+
+                @include verge(1250) {
+
+                    &::nth-child(#{i}).open {
+
+                        transform: translateY(0px);
+                        transition: transform ease-in-out (0.21s + ($i*0.1))
+                    }
+                }
+            } */
+
+            
+
+
+
+
+
+
         }
 
         &__link {
@@ -310,18 +388,26 @@ body {
             top: 0;
             right: 0;
             margin-left: 0;
-            //padding: 0 margin(slim) !important;
 
             width: 26vw;
             height: 100vh;
 
             flex-direction: column;
             justify-content: flex-start;
-            //align-items: flex-end;
 
             background-color: white;
 
+            opacity: 0;
+            pointer-events: none;
+
             border: 1px solid blue;
+
+            &.open {
+                opacity: 1;
+                pointer-events: auto;
+                transition: opacity ease-in-out 0.2s;
+                will-change: opacity;
+            }
         }
     }
 
@@ -345,17 +431,30 @@ body {
         //border: 1px solid purple;
 
         &__hamburger {
+            position: relative;
             @extend %hamburger_style;
+
+            transition: all 0.27s ease-in-out;
+            will-change: background;
 
             &__top {
                 position: absolute;
                 @extend %hamburger_style;
 
                 transform: translateY(-11px);
-                transition: transform 0.15s ease-in-out;
+                transition: transform 0.15s ease-in-out, width 0.15s ease-in-out;
 
                 &.sticky {
                     transform: translateY(-7px);
+                }
+
+                &.open {
+                    //width: 30px;
+                    transform: rotate(45deg) translate(35px, -35px);
+                }
+
+                &.sticky.open {
+                    width: 30px;
                 }
             }
 
@@ -364,11 +463,30 @@ body {
                 @extend %hamburger_style;
 
                 transform: translateY(11px);
-                transition: transform 0.15s ease-in-out;
+                transition: transform 0.15s ease-in-out, width 0.15s ease-in-out;
 
                 &.sticky {
                     transform: translateY(7px);
                 }
+
+                &.open {
+                    //width: 30px;
+                    transform: rotate(-45deg) translate(35px, 35px);
+                }
+
+                &.sticky.open {
+                    width: 30px;
+                }
+            }
+
+            &.open {
+                //width: 30px;
+                transform: translateX(-50px);
+                background: transparent;
+            }
+
+            &.sticky.open {
+                width: 30px;
             }
         }
 
@@ -376,14 +494,11 @@ body {
             height: 55px;
         }
 
+        @include verge(desktop) {
+            display: none;
+        }
+
     }
-
-
-
-
-
-
-
 
     &.sticky {
         height: 55px;

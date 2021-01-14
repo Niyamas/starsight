@@ -12,17 +12,15 @@ class Animations {
 
         //console.log('Running Animations.nav()')
 
-        const nav = document.getElementById('nav')
-        const navStarsight = document.getElementById('navStarsight')
-        const navLinks = Array.from( document.getElementsByClassName('nav__links__link') )
+        let nav = document.getElementById('nav')
+        let navStarsight = document.getElementById('navStarsight')
+        let navLinks = Array.from( document.getElementsByClassName('nav__links__link') )
 
-        const navLinkFirst = Array.from( document.getElementsByClassName('nav__links__li') )[0]
+        let navLinkFirst = Array.from( document.getElementsByClassName('nav__links__li') )[0]
 
-        const navHamHouse = document.getElementById('navHamHouse')
-        const navHamburgerTop = document.getElementById('navHamburgerTop')
-        const navHamburgerBottom = document.getElementById('navHamburgerBottom')
-
-        
+        let navHamHouse = document.getElementById('navHamHouse')
+        let navHamburgerTop = document.getElementById('navHamburgerTop')
+        let navHamburgerBottom = document.getElementById('navHamburgerBottom')
 
         window.addEventListener('scroll', () => {
             //console.log('scrollY = ', window.scrollY)
@@ -58,10 +56,40 @@ class Animations {
                 navHamHouse.classList.remove('sticky')
                 navHamburgerTop.classList.remove('sticky')
                 navHamburgerBottom.classList.remove('sticky')
+
+                // ***Add classList.remove() to the ul & li elements
             }
+        })
+    }
+
+    static mobileMenu() {
+        /**
+         * 
+         */
+
+        let navHamHouse = document.getElementById('navHamHouse')
+        let navHamburger = document.getElementById('navHamburger')
+        let navHamburgerTop = document.getElementById('navHamburgerTop')
+        let navHamburgerBottom = document.getElementById('navHamburgerBottom')
+
+        let navLinks = document.getElementById('navLinks')
+        let navLink = Array.from( document.getElementsByClassName('nav__links__li') )
+
+        navHamHouse.addEventListener('click', () => {
+
+            navHamburger.classList.toggle('open')
+            navHamburgerTop.classList.toggle('open')
+            navHamburgerBottom.classList.toggle('open')
+            navLinks.classList.toggle('open')
+
+            navLink.forEach( (link) => {
+
+                link.classList.toggle('open')
+            })
         })
     }
 
 }
 
 Animations.nav()
+Animations.mobileMenu()
