@@ -210,7 +210,6 @@ body {
     }
 
     &__links {
-        //margin-left: margin(slim) !important;
         margin-left: 5vw !important;
 
         width: 40%;
@@ -223,22 +222,6 @@ body {
         &__li {
             height: 100%;
 
-            &:first-child {
-
-                &.sticky{
-
-                    @include verge(1250) {
-                        margin-top: 55px;
-                    }
-                }
-
-                @include verge(1250) {
-                    margin-top: 70px;
-                    transition: margin-top ease-in-out 0.15s !important;                    
-                }
-            }
-
-            // For ham house
             @include verge(1250) {
                 padding-right: margin(slim) !important;
                 height: 70px;
@@ -249,10 +232,19 @@ body {
 
                 //border: 1px solid orange;
 
+                &:first-child {
+                    margin-top: 70px;
+
+                    &.sticky {
+
+                        margin-top: 55px;
+                    }
+                }
+
                 &:nth-child(1).open {
                     opacity: 1;
                     transform: translateY(0px);
-                    transition: transform ease-in-out 0.21s, opacity ease-in-out 0.21s;
+                    transition: transform ease-in-out 0.21s, opacity ease-in-out 0.21s, margin-top ease-in-out 0.15s !important;
                     //transition: transform ease-in-out 0.1s 0.2s, opacity ease-in-out 0.1s 0.2s;
                 }
 
