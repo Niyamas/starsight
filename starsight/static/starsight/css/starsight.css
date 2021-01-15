@@ -137,6 +137,12 @@ body {
   font-size: 1.5rem;
 }
 
+@media only screen and (max-width: 1700px) {
+  .nav__starsight {
+    margin-left: 5vw;
+  }
+}
+
 .nav__links {
   margin-left: 5vw !important;
   width: 40%;
@@ -154,7 +160,7 @@ body {
 
 @media only screen and (max-width: 1250px) {
   .nav__links__li {
-    padding-right: 7vw !important;
+    padding-right: 5vw !important;
     height: 70px;
     width: 100%;
     opacity: 0;
@@ -294,7 +300,7 @@ body {
     top: 0;
     right: 0;
     margin-left: 0;
-    width: 26vw;
+    width: 290px;
     height: 100vh;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -306,7 +312,8 @@ body {
     background-color: white;
     opacity: 0;
     pointer-events: none;
-    border: 1px solid blue;
+    -webkit-box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086);
+            box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086);
   }
   .nav__links.open {
     opacity: 1;
@@ -327,7 +334,7 @@ body {
   position: absolute;
   z-index: 6;
   top: 0;
-  right: 7vw;
+  right: 5vw;
   width: 40px;
   height: 70px;
   display: -webkit-box;

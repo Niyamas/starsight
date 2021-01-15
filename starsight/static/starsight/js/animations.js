@@ -64,7 +64,9 @@ class Animations {
 
     static mobileMenu() {
         /**
-         * 
+         * Animates the mobile menu by toggling "open" classes
+         * when the user interacts with it. Applicable for viewports
+         * that are less than 1250 pixels in width.
          */
 
         let navHamHouse = document.getElementById('navHamHouse')
@@ -75,6 +77,7 @@ class Animations {
         let navLinks = document.getElementById('navLinks')
         let navLink = Array.from( document.getElementsByClassName('nav__links__li') )
 
+        // Opens the mobile menu when clicking on the ham house icon.
         navHamHouse.addEventListener('click', () => {
 
             navHamHouse.classList.toggle('open')
@@ -88,6 +91,32 @@ class Animations {
                 link.classList.toggle('open')
             })
         })
+
+        // Adds an event listener to the document that evaluates each
+        // click and if it clicked outside of the mobile menu, it will
+        // remove all the mobile menu "open" classes, effectively closing
+        // the menu.
+        // See: https://stackoverflow.com/questions/14188654/detect-click-outside-element-vanilla-javascript
+        document.addEventListener('click', (event) => {
+
+            let navLinksClick = navLinks.contains(event.target)
+            let navHamHouseClick = navHamHouse.contains(event.target)
+
+            if (!navLinksClick && !navHamHouseClick) {
+
+                navHamHouse.classList.remove('open')
+                navHamburger.classList.remove('open')
+                navHamburgerTop.classList.remove('open')
+                navHamburgerBottom.classList.remove('open')
+                navLinks.classList.remove('open')
+    
+                navLink.forEach( (link) => {
+    
+                    link.classList.remove('open')
+                })
+            }
+        })
+
     }
 
 }
