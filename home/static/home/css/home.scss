@@ -29,6 +29,18 @@
         @media only screen and (max-width: 1100px) { @content; }
     }
 
+    @else if $point == 1000 {
+        @media only screen and (max-width: 1000px) { @content; }
+    }
+
+    @else if $point == 900 {
+        @media only screen and (max-width: 900px) { @content; }
+    }
+
+    @else if $point == 777 {
+        @media only screen and (max-width: 777px) { @content; }
+    }
+
 
 }
 
@@ -108,6 +120,19 @@ $margins: (
         @include verge(1250) {
             top: 25%;
         }
+
+        @include verge(1000) {
+            font-size: 1.3rem;
+        }
+
+        @include verge(900) {
+            font-size: 1.1rem;
+        }
+
+        @include verge(777) {
+            width: 364px;
+            top: 20%;
+        }
     }
 
     &__text-right {
@@ -129,13 +154,31 @@ $margins: (
         @include verge(1250) {
             top: 50%;
         }
+
+        @include verge(1000) {
+            font-size: 3.95rem;
+            top: 55%;
+        }
+
+        @include verge(900) {
+            font-size: 3.4rem;
+        }
+
+        @include verge(777) {
+            top: 50%;
+        }
+    }
+
+    @include verge(777) {
+        height: 500px;
     }
 }
 
 .home-grid {
     margin: 70px margin(slim) 0 margin(slim);
     
-    height: 1070px;
+    //height: 1070px;
+    height: auto;
 
     display: grid;
     grid-template-rows:  1.5fr 1fr;
@@ -152,6 +195,8 @@ $margins: (
 
     &__nested {
         grid-area: featured-row-2;
+
+        height: auto;
         
         display: grid;
         grid-template-rows: 1fr;
@@ -187,16 +232,15 @@ $margins: (
     }
 
     @include verge(1250) {
-        height: calc(600px + 600px);
         grid-template-rows: 1fr 2fr;
         grid-template-columns: 1.7fr 1fr;
         grid-column-gap: 70px;
     }
 
     @include verge(1100) {
-        height: calc(600px + 600px + 600px + 70px);
         margin: 70px margin(super-slim) 0px margin(super-slim);
-        grid-template-rows: 1fr 2fr 1fr;
+        //grid-template-rows: 1fr 2fr 1fr;
+        grid-template-rows: 400px 870px 1fr;
         grid-template-columns: 1fr;
         grid-template-areas:
             "featured-row-1"
@@ -254,7 +298,6 @@ $margins: (
         padding: 20px;
 
         max-width: 40%;
-        //width: fit-content;
 
         background-color: color(featured-text-box);
         border-radius: 2px;
@@ -287,6 +330,18 @@ $margins: (
         @include verge(1250) {
             max-width: 70%;
         }
+    }
+
+    &--0 {
+        height: 600px;
+
+        @include verge(1250) {
+            height: 400px;
+        }
+    }
+
+    &--1, &--2 {
+        height: 400px;
     }
 }
 
@@ -389,6 +444,14 @@ $margins: (
                 // Animation in
                 transition: opacity 0.3s ease-in-out, visibility 0s 0.31s ease-in-out;
             }
+
+            @include verge(1500) {
+                height: 35%;
+            }
+
+            @include verge(1100) {
+                height: 30%;
+            }
         }
     }
 
@@ -440,8 +503,13 @@ $margins: (
     }
 
     @include verge(1250) {
+        margin: calc(150px + 70px) margin(super-slim) 63px margin(super-slim);
         grid-template-columns: 1.7fr 1fr;
         grid-column-gap: 70px;
+    }
+
+    @include verge(1100) {
+        margin: calc(55px + 70px) margin(super-slim) 63px margin(super-slim);
     }
 }
 

@@ -46,7 +46,7 @@
 
     {% for article in articles|slice:'0:1' %}
     
-        <article class="featured-article">
+        <article class="featured-article featured-article--0">
             <div class="featured-article__top">
                 <a class="featured-article__top__topic" href="{% slugurl 'articles' %}?topic={{ article.topic.slug }}">
                     {{ article.topic.name|upper }}
