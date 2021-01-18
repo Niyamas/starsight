@@ -5,6 +5,11 @@
         @media only screen and (max-width: 1980px) { @content; }
     }
 
+    // For article listings page
+    @else if $point == 1850 {
+        @media only screen and (max-width: 1850px) { @content; }
+    }
+
     @else if $point == 1700 {
         @media only screen and (max-width: 1700px) { @content; }
     }
@@ -31,6 +36,10 @@
 
     @else if $point == 1000 {
         @media only screen and (max-width: 1000px) { @content; }
+    }
+
+    @else if $point == 970 {
+        @media only screen and (max-width: 970px) { @content; }
     }
 
     @else if $point == 900 {
@@ -95,19 +104,22 @@ $margins: (
     margin: calc(200px + 70px) auto 100px auto !important;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 1.5rem;
 
-    width: 30%;
+    width: 85%;
 
-    border: 1px solid green;
+    //border: 1px solid green;
 
     &__topic {
         padding: 0.3rem 0;
-        //width: auto;
         width: 130px;
+        min-width: 130px;
+        max-width: 130px;
+
+        //flex: 1 20%;
 
         text-align: center;
         font-size: 1.5rem;
@@ -116,14 +128,21 @@ $margins: (
 
         border-radius: 7px;
 
-        border: 1px solid purple;
-
         transition: color ease-in-out 0.2s, background-color ease-in-out 0.2s;
         will-change: color, background-color;
+
+        //border: 1px solid purple;
 
         &.clicked {
             color: color(white-text);
             background-color: color(cool-green);
+        }
+
+        @include verge(970) {
+            font-size: 1.2rem;
+            width: 90px;
+            min-width: 90px;
+            max-width: 90px;
         }
     }
 }
@@ -132,7 +151,7 @@ $margins: (
     position: relative;
     margin: 0 margin(superwide);
 
-    height: 1100px;
+    height: auto;
 
     display: grid;
     grid-template-rows: repeat(2, 1fr);
@@ -153,6 +172,28 @@ $margins: (
         //width: 100%;
         //text-align: center;
         font-size: 1.5rem;
+    }
+
+    @include verge(1850) {
+        margin: 0 15vw;
+    }
+
+    @include verge(1500) {
+        margin: 0 12vw;
+    }
+
+    @include verge(1250) {
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include verge(970) {
+        margin: 0 7vw;
+    }
+
+    @include verge(777) {
+        grid-template-rows: repeat(6, 1fr);
+        grid-template-columns: 1fr; 
     }
 }
 
@@ -250,6 +291,18 @@ $margins: (
             color: color(white-text);
             background-color: color(cool-green);
         }
+    }
+
+    @include verge(1850) {
+        margin-left: 15vw !important;
+    }
+
+    @include verge(1500) {
+        margin-left: 12vw !important;
+    }
+
+    @include verge(970) {
+       margin-left: 7vw !important;
     }
 }
 

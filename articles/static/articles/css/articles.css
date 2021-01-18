@@ -106,27 +106,27 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  gap: 2rem;
-  width: 30%;
-  border: 1px solid green;
+  gap: 1.5rem;
+  width: 85%;
 }
 
 .topics__topic {
   padding: 0.3rem 0;
   width: 130px;
+  min-width: 130px;
+  max-width: 130px;
   text-align: center;
   font-size: 1.5rem;
   cursor: pointer;
   border-radius: 7px;
-  border: 1px solid purple;
   -webkit-transition: color ease-in-out 0.2s, background-color ease-in-out 0.2s;
   transition: color ease-in-out 0.2s, background-color ease-in-out 0.2s;
   will-change: color, background-color;
@@ -137,10 +137,19 @@
   background-color: #4FC0C0;
 }
 
+@media only screen and (max-width: 970px) {
+  .topics__topic {
+    font-size: 1.2rem;
+    width: 90px;
+    min-width: 90px;
+    max-width: 90px;
+  }
+}
+
 .listings {
   position: relative;
   margin: 0 20vw;
-  height: 1100px;
+  height: auto;
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: (1fr)[2];
@@ -159,6 +168,42 @@
           transform: translate(-50%, -50%);
   color: #7e7e7e;
   font-size: 1.5rem;
+}
+
+@media only screen and (max-width: 1850px) {
+  .listings {
+    margin: 0 15vw;
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  .listings {
+    margin: 0 12vw;
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  .listings {
+    -ms-grid-rows: (1fr)[3];
+        grid-template-rows: repeat(3, 1fr);
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 970px) {
+  .listings {
+    margin: 0 7vw;
+  }
+}
+
+@media only screen and (max-width: 777px) {
+  .listings {
+    -ms-grid-rows: (1fr)[6];
+        grid-template-rows: repeat(6, 1fr);
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
 }
 
 .article__img {
@@ -246,6 +291,24 @@
 .pagination__page.focused, .pagination__next.focused, .pagination__before.focused {
   color: #ffffff;
   background-color: #4FC0C0;
+}
+
+@media only screen and (max-width: 1850px) {
+  .pagination {
+    margin-left: 15vw !important;
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  .pagination {
+    margin-left: 12vw !important;
+  }
+}
+
+@media only screen and (max-width: 970px) {
+  .pagination {
+    margin-left: 7vw !important;
+  }
 }
 
 .spinner {
