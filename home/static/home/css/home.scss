@@ -41,7 +41,6 @@
         @media only screen and (max-width: 777px) { @content; }
     }
 
-
 }
 
 // Functions
@@ -181,7 +180,8 @@ $margins: (
     height: auto;
 
     display: grid;
-    grid-template-rows:  1.5fr 1fr;
+    //grid-template-rows: 1.5fr 1fr;
+    grid-template-rows: 600px 400px;
     grid-template-columns: 2.37fr 1fr;
     grid-template-areas:
         "featured-row-1   widgets"
@@ -190,6 +190,7 @@ $margins: (
     grid-column-gap: 140px;
 
     &__widgets {
+        position: relative;
         grid-area: widgets;
     }
 
@@ -213,8 +214,7 @@ $margins: (
         }
 
         @include verge(1250) {
-            height: 776px;
-            grid-template-rows: 1fr 1fr;
+            grid-template-rows: 400px 400px;
             grid-template-columns: 1fr;
             grid-row-gap: 70px;
         }
@@ -232,7 +232,7 @@ $margins: (
     }
 
     @include verge(1250) {
-        grid-template-rows: 1fr 2fr;
+        grid-template-rows: 400px 870px;
         grid-template-columns: 1.7fr 1fr;
         grid-column-gap: 70px;
     }
@@ -252,6 +252,8 @@ $margins: (
 
 .featured-article {
     position: relative;
+
+    height: 100%;
 
     &__top {
         position: absolute;
@@ -333,19 +335,16 @@ $margins: (
     }
 
     &--0 {
-        height: 600px;
 
-        @include verge(1250) {
-            height: 400px;
-        }
     }
 
     &--1, &--2 {
-        height: 400px;
     }
 }
 
 .apod {
+
+    //position: absolute;
 
     &__img, &__iframe {
         margin-bottom: 12px;
@@ -510,6 +509,12 @@ $margins: (
 
     @include verge(1100) {
         margin: calc(55px + 70px) margin(super-slim) 63px margin(super-slim);
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "article-1"
+            "article-2"
+            "article-3"
+            "article-4";
     }
 }
 

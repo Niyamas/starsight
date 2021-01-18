@@ -112,7 +112,11 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 2rem;
   width: 30%;
+  border: 1px solid green;
 }
 
 .topics__topic {
@@ -122,6 +126,7 @@
   font-size: 1.5rem;
   cursor: pointer;
   border-radius: 7px;
+  border: 1px solid purple;
   -webkit-transition: color ease-in-out 0.2s, background-color ease-in-out 0.2s;
   transition: color ease-in-out 0.2s, background-color ease-in-out 0.2s;
   will-change: color, background-color;

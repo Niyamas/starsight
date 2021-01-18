@@ -1,3 +1,48 @@
+// Media queries
+@mixin verge($point) {
+
+    @if $point == 1980 {
+        @media only screen and (max-width: 1980px) { @content; }
+    }
+
+    @else if $point == 1700 {
+        @media only screen and (max-width: 1700px) { @content; }
+    }
+
+    @else if $point == 1500 {
+        @media only screen and (max-width: 1500px) { @content; }
+    }
+
+    @else if $point == 1350 {
+        @media only screen and (max-width: 1350px) { @content; }
+    }
+
+    @else if $point == 1250 {
+        @media only screen and (max-width: 1250px) { @content; }
+    }
+
+    @else if $point == desktop {
+        @media only screen and (min-width: 1250px) { @content; }
+    }
+
+    @else if $point == 1100 {
+        @media only screen and (max-width: 1100px) { @content; }
+    }
+
+    @else if $point == 1000 {
+        @media only screen and (max-width: 1000px) { @content; }
+    }
+
+    @else if $point == 900 {
+        @media only screen and (max-width: 900px) { @content; }
+    }
+
+    @else if $point == 777 {
+        @media only screen and (max-width: 777px) { @content; }
+    }
+
+}
+
 // Functions
 @function color($color-name) {
     @return map-get($colors, $color-name)
@@ -52,10 +97,12 @@ $margins: (
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
 
     width: 30%;
 
-    //border: 1px solid green;
+    border: 1px solid green;
 
     &__topic {
         padding: 0.3rem 0;
@@ -69,7 +116,7 @@ $margins: (
 
         border-radius: 7px;
 
-        //border: 1px solid purple;
+        border: 1px solid purple;
 
         transition: color ease-in-out 0.2s, background-color ease-in-out 0.2s;
         will-change: color, background-color;

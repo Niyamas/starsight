@@ -1,4 +1,4 @@
-// Media queries for responsive website
+// Media queries
 @mixin verge($point) {
 
     @if $point == 1980 {
@@ -31,6 +31,14 @@
 
     @else if $point == 1000 {
         @media only screen and (max-width: 1000px) { @content; }
+    }
+
+    @else if $point == 900 {
+        @media only screen and (max-width: 900px) { @content; }
+    }
+
+    @else if $point == 777 {
+        @media only screen and (max-width: 777px) { @content; }
     }
 
 }
