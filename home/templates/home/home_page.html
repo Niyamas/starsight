@@ -84,7 +84,8 @@
                     <img class="featured-article__img" src="{{ article_img.url }}" alt="{{ article_img.alt }}">
                 </a>
 
-                <div class="featured-article__content featured-article__content--2">
+                {% comment %} <div class="featured-article__content featured-article__content--2"> {% endcomment %}
+                <div class="featured-article__content featured-article__content--{{ forloop.counter }}">
                     <h2 class="featured-article__content__title">{{ article.title }}</h2>
                     <div class="featured-article__content__text">{{ article.banner_text|richtext }}</div>
                 </div>

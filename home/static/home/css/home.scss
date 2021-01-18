@@ -168,10 +168,10 @@ $margins: (
         }
 
         @include verge(1250) {
+            height: 776px;
             grid-template-rows: 1fr 1fr;
             grid-template-columns: 1fr;
             grid-row-gap: 70px;
-            grid-column-gap: 0px;
         }
     }
 
@@ -187,10 +187,22 @@ $margins: (
     }
 
     @include verge(1250) {
-        height: calc(600px + 600px + 70px + 70px);
+        height: calc(600px + 600px);
         grid-template-rows: 1fr 2fr;
         grid-template-columns: 1.7fr 1fr;
         grid-column-gap: 70px;
+    }
+
+    @include verge(1100) {
+        height: calc(600px + 600px + 600px + 70px);
+        margin: 70px margin(super-slim) 0px margin(super-slim);
+        grid-template-rows: 1fr 2fr 1fr;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "featured-row-1"
+            "featured-row-2"
+            "widgets";
+
     }
 }
 
@@ -416,9 +428,20 @@ $margins: (
     grid-row-gap: 35px;
     grid-column-gap: 140px;
 
+    @include verge(1980) {
+        grid-template-columns: 2.2fr 1fr;
+        grid-column-gap: 120px;
+    }
+
     @include verge(1700) {
         margin: 150px margin(super-slim) 63px margin(super-slim);
-        grid-column: 100px;
+        grid-template-columns: 2fr 1fr;
+        grid-column-gap: 100px;
+    }
+
+    @include verge(1250) {
+        grid-template-columns: 1.7fr 1fr;
+        grid-column-gap: 70px;
     }
 }
 
@@ -453,11 +476,15 @@ $margins: (
         }
     }
 
+    @include verge(1700) {
+        padding: 0 margin(super-slim);
+    }
+
     @include verge(1350) {
         font-size: 1.1rem
     }
 
-    @include verge(1350) {
+    @include verge(1250) {
         padding: 0;
     }
 }
@@ -572,6 +599,10 @@ $margins: (
         @include verge(1700) {
             margin-left: 70px;
         }
+    }
+
+    @include verge(1700) {
+        padding: 0 margin(super-slim);
     }
 
     @include verge(1250) {

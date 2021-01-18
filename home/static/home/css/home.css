@@ -122,12 +122,12 @@
 
 @media only screen and (max-width: 1250px) {
   .home-grid__nested {
+    height: 776px;
     -ms-grid-rows: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
     grid-row-gap: 70px;
-    grid-column-gap: 0px;
   }
 }
 
@@ -150,12 +150,24 @@
 
 @media only screen and (max-width: 1250px) {
   .home-grid {
-    height: calc(600px + 600px + 70px + 70px);
+    height: calc(600px + 600px);
     -ms-grid-rows: 1fr 2fr;
         grid-template-rows: 1fr 2fr;
     -ms-grid-columns: 1.7fr 1fr;
         grid-template-columns: 1.7fr 1fr;
     grid-column-gap: 70px;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .home-grid {
+    height: calc(600px + 600px + 600px + 70px);
+    margin: 70px 5vw 0px 5vw;
+    -ms-grid-rows: 1fr 2fr 1fr;
+        grid-template-rows: 1fr 2fr 1fr;
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+        grid-template-areas: "featured-row-1" "featured-row-2" "widgets";
   }
 }
 
@@ -358,11 +370,28 @@
   grid-column-gap: 140px;
 }
 
+@media only screen and (max-width: 1980px) {
+  .more-grid {
+    -ms-grid-columns: 2.2fr 1fr;
+        grid-template-columns: 2.2fr 1fr;
+    grid-column-gap: 120px;
+  }
+}
+
 @media only screen and (max-width: 1700px) {
   .more-grid {
     margin: 150px 5vw 63px 5vw;
-    -ms-grid-column: 100;
-    grid-column: 100px;
+    -ms-grid-columns: 2fr 1fr;
+        grid-template-columns: 2fr 1fr;
+    grid-column-gap: 100px;
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  .more-grid {
+    -ms-grid-columns: 1.7fr 1fr;
+        grid-template-columns: 1.7fr 1fr;
+    grid-column-gap: 70px;
   }
 }
 
@@ -396,13 +425,19 @@
           transform: translateY(50%);
 }
 
+@media only screen and (max-width: 1700px) {
+  .more-grid__banner {
+    padding: 0 5vw;
+  }
+}
+
 @media only screen and (max-width: 1350px) {
   .more-grid__banner {
     font-size: 1.1rem;
   }
 }
 
-@media only screen and (max-width: 1350px) {
+@media only screen and (max-width: 1250px) {
   .more-grid__banner {
     padding: 0;
   }
@@ -530,6 +565,12 @@
 @media only screen and (max-width: 1700px) {
   .older-article__content {
     margin-left: 70px;
+  }
+}
+
+@media only screen and (max-width: 1700px) {
+  .older-article {
+    padding: 0 5vw;
   }
 }
 
