@@ -145,13 +145,12 @@ body {
 
 .nav__links {
   margin-left: 5vw !important;
-  width: 40%;
+  height: 100%;
+  width: 70%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  gap: 5vw;
 }
 
 .nav__links__li {
@@ -282,18 +281,6 @@ body {
   }
 }
 
-@media only screen and (max-width: 1980px) {
-  .nav__links {
-    width: 50%;
-  }
-}
-
-@media only screen and (max-width: 1700px) {
-  .nav__links {
-    width: 55%;
-  }
-}
-
 @media only screen and (max-width: 1250px) {
   .nav__links {
     position: absolute;
@@ -306,9 +293,7 @@ body {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
+    gap: 0px;
     background-color: white;
     opacity: 0;
     pointer-events: none;

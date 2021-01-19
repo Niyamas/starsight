@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'streams',
     'subscribers',
     'articles',
+    'store',
     'navigations',
     'site_settings',
 

@@ -232,10 +232,11 @@ body {
     &__links {
         margin-left: 5vw !important;
 
-        width: 40%;
+        height: 100%;
+        width: 70%;
 
         display: flex;
-        justify-content: space-between;
+        gap: 5vw;
 
         //border: 1px solid green;
 
@@ -358,16 +359,6 @@ body {
 
         }
 
-        @include verge(1980) {
-            width: 50%;
-        }
-
-
-        @include verge(1700) {
-            //margin-left: margin(super-slim) !important;
-            width: 55%;
-        }
-
         // For ham house
         @include verge(1250) {
             position: absolute;
@@ -380,7 +371,8 @@ body {
             height: 100vh;
 
             flex-direction: column;
-            justify-content: flex-start;
+            //justify-content: flex-start;
+            gap: 0px;
 
             background-color: white;
 

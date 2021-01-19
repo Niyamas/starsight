@@ -16,8 +16,8 @@ from wagtail.admin.edit_handlers import (
     InlinePanel
 )
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
-from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.models import register_snippet
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 from wagtail.api import APIField
 
@@ -36,8 +36,9 @@ class ArticleListingPage(Page):
     """Lists all the blog pages."""
 
     template = 'articles/article_listing_page.html'
+    max_count = 1
 
-    custom_title = models.CharField(max_length=100, blank=False, null=False, help_text='Overwrites the default title')
+    custom_title = models.CharField(max_length=100, blank=True, null=True, help_text='Overwrites the default title')
 
     content_panels = Page.content_panels + [
         FieldPanel('custom_title')

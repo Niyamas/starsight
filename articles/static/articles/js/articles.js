@@ -529,8 +529,11 @@ class Articles {
                 // Will however, fetch the articles again (back to page 1) if the the current page is not 1.
                 if ( topic.dataset.topic_name !== this.currentTopic || (topic.dataset.topic_name === this.currentTopic && this.currentPageNumber !== 1) ) {
 
-                    // Show the loading spinner when clicking a topic
+                    // Show the loading spinner when clicking a topic, which clears the articles too
                     this.loading()
+
+                    // Clear the pagination object
+                    document.getElementById('pagination').innerHTML = ''
 
                     // Adds a filter parameter to the API url
                     let APIFilterTopic = `&topic=${topic.dataset.topic_id}`

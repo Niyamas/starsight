@@ -149,7 +149,10 @@
 .listings {
   position: relative;
   margin: 0 20vw;
-  height: auto;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  min-height: 700px;
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: (1fr)[2];
@@ -184,6 +187,9 @@
 
 @media only screen and (max-width: 1250px) {
   .listings {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
     -ms-grid-rows: (1fr)[3];
         grid-template-rows: repeat(3, 1fr);
     -ms-grid-columns: (1fr)[2];
@@ -199,8 +205,6 @@
 
 @media only screen and (max-width: 777px) {
   .listings {
-    -ms-grid-rows: (1fr)[6];
-        grid-template-rows: repeat(6, 1fr);
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
   }
