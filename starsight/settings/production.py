@@ -16,7 +16,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())         # https://simpleisbe
 #]
 
 
-# For whitenoise
+# Whitenoise settings
 # See: https://wagtail.io/blog/deploying-wagtail-heroku/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -34,6 +34,30 @@ django_heroku.settings(locals())                    # @39:00: https://www.youtub
 #django_heroku.settings(locals(), staticfiles=False)
 
 
+# AWS Settings
+# See: https://wagtail.io/blog/amazon-s3-for-media-files/
+INSTALLED_APPS += [
+    'storages',
+]
+
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+#AWS_S3_FILE_OVERWRITE = False                                       # When saving file with same name instead of overwriting the old one, rename the new one. (django-storages docs: https://django-storages.readthedocs.io/en/latest/)
+AWS_DEFAULT_ACL = config('AWS_DEFAULT_ACL')
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+
+
+
+
+
+
+
 
 # Honor the 'X-Forwarded-Proto header for request.is_secure()
 # See @ 10:00 - https://www.youtube.com/watch?v=RQ0eKv6HrpM
@@ -43,7 +67,9 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 
-
+# https://www.youtube.com/watch?v=kt3ZtW9MXhw
+# https://wagtail.io/blog/amazon-s3-for-media-files/
+# Enable Amazon S3 for media file storage
 
 
 
