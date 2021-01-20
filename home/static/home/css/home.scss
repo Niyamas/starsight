@@ -176,13 +176,12 @@ $margins: (
 .home-grid {
     margin: 70px margin(slim) 0 margin(slim);
     
-    //height: 1070px;
     height: auto;
 
     display: grid;
-    //grid-template-rows: 1.5fr 1fr;
-    grid-template-rows: 600px 400px;
+    grid-template-rows: fit-content(1.5fr) fit-content(1fr);
     grid-template-columns: 2.37fr 1fr;
+    //grid-template-rows: 600px 400px;
     grid-template-areas:
         "featured-row-1   widgets"
         "featured-row-2   widgets";
@@ -192,6 +191,13 @@ $margins: (
     &__widgets {
         position: relative;
         grid-area: widgets;
+
+        @include verge(1100) {
+            
+            &.move-up {
+                top: -70px;
+            }
+        }
     }
 
     &__nested {
@@ -200,7 +206,7 @@ $margins: (
         height: auto;
         
         display: grid;
-        grid-template-rows: 1fr;
+        grid-template-rows: fit-content(1fr);
         grid-template-columns: 2fr 1fr;
         grid-column-gap: 60px;
 
@@ -214,9 +220,9 @@ $margins: (
         }
 
         @include verge(1250) {
-            grid-template-rows: 400px 400px;
+            grid-template-rows: fit-content(400px) fit-content(400px);
             grid-template-columns: 1fr;
-            grid-row-gap: 70px;
+            //grid-row-gap: 70px;
         }
     }
 
@@ -232,7 +238,8 @@ $margins: (
     }
 
     @include verge(1250) {
-        grid-template-rows: 400px 870px;
+        //grid-template-rows: 400px 870px;
+        grid-template-rows: fit-content(1fr) fit-content(2fr);
         grid-template-columns: 1.7fr 1fr;
         grid-column-gap: 70px;
     }
@@ -240,7 +247,8 @@ $margins: (
     @include verge(1100) {
         margin: 70px margin(super-slim) 0px margin(super-slim);
         //grid-template-rows: 1fr 2fr 1fr;
-        grid-template-rows: 400px 870px 1fr;
+        //grid-template-rows: 400px minmax(0px, 870px) 1fr;
+        grid-template-rows: 1fr fit-content(2fr) 1fr;
         grid-template-columns: 1fr;
         grid-template-areas:
             "featured-row-1"
@@ -335,16 +343,28 @@ $margins: (
     }
 
     &--0 {
+        height: 600px;
 
+        @include verge(1250) {
+            height: 400px;
+        }
     }
 
     &--1, &--2 {
+        height: 400px;
+    }
+
+    &--2 {
+        
+        @include verge(1250) {
+            margin-top: 70px;
+        }
     }
 }
 
 .apod {
 
-    //position: absolute;
+    position: absolute;
 
     &__img, &__iframe {
         margin-bottom: 12px;
@@ -469,6 +489,10 @@ $margins: (
         will-change: color;
 
         // Transition done in external_apis.js
+    }
+
+    @include verge(1100) {
+        position: relative;
     }
 }
 
