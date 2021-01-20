@@ -320,6 +320,10 @@
   position: absolute;
 }
 
+.apod.grow-row {
+  position: relative;
+}
+
 .apod__img, .apod__iframe {
   margin-bottom: 12px;
   width: 100%;

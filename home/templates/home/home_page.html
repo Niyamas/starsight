@@ -96,7 +96,7 @@
     </div>
 
     <div class="home-grid__widgets {% if articles.count < 1 %} move-up {% endif %}">
-        <div id="apod" class="apod"></div>
+        <div id="apod" class="apod {% if articles.count >= 1 %} grow-row {% endif %}"></div>
         {% comment %} <div id="cometTracker" class="comet-tracker"><h1>Comet Tracker</h1></div> {% endcomment %}
     </div> 
 

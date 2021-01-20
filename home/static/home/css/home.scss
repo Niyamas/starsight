@@ -366,6 +366,10 @@ $margins: (
 
     position: absolute;
 
+    &.grow-row {
+        position: relative;
+    }
+
     &__img, &__iframe {
         margin-bottom: 12px;
         width: 100%;
