@@ -33,7 +33,7 @@ INTERNAL_IPS = ('127.0.0.1', '172.17.0.1')                  # For ddt
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-
+MEDIA_URL = '/media/'
 
 
 
