@@ -85,6 +85,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
 
     # Additions
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
