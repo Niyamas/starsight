@@ -63,13 +63,19 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # See @ 10:00 - https://www.youtube.com/watch?v=RQ0eKv6HrpM
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+# Deployment checklist: https://www.youtube.com/watch?v=_mgMth4im9E
+SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=False, cast=bool)
+CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=False, cast=bool)
 
+#SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=False, cast=bool)
+SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', default=False, cast=bool)
 
+SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=False, cast=bool)
 
+SECURE_REFERRER_POLICY = config('SECURE_SSL_REDIRECT', default=None)
 
-# https://www.youtube.com/watch?v=kt3ZtW9MXhw
-# https://wagtail.io/blog/amazon-s3-for-media-files/
-# Enable Amazon S3 for media file storage
+SECURE_BROWSER_XSS_FILTER = config('SECURE_BROWSER_XSS_FILTER', default=False, cast=bool)
 
 
 
