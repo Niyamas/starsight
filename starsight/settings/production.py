@@ -5,7 +5,7 @@ from .base import *
 import django_heroku
 
 
-DEBUG = True
+DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())         # https://simpleisbetterthancomplex.com/2015/11/26/package-of-the-week-python-decouple.html
 
@@ -27,8 +27,7 @@ COMPRESS_CSS_FILTERS = [
 ]
 COMPRESS_CSS_HASHING_METHOD = 'content'
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Let static files be served by whitenoise
 #django_heroku.settings(locals())                    # @39:00: https://www.youtube.com/watch?v=6DI_7Zja8Zc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p&index=17
