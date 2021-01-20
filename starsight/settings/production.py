@@ -11,9 +11,9 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())         # https://simpleisbe
 
 
 # Whitenoise docs: http://whitenoise.evans.io/en/stable/django.html
-INSTALLED_APPS += [
-    'whitenoise.runserver_nostatic',        # Disable Django's default static file handling and let Whitenoise do it
-]
+#INSTALLED_APPS += [
+#    'whitenoise.runserver_nostatic',        # Disable Django's default static file handling and let Whitenoise do it
+#]
 
 
 # For whitenoise
