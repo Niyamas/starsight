@@ -1,7 +1,5 @@
 from __future__ import absolute_import, unicode_literals
-
 from .base import *
-#from decouple import config, Csv         # https://stackoverflow.com/questions/43570838/how-do-you-use-python-decouple-to-load-a-env-file-outside-the-expected-paths
 
 
 DEBUG = False
@@ -13,8 +11,9 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())         # https://simpleisbetterthancomplex.com/2015/11/26/package-of-the-week-python-decouple.html
 
 
-
-
+# Let static files be served by whitenoise
+# https://github.com/heroku/django-heroku/issues/25
+django_heroku.settings(locals(), staticfiles=False)                    # @39:00: https://www.youtube.com/watch?v=6DI_7Zja8Zc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p&index=17
 
 
 
