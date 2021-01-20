@@ -1,6 +1,9 @@
 from __future__ import absolute_import, unicode_literals
 from .base import *
 
+# @39:00: https://www.youtube.com/watch?v=6DI_7Zja8Zc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p&index=17
+import django_heroku
+
 
 DEBUG = False
 
