@@ -19,6 +19,17 @@ MIDDLEWARE += [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
+
+# See: https://stackoverflow.com/questions/17636074/operationalerror-could-not-connect-to-server
+""" import dj_database_url
+DATABASES = {
+    'default': dj_database_url.config()
+} """
+
+
+
+
+
 # For whitenoise
 # See: https://wagtail.io/blog/deploying-wagtail-heroku/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -58,7 +69,8 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())         # https://simpleisbe
 
 # Let static files be served by whitenoise
 # https://github.com/heroku/django-heroku/issues/25
-django_heroku.settings(locals(), staticfiles=False)                    # @39:00: https://www.youtube.com/watch?v=6DI_7Zja8Zc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p&index=17
+#django_heroku.settings(locals(), staticfiles=False)                    # @39:00: https://www.youtube.com/watch?v=6DI_7Zja8Zc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p&index=17
+django_heroku.settings(locals())                    # @39:00: https://www.youtube.com/watch?v=6DI_7Zja8Zc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p&index=17
 
 
 #STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # For Heroku
