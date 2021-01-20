@@ -1,7 +1,8 @@
 """Menus models."""
 
 from django.db import models
-from django_extensions.db.fields import AutoSlugField
+#from django_extensions.db.fields import AutoSlugField
+from django.utils.text import slugify 
 
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
@@ -60,7 +61,9 @@ class Navigation(ClusterableModel):
     """The main menu clusterable model."""
 
     title = models.CharField(max_length=100)
-    slug = AutoSlugField(populate_from='title', editable=True)          # Auto-populates the slug field after changing title
+    #slug = AutoSlugField(populate_from='title', editable=True)          # Auto-populates the slug field after changing title
+
+    slug = models.SlugField(unique=True, blank=False, null=True)
 
     panels = [
         MultiFieldPanel([
@@ -72,3 +75,10 @@ class Navigation(ClusterableModel):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        super(Navigation, self).save(*args, **kwargs)
+
+        self.slug = slugify(self.title, allow_unicode=True)
+        
+        return super(Navigation, self).save(*args, **kwargs)
