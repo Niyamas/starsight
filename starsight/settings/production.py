@@ -2,7 +2,7 @@ from __future__ import absolute_import, unicode_literals
 from .base import *
 
 # @39:00: https://www.youtube.com/watch?v=6DI_7Zja8Zc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p&index=17
-#import django_heroku
+import django_heroku
 
 
 DEBUG = True
@@ -23,15 +23,17 @@ MIDDLEWARE += [
 # See: https://wagtail.io/blog/deploying-wagtail-heroku/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-COMPRESS_OFFLINE = True
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+""" COMPRESS_OFFLINE = True
 COMPRESS_CSS_FILTERS = [
     'compressor.filters.css_default.CssAbsoluteFilter',
     'compressor.filters.cssmin.CSSMinFilter',
 ]
-COMPRESS_CSS_HASHING_METHOD = 'content'
+COMPRESS_CSS_HASHING_METHOD = 'content' """
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 
 
@@ -56,7 +58,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())         # https://simpleisbe
 
 # Let static files be served by whitenoise
 # https://github.com/heroku/django-heroku/issues/25
-#django_heroku.settings(locals(), staticfiles=False)                    # @39:00: https://www.youtube.com/watch?v=6DI_7Zja8Zc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p&index=17
+django_heroku.settings(locals(), staticfiles=False)                    # @39:00: https://www.youtube.com/watch?v=6DI_7Zja8Zc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p&index=17
 
 
 #STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # For Heroku
