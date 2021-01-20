@@ -102,7 +102,7 @@
 }
 
 .topics {
-  margin: calc(200px + 70px) auto 100px auto !important;
+  margin: calc(200px + 70px) 20vw 100px 20vw !important;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -115,7 +115,7 @@
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   gap: 1.5rem;
-  width: 85%;
+  width: auto;
 }
 
 .topics__topic {
@@ -146,13 +146,29 @@
   }
 }
 
+@media only screen and (max-width: 1850px) {
+  .topics {
+    margin: calc(200px + 70px) 15vw 100px 15vw !important;
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  .topics {
+    margin: calc(200px + 70px) 12vw 100px 12vw !important;
+  }
+}
+
+@media only screen and (max-width: 970px) {
+  .topics {
+    margin: calc(200px + 70px) 7vw 100px 7vw !important;
+  }
+}
+
 .listings {
   position: relative;
   margin: 0 20vw;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  min-height: 700px;
+  height: 1200px;
+  min-height: 1200px;
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: (1fr)[2];

@@ -37,3 +37,7 @@ class FlexPage(Page):
     class Meta:
         verbose_name = 'Flex Page'
         verbose_name_plural = 'Flex Pages'
+
+    #def get_sitemap_urls(self, request):
+        """Remove /resources/ and other flex pages from sitemap"""
+    #    return []

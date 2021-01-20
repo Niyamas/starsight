@@ -89,17 +89,20 @@ class HomePage(RoutablePageMixin, Page):
         Register routable page (subscribe) to sitemap.xml.
         Return an empty list instead to remove the this page from the sitemap
         """
-        sitemap = super().get_sitemap_urls(request)
+
+        return []
+
+        #sitemap = super().get_sitemap_urls(request)
 
         # Add subscribe_page to the sitemap
-        sitemap.append(
+        """ sitemap.append(
             {
                 'location': self.full_url + self.reverse_subpage('subscribe_page'),
                 'lastmod': (self.last_published_at or self.latest_revision_created_at),     # Not accurate--uses the home page publish date for the subscribe page
                 #'priority': 0.9                                                            # Look up priority value (0-1) for SEO purposes
             }
-        )
-        return sitemap
+        ) """
+        #return sitemap
 
 
 

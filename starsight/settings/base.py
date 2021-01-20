@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     
     # Additions
     'streams',
-    'subscribers',
+    #'subscribers',
     'articles',
     'store',
     'navigations',
