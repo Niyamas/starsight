@@ -1,7 +1,7 @@
 from __future__ import absolute_import, unicode_literals
 
 from .base import *
-from decouple import config, Csv         # https://stackoverflow.com/questions/43570838/how-do-you-use-python-decouple-to-load-a-env-file-outside-the-expected-paths
+#from decouple import config, Csv         # https://stackoverflow.com/questions/43570838/how-do-you-use-python-decouple-to-load-a-env-file-outside-the-expected-paths
 
 
 DEBUG = False

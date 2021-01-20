@@ -17,6 +17,8 @@ from decouple import config, Csv
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
+SECRET_KEY = config('SECRET_KEY')
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -165,6 +167,13 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+
+
+
+#DJANGO_SETTINGS_MODULE = config('DJANGO_SETTINGS_MODULE')
+
 
 
 # Static files (CSS, JavaScript, Images)
