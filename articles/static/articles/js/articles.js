@@ -64,6 +64,10 @@ class Articles {
                     // Convert first_publsihed_at date to long date format.
                     let date = new Date(article['meta']['first_published_at'])
                     let firstPublishedAt = months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()
+
+                    let articleURL = new URL(article['meta']['html_url'])
+                    articleURL.port = ''
+                    let ArticleURLNoPort = articleURL.toString()
     
                     // If the topic is null, return an empty string intead of null.
                     let articleTopic = article['topic']
@@ -75,7 +79,8 @@ class Articles {
                         articleTopic = article['topic'].toUpperCase()
                     }
     
-                    articleHTML += `
+                    // Enable for dev
+                    /* articleHTML += `
                         <article class="article">
                             <a href="${article['meta']['html_url']}">
                                 <img class="article__img" src="${article['image']['meta']['download_url']}" alt="">
@@ -88,6 +93,24 @@ class Articles {
                                 <span class="article__content__date">${firstPublishedAt}</span>
                     
                                 <a class="article__content__text" href="${article['meta']['html_url']}">${article['banner_text']}</a>
+                            </div>
+                        </article>
+                    ` */
+    
+                    // Enable for production
+                    articleHTML += `
+                        <article class="article">
+                            <a href="${ArticleURLNoPort}">
+                                <img class="article__img" src="${article['image']['meta']['download_url']}" alt="">
+                            </a>
+                    
+                            <div class="article__content">
+                                <h2 class="article__content__title"><a href="${ArticleURLNoPort}">${article['title']}</a></h2>
+                    
+                                <span class="article__content__topic">${articleTopic}</span>
+                                <span class="article__content__date">${firstPublishedAt}</span>
+                    
+                                <a class="article__content__text" href="${ArticleURLNoPort}">${article['banner_text']}</a>
                             </div>
                         </article>
                     `
