@@ -3,7 +3,9 @@
 from django.db import models
 from django.utils import timezone
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django_extensions.db.fields import AutoSlugField
+#from django_extensions.db.fields import AutoSlugField
+from django.utils.text import slugify 
+
 #from django import forms
 #from django.shortcuts import render
 
@@ -290,14 +292,16 @@ class ArticleTopic(models.Model):
 
     name = models.CharField(max_length=100)
 
-    slug = AutoSlugField(
+    slug = models.SlugField(unique=True, blank=True, null=True)
+
+    """ slug = AutoSlugField(
         populate_from='name',
         editable=True,
         max_length=100,
         verbose_name='slug',
         allow_unicode=True,
         help_text='A slug to identify articles by this topic.'
-    )
+    ) """
 
     panels = [
         FieldPanel('name'),
@@ -311,3 +315,10 @@ class ArticleTopic(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        super(ArticleTopic, self).save(*args, **kwargs)
+
+        self.slug = slugify(self.name, allow_unicode=True)
+        
+        return super(ArticleTopic, self).save(*args, **kwargs)
