@@ -23,8 +23,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # For Heroku
 
 
 
+# For whitenoise
+# See: https://wagtail.io/blog/deploying-wagtail-heroku/
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-
+COMPRESS_OFFLINE = True
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter',
+]
+COMPRESS_CSS_HASHING_METHOD = 'content'
 
 
 
