@@ -5,7 +5,7 @@ from .base import *
 import django_heroku
 
 
-DEBUG = False
+DEBUG = True
 
 # Honor the 'X-Forwarded-Proto header for request.is_secure()
 # See @ 10:00 - https://www.youtube.com/watch?v=RQ0eKv6HrpM
