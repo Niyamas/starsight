@@ -7,6 +7,45 @@ import django_heroku
 
 DEBUG = True
 
+
+# Whitenoise docs: http://whitenoise.evans.io/en/stable/django.html
+INSTALLED_APPS += [
+    'whitenoise.runserver_nostatic',        # Disable Django's default statif file handling and let Whitenoise do it
+]
+
+
+MIDDLEWARE += [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+]
+
+# For whitenoise
+# See: https://wagtail.io/blog/deploying-wagtail-heroku/
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+COMPRESS_OFFLINE = True
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter',
+]
+COMPRESS_CSS_HASHING_METHOD = 'content'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Honor the 'X-Forwarded-Proto header for request.is_secure()
 # See @ 10:00 - https://www.youtube.com/watch?v=RQ0eKv6HrpM
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -22,17 +61,6 @@ django_heroku.settings(locals(), staticfiles=False)                    # @39:00:
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # For Heroku
 
 
-
-# For whitenoise
-# See: https://wagtail.io/blog/deploying-wagtail-heroku/
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
-COMPRESS_OFFLINE = True
-COMPRESS_CSS_FILTERS = [
-    'compressor.filters.css_default.CssAbsoluteFilter',
-    'compressor.filters.cssmin.CSSMinFilter',
-]
-COMPRESS_CSS_HASHING_METHOD = 'content'
 
 
 

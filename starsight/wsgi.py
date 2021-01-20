@@ -14,7 +14,3 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "starsight.settings.dev")
 
 application = get_wsgi_application()
-
-# See: https://wagtail.io/blog/deploying-wagtail-heroku/
-from whitenoise.django import DjangoWhiteNoise
-application = DjangoWhiteNoise(application)
