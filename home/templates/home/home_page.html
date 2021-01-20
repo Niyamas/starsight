@@ -69,7 +69,7 @@
 
     <div class="home-grid__nested">
 
-        {% for article in articless|slice:'1:3' %}
+        {% for article in articles|slice:'1:3' %}
         
             <article class="featured-article featured-article--{{ forloop.counter }}">
                 <div class="featured-article__top">
@@ -96,7 +96,7 @@
     </div>
 
     <div class="home-grid__widgets {% if articles.count < 1 %} move-up {% endif %}">
-        <div id="apod" class="apod {% if articles.count >= 1 %} grow-row {% endif %}"></div>
+        <div id="apod" class="apod {% if articles.count <= 1 %} grow-row {% endif %}"></div>
         {% comment %} <div id="cometTracker" class="comet-tracker"><h1>Comet Tracker</h1></div> {% endcomment %}
     </div> 
 
