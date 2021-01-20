@@ -11,9 +11,9 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())         # https://simpleisbe
 
 
 # Whitenoise docs: http://whitenoise.evans.io/en/stable/django.html
-INSTALLED_APPS += [
+""" INSTALLED_APPS += [
     'whitenoise.runserver_nostatic',        # Disable Django's default statif file handling and let Whitenoise do it
-]
+] """
 
 
 # For whitenoise
@@ -27,10 +27,11 @@ COMPRESS_CSS_FILTERS = [
 ]
 COMPRESS_CSS_HASHING_METHOD = 'content'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Let static files be served by whitenoise
-django_heroku.settings(locals())                    # @39:00: https://www.youtube.com/watch?v=6DI_7Zja8Zc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p&index=17
+#django_heroku.settings(locals())                    # @39:00: https://www.youtube.com/watch?v=6DI_7Zja8Zc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p&index=17
 #django_heroku.settings(locals(), staticfiles=False)
 
 
