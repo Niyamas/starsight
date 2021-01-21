@@ -92,6 +92,7 @@
 .article-detail__blocks > p {
   letter-spacing: 1px;
   line-height: 2;
+  word-wrap: break-word;
 }
 
 .article-detail__blocks > div:not(.d-block) {
