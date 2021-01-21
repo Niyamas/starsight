@@ -600,6 +600,7 @@ class Articles {
 
             //let url = 'http://localhost:8000/api/v2/pages/?type=articles.ArticleDetailPage&fields=_,id,title,banner_text,topic,image,html_url,first_published_at&order=-first_published_at&limit=6'
             let url = domainURL + '/api/v2/pages/?type=articles.ArticleDetailPage&fields=_,id,title,banner_text,topic,image,html_url,first_published_at&order=-first_published_at&limit=6'
+            console.log('url:', url)
             this.fetchArticles(url)
         }
     }
