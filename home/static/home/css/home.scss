@@ -5,6 +5,10 @@
         @media only screen and (max-width: 1980px) { @content; }
     }
 
+    @else if $point == 1850 {
+        @media only screen and (max-width: 1850px) { @content; }
+    }
+
     @else if $point == 1700 {
         @media only screen and (max-width: 1700px) { @content; }
     }
@@ -31,6 +35,10 @@
 
     @else if $point == 1000 {
         @media only screen and (max-width: 1000px) { @content; }
+    }
+
+    @else if $point == 970 {
+        @media only screen and (max-width: 970px) { @content; }
     }
 
     @else if $point == 900 {

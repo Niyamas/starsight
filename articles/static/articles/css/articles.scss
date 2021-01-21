@@ -5,7 +5,6 @@
         @media only screen and (max-width: 1980px) { @content; }
     }
 
-    // For article listings page
     @else if $point == 1850 {
         @media only screen and (max-width: 1850px) { @content; }
     }
