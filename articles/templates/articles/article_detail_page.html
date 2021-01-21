@@ -18,7 +18,7 @@
 
 <div class="article-banner">
 
-    {% image self.image fill-900x400 as article_image %}
+    {% image self.image original as article_image %}
     <img class="article-banner__img" src="{{ article_image.url }}" alt="{{ article_image.alt }}">
 
     {% if self.image_credits %}

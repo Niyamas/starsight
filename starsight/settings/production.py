@@ -73,7 +73,7 @@ SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', default=False, cast=bool)
 
 SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=False, cast=bool)
 
-SECURE_REFERRER_POLICY = config('SECURE_REFERRER_POLICY', default=None)
+SECURE_REFERRER_POLICY = config('SECURE_REFERRER_POLICY', default='no-referrer')
 
 SECURE_BROWSER_XSS_FILTER = config('SECURE_BROWSER_XSS_FILTER', default=False, cast=bool)
 
