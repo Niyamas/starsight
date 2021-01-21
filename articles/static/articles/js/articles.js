@@ -65,9 +65,12 @@ class Articles {
                     let date = new Date(article['meta']['first_published_at'])
                     let firstPublishedAt = months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()
 
+                    // Remove the port number from the html_url
                     let articleURL = new URL(article['meta']['html_url'])
                     articleURL.port = ''
-                    let ArticleURLNoPort = articleURL.toString()
+                    articleURL.protocol = 'https:'
+                    let ArticleURLFormatted = articleURL.toString()
+                    console.log('ArticleURLFormatted', ArticleURLFormatted)
     
                     // If the topic is null, return an empty string intead of null.
                     let articleTopic = article['topic']
@@ -100,17 +103,17 @@ class Articles {
                     // Enable for production
                     articleHTML += `
                         <article class="article">
-                            <a href="${ArticleURLNoPort}">
+                            <a href="${ArticleURLFormatted}">
                                 <img class="article__img" src="${article['image']['meta']['download_url']}" alt="">
                             </a>
                     
                             <div class="article__content">
-                                <h2 class="article__content__title"><a href="${ArticleURLNoPort}">${article['title']}</a></h2>
+                                <h2 class="article__content__title"><a href="${ArticleURLFormatted}">${article['title']}</a></h2>
                     
                                 <span class="article__content__topic">${articleTopic}</span>
                                 <span class="article__content__date">${firstPublishedAt}</span>
                     
-                                <a class="article__content__text" href="${ArticleURLNoPort}">${article['banner_text']}</a>
+                                <a class="article__content__text" href="${ArticleURLFormatted}">${article['banner_text']}</a>
                             </div>
                         </article>
                     `
