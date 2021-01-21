@@ -65,7 +65,7 @@ class Articles {
                     let date = new Date(article['meta']['first_published_at'])
                     let firstPublishedAt = months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()
 
-                    // Remove the port number from the html_url
+                    // Remove the port number from the html_url and change http to https
                     let articleURL = new URL(article['meta']['html_url'])
                     articleURL.port = ''
                     articleURL.protocol = 'https:'
