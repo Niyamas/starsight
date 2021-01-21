@@ -2,7 +2,7 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% get_navigation 'main' as navigation_main %}
-{% comment %} {% get_navigation 'footer' as navigation_footer %} {% endcomment %} {% comment %} @todo add footer items and loop through later {% endcomment %}
+{% get_navigation 'footer' as navigation_footer %}
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -217,8 +217,15 @@
         <a class="footer__middle" href="{% slugurl 'home' %}">STARSIGHT</a>
 
         <div class="footer__right">
-            <a class="footer__right__link" href="#">terms of use</a>
-            <a class="footer__right__link" href="#">privacy policy</a>
+
+            {% for footer_link in navigation_footer.navigation_items.all %}
+            
+                <a class="footer__right__link" href="{{ footer_link.link }}">{{ footer_link.link_title }}</a>
+            
+            {% endfor %}
+
+            {% comment %} <a class="footer__right__link" href="#">terms of use</a>
+            <a class="footer__right__link" href="#">privacy policy</a> {% endcomment %}
         </div>
 
     </footer>

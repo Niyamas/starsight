@@ -536,14 +536,19 @@ body {
     background-color: color(footer);
 
     display: flex;
-    justify-content: space-between;
+    //justify-content: space-between;
+    //justify-content: center;
     align-items: center;
 
     &__left {
         margin-left: margin(slim);
 
         display: flex;
+        justify-content: left;
+        flex-grow: 1;
         gap: 25px;
+
+        //border: 1px solid lightgreen;
 
         &__link {
             fill: color(white-text);
@@ -559,6 +564,22 @@ body {
         @include verge(1700) {
             margin-left: margin(super-slim);
         }
+
+        & svg {
+
+            @include verge(900) {
+                width: 25px;
+                height: 25px;
+            }
+        }
+
+        @include verge(900) {
+            gap: 20px;
+        }
+
+        @include verge(777) {
+            flex-direction: column;
+        }
     }
 
     &__middle {
@@ -570,8 +591,14 @@ body {
         transition: color ease-in-out 0.2s;
         will-change: color;
 
+        //border: 1px solid lightgreen;
+
         &:hover {
             color: color(cooler-green) !important;
+        }
+
+        @include verge(900) {
+            font-size: 1.58rem;
         }
     }
 
@@ -579,7 +606,11 @@ body {
         margin-right: margin(slim);
 
         display: flex;
+        justify-content: right;
+        flex-grow: 1;
         gap: 25px;
+
+        //border: 1px solid lightgreen;
 
         &__link {
             font-size: 1.18rem;
@@ -593,10 +624,24 @@ body {
             &:hover {
                 color: color(cooler-green) !important;
             }
+
+            @include verge(900) {
+                font-size: 1rem;
+            }
         }
 
         @include verge(1700) {
             margin-right: margin(super-slim);
+        }
+
+        @include verge(900) {
+            gap: 20px;
+        }
+
+        @include verge(777) {
+            flex-direction: column;
+            //justify-content: right !important;
+            text-align: right;
         }
     }
 }
