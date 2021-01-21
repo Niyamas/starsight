@@ -46,7 +46,7 @@ class RichTextBlock(blocks.RichTextBlock):
         icon = 'doc-full'
         label = 'Full Rich Text'
 
-"""     def __init__(self, required=True, help_text=None, editor='default', features=None, validators=(), **kwargs):
+    def __init__(self, required=True, help_text=None, editor='default', features=None, validators=(), **kwargs):
         super().__init__(**kwargs)
         self.features = [
             'bold',
@@ -54,16 +54,20 @@ class RichTextBlock(blocks.RichTextBlock):
             'h2',
             'h3',
             'h4',
-            'code',
-            'center',
+            'superscript',
+            'subscript',
+            #'center',
             'ol',
             'ul',
             'hr',
             'link',
             'document-link',
             'image',
-            'embed'
-        ] """
+            'embed',
+            'code',
+            'redo',
+            'undo',
+        ]
 
 class SimpleRichTextBlock(blocks.RichTextBlock):
     """Richtext with limited Draftail features."""
