@@ -95,6 +95,12 @@
   overflow-wrap: break-word;
 }
 
+.article-detail__blocks > img {
+  width: 100% !important;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .article-detail__blocks > div:not(.d-block) {
   max-width: 100%;
   height: 450px;

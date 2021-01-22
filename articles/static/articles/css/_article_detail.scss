@@ -137,6 +137,11 @@
             overflow-wrap: break-word;
         }
 
+        & > img {
+            width: 100% !important;
+            object-fit: cover;
+        }
+
         // Style the container div for the iframe
         // There are 2 divs, the one for d-block text-center
         // and the one that houses the iframe.
