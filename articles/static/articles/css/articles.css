@@ -123,6 +123,10 @@
   height: 100%;
 }
 
+.article-detail__blocks .text-center > a {
+  font-size: 0.85rem;
+}
+
 .article-detail__tags {
   margin-top: 1.7rem;
 }

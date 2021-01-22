@@ -169,6 +169,11 @@
             width: 100%;
             height: 100%;
         }
+
+        // Style the centered text to be a smaller font size
+        & .text-center > a {
+            font-size: 0.85rem;
+        }
     }
 
     &__tags {
