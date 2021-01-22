@@ -54,9 +54,11 @@
 .article-banner {
     position: relative;
     margin: 70px auto;
-    display: block;
+
     width: 100%;
     height: 700px;
+
+    display: block;
 
     &__img {
         width: 100%;
@@ -69,14 +71,21 @@
         bottom: 30px;
         right: 30px;
         padding: 12px;
-        pointer-events: none;
+        //pointer-events: none;
 
         background-color: color(featured-text-box);
 
         &__credits {
-            font-size: 0.9rem;
+            font-size: 0.9rem !important;
             //font-weight: 300;
-            color: color(white-text);
+            color: rgb(233, 233, 233) !important;
+
+            transition: color ease-in-out 0.2s;
+            will-change: color;
+
+            &:hover {
+                color: rgb(255, 255, 255) !important;
+            }
         }
     }
 

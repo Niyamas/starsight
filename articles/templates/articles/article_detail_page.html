@@ -23,7 +23,7 @@
 
     {% if self.image_credits %}
         <div class="article-banner__content">
-            <div class="article-banner__content__credits">Image by: {{ self.image_credits }}</div>
+            <a class="article-banner__content__credits" href="{{ page.image_credits_url }}" target="_blank">Image by: {{ page.image_credits }}</a>
         </div>
     {% endif %}
 
@@ -56,6 +56,21 @@
         {% endfor %}
 
     </div>
+
+    {% comment %} <ul class="article-detail__authors">
+    
+        {% for author in page.article_authors.all %}
+
+            {% image author.author.image fill-70x70 as author_image %}
+
+            <li class="article-detail__author">
+                <img class="article-detail__author__img" src="{{ author_image.url }}" alt="{{ author.author.name }}">
+                <span class="article-detail__author__name">{{ author.author.name }}</span>
+            </li>
+        
+        {% endfor %}
+
+    </ul> {% endcomment %}
 
 </div>
 

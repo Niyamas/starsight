@@ -13,9 +13,9 @@
 .article-banner {
   position: relative;
   margin: 70px auto;
-  display: block;
   width: 100%;
   height: 700px;
+  display: block;
 }
 
 .article-banner__img {
@@ -30,13 +30,19 @@
   bottom: 30px;
   right: 30px;
   padding: 12px;
-  pointer-events: none;
   background-color: rgba(48, 50, 63, 0.5);
 }
 
 .article-banner__content__credits {
-  font-size: 0.9rem;
-  color: #ffffff;
+  font-size: 0.9rem !important;
+  color: #e9e9e9 !important;
+  -webkit-transition: color ease-in-out 0.2s;
+  transition: color ease-in-out 0.2s;
+  will-change: color;
+}
+
+.article-banner__content__credits:hover {
+  color: white !important;
 }
 
 @media only screen and (max-width: 1500px) {

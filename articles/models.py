@@ -106,6 +106,7 @@ class ArticleDetailPage(Page):
         related_name='+',
     )
     image_credits = models.CharField(max_length=100, blank=True, null=True, help_text="Acknowledge the image's producer")
+    image_credits_url = models.URLField(max_length=500, blank=True, null=True)
     content = StreamField(
         [
             ('title_and_text', blocks.TitleAndTextBlock()),
@@ -126,7 +127,8 @@ class ArticleDetailPage(Page):
         MultiFieldPanel(
             [
                 ImageChooserPanel('image'),
-                FieldPanel('image_credits')
+                FieldPanel('image_credits'),
+                FieldPanel('image_credits_url')
             ],
             heading='Header Image'
         ),
