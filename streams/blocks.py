@@ -56,7 +56,7 @@ class RichTextBlock(blocks.RichTextBlock):
             'h4',
             'superscript',
             'subscript',
-            #'center',
+            'center',
             'ol',
             'ul',
             'hr',
