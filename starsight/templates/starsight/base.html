@@ -77,7 +77,7 @@
             {% for nav_link in navigation_main.navigation_items.all %}
 
                 <li class="nav__links__li nav__links__li--{{ forloop.counter }}">
-                    <a id="navLink" class="nav__links__link" href="{{ nav_link.link }}" {% if nav_link.open_in_new_tab %} target="_blank" {% endif %}>
+                    <a id="navLink" class="nav__links__link" href="{{ nav_link.link }}" {% if nav_link.open_in_new_tab %} target="_blank" rel="noopener" {% endif %}>
                         {{ nav_link.link_title }}
                     </a>
                 </li>
