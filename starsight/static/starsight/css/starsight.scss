@@ -244,12 +244,14 @@ body {
         width: 70%;
 
         display: flex;
-        gap: 5vw;
+        //gap: 5vw;  // use margin-right on &_li instead. gap is not widely supported yet.
 
         //border: 1px solid green;
 
         &__li {
             height: 100%;
+
+            margin-right: 5vw;
 
             @include verge(1250) {
                 padding-right: margin(super-slim) !important;
@@ -380,7 +382,7 @@ body {
 
             flex-direction: column;
             //justify-content: flex-start;
-            gap: 0px;
+            //gap: 0px;
 
             background-color: white;
 
