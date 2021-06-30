@@ -46,11 +46,11 @@ six==1.16.0
 soupsieve==2.2.1
 sqlparse==0.4.1
 tablib==3.0.0
+telepath==0.2
 traitlets==5.0.5
 Unidecode==1.2.0
 urllib3==1.26.6
 wagtail==2.13.2
-Wand==0.6.6
 wcwidth==0.2.5
 webencodings==0.5.1
 whitenoise==5.2.0
