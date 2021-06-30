@@ -197,6 +197,7 @@ class Articles {
 
         // If there are pages, print the correct pagination objects and if not
         // leave the pagination div blank.
+        // @todo change to > 1 so if there's only 1 page, don't print the pagination object
         if (this.pageTotal !== 0) {
 
             paginationHTML += `

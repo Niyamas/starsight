@@ -18,7 +18,7 @@ from wagtail.snippets.models import register_snippet
 
 
 class NavigationItem(Orderable):
-    """ """
+    """Individual navigation link model."""
 
     link_title = models.CharField(max_length=50, blank=False, null=True)
     link_url = models.CharField(max_length=500, blank=True)
