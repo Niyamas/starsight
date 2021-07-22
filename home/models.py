@@ -35,7 +35,7 @@ class HomePage(RoutablePageMixin, Page):
     default_apod_image = models.ForeignKey('wagtailimages.Image', null=True, blank=False, on_delete=models.SET_NULL, related_name='+')
     default_apod_image_title = models.CharField(max_length=100, null=True, blank=False)
     default_apod_image_credits = models.CharField(max_length=100, null=True, blank=False)
-    default_apod_image_text = RichTextField(features=['bold', 'italic'], max_length=276, null=True, blank=False)
+    default_apod_image_text = RichTextField(features=['bold', 'italic'], max_length=1000, null=True, blank=False)
     default_apod_image_url = models.URLField(null=True, blank=True)
 
     content_panels = Page.content_panels + [

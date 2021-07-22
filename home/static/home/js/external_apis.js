@@ -101,11 +101,12 @@ class ExternalAPIS {
             let options = { year:'numeric', month:'long', day:'numeric' }
             let dateTimeNow = date.toLocaleDateString('en-US', options)
 
-            //let dateTimeNow = ( date.getMonth() + 1) + '-' + date.getDate() + '-' + date.getFullYear()
 
             let apodHTML
 
             if (defaultAPODURL === 'None') {
+
+                // @todo: add the animation and readmore stuff when using default APOD
 
                 // Store HTML image for APOD if the URL set in Wagtail is not defined.
                 // To style Wagtail's rich text, need to place text within a div.
@@ -113,9 +114,15 @@ class ExternalAPIS {
                 apodHTML = `
                     <h3 class="apod__banner">ASTRONOMY PICTURE OF THE DAY</h3>
 
-                    <img class="apod__img" src="${defaultAPOD}" alt=""></img>
+                    <a href="https://apod.nasa.gov/apod/astropix.html" target="_blank">
+                        <img class="apod__img" src="${defaultAPOD}" alt=""></img>
+                    </a>
 
-                    <h3 class="apod__title">${defaultAPODTitle}</h3>
+                    <h3 class="apod__title">
+                        <a href="https://apod.nasa.gov/apod/astropix.html" target="_blank">
+                            ${defaultAPODTitle}
+                        </a>
+                    </h3>
 
                     <span class="apod__copyright">by ${defaultAPODCredits}&nbsp;</span>
 
@@ -134,7 +141,11 @@ class ExternalAPIS {
                         <img class="apod__img" src="${defaultAPOD}" alt=""></img>
                     </a>
 
-                    <h3 class="apod__title">${defaultAPODTitle}</h3>
+                    <h3 class="apod__title">
+                        <a href="${defaultAPODURL}" target="_blank">
+                            ${defaultAPODTitle}
+                        </a>
+                    </h3>
 
                     <span class="apod__copyright">by ${defaultAPODCredits}&nbsp;</span>
 
@@ -212,11 +223,11 @@ class ExternalAPIS {
                 `
             }
             else if (apod.explanation.length > 276 && apodYTCheck === true) {
-
+                // @todo: is picture-in-picture right syntax?
                 apodHTML = `
                     <h3 class="apod__banner">ASTRONOMY PICTURE OF THE DAY</h3>
 
-                    <iframe class="apod__iframe" src="${apod.url}" frameborder="0" picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="apod__iframe" src="${apod.url}" frameborder="0" picture-in-picture allowfullscreen></iframe>
 
                     <h3 class="apod__title">${apod.title}</h3>
 
@@ -237,7 +248,7 @@ class ExternalAPIS {
                 apodHTML = `
                     <h3 class="apod__banner">ASTRONOMY PICTURE OF THE DAY</h3>
 
-                    <iframe class="apod__iframe" src="${apod.url}" frameborder="0" picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="apod__iframe" src="${apod.url}" frameborder="0" picture-in-picture allowfullscreen></iframe>
 
                     <h3 class="apod__title">${apod.title}</h3>
 

@@ -594,7 +594,7 @@ $margins: (
     }
 
     @include verge(1350) {
-        font-size: 1.1rem
+        font-size: 1.1rem;
     }
 
     @include verge(1250) {
@@ -669,7 +669,7 @@ $margins: (
         width: 100%;
 
         &__title {
-            margin-bottom: 5;
+            margin-bottom: 5px;
             line-height: 1.7rem;
 
             a {
