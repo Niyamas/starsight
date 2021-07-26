@@ -39,12 +39,10 @@
     <h1 class="article-detail__title">{{ self.title }}</h1>
     <h2 class="article-detail__subtitle">{{ self.banner_text|richtext }}</h2>
 
-    <div class="article-detail__blocks">
-
+    <div class="blocks">
         {% for block in self.content %}
             {% include_block block %}
         {% endfor %}
-
     </div>
 
     <div class="article-detail__tags">

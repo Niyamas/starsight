@@ -1,0 +1,46 @@
+.blocks__title-and-subtitle
+    margin-top: 3.529rem
+
+    &__title
+        //margin-bottom: 1.176rem
+        margin: 0
+ 
+    &__subtitle
+        //margin: 1.176rem 0
+        margin: 0
+
+        font-size: 1.5rem
+        letter-spacing: 1px
+        line-height: 1.7
+        color: color(text-faded)
+
+.blocks__richtext
+    margin-top: 1.176rem
+
+    & > p
+        letter-spacing: 1px
+        line-height: 2
+        overflow-wrap: break-word
+
+    & > img
+        width: 100%
+        object-fit: cover
+
+    // Style the container div for the iframe
+    // There are 2 divs, the one for d-block text-center
+    // and the one that houses the iframe.
+    // Set rich text video embed to max-width of 100%.
+    & > div:not(.d-block)
+        max-width: 100%
+
+    // Style the embedded video iframe element. Set embed height.
+    & div > iframe
+        width: 100%
+        height: 450px
+
+        @include verge(777)
+            height: 350px
+
+    // Style the centered text to be a smaller font size
+    & .text-center > a
+        font-size: 0.85rem

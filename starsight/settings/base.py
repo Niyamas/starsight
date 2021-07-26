@@ -30,7 +30,6 @@ SECRET_KEY = config('SECRET_KEY')
 INSTALLED_APPS = [
     'home',
     'search',
-    'flex',
     
     # Additions
     'streams',

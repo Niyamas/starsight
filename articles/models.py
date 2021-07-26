@@ -39,6 +39,8 @@ class ArticleListingPage(Page):
 
     template = 'articles/article_listing_page.html'
     max_count = 1
+    parent_page_types = ['home.HomePage']
+    subpage_types = ['articles.ArticleDetailPage', 'articles.VideoArticlePage', 'ArticleDetailPageStrange']
 
     custom_title = models.CharField(max_length=100, blank=True, null=True, help_text='Overwrites the default title')
 
@@ -95,6 +97,8 @@ class ArticleDetailPage(Page):
     """Article detail page."""
 
     template = 'articles/article_detail_page.html'
+    parent_page_types = ['articles.ArticleListingPage']
+    subpage_types = []
 
     banner_text = RichTextField(features=['bold', 'italic'], max_length=200, null=True, blank=False)
     topic = models.ForeignKey('articles.ArticleTopic', null=True, blank=True, on_delete=models.SET_NULL)
@@ -109,7 +113,7 @@ class ArticleDetailPage(Page):
     image_credits_url = models.URLField(max_length=500, blank=True, null=True)
     content = StreamField(
         [
-            ('title_and_text', blocks.TitleAndTextBlock()),
+            ('title_and_subtitle', blocks.TitleAndSubtitleBlock()),
             ('full_richtext', blocks.RichTextBlock()),
             ('simple_richtext', blocks.SimpleRichTextBlock()),
             ('cards', blocks.CardBlock()),
@@ -168,6 +172,8 @@ class VideoArticlePage(ArticleDetailPage):
     """
 
     template = 'articles/video_article_page.html'
+    parent_page_types = ['articles.ArticleListingPage']
+    subpage_types = []
 
     youtube_video_id = models.CharField(max_length=30)
 
@@ -193,6 +199,8 @@ class ArticleDetailPageStrange(ArticleDetailPage):
     """Inherits from ArticleDetailPage"""
 
     template = 'articles/article_detail_page_strange.html'
+    parent_page_types = ['articles.ArticleListingPage']
+    subpage_types = []
 
     strange_quote = models.CharField(max_length=100, null=True, blank=True, help_text='Add a strange quote you know!')
 
@@ -245,6 +253,8 @@ class ArticleAuthor(models.Model):
     """
     Article author for snippets using
     vanilla Django models.
+
+    @todo: add author website as a field. Advertise portfolio?!!
     """
 
     name = models.CharField(max_length=100)

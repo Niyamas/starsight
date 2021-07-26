@@ -4,16 +4,15 @@ from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
 
 
-class TitleAndTextBlock(blocks.StructBlock):
-    """Title and text block."""
-
+class TitleAndSubtitleBlock(blocks.StructBlock):
+    """Title and subtitle block."""
     title = blocks.CharBlock(required=True, help_text='Add your title')
-    text = blocks.TextBlock(required=True, help_text='Add additional text')
+    subtitle = blocks.CharBlock(required=False, help_text='Add your subtitle')
 
     class Meta:
-        template = 'streams/title_and_text_block.html'
-        icon = 'edit'
-        label = 'Title & Text'
+        template = 'streams/title_and_subtitle_block.html'
+        icon = 'title'
+        label = 'Title & Subtitle'
 
 
 class CardBlock(blocks.StructBlock):

@@ -54,8 +54,8 @@
 
 <script>
     let articlesURL = "{% slugurl 'articles' %}"
-    let domainURL = 'https://' + '{{ request.get_host }}'
-    //console.log('domainURL=', domainURL)
+    let domainURL = 'http://' + '{{ request.get_host }}'
+    console.log('domainURL=', domainURL)
 </script>
 
 <script defer type="text/javascript" src="{% static 'articles/js/articles.js' %}"></script>

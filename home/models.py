@@ -23,6 +23,8 @@ class HomePage(RoutablePageMixin, Page):
 
     templates = 'home/home_page.html'
     max_count = 1                       # Max number of home pages will be 1
+    parent_page_types = ['wagtailcore.page']
+    subpage_types = ['articles.ArticleListingPage']
 
     hero_image = models.ForeignKey(
         'wagtailimages.Image',

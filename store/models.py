@@ -22,6 +22,8 @@ class StoreListingPage(Page):
 
     template = 'store/store_listing_page.html'
     max_count = 1
+    parent_page_types = ['home.HomePage']
+    subpage_types = ['store.StoreItemPage', 'store.StoreApparelPage']
 
     custom_title = models.CharField(max_length=100, blank=True, null=True, help_text='Overwrites the default title')
 
