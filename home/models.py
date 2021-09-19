@@ -9,7 +9,7 @@ from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 
 from modelcluster.fields import ParentalKey
 
-from streams import blocks
+#from streams import blocks
 from articles.models import (
     ArticleDetailPage,
     ArticleAuthor

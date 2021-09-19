@@ -1,5 +1,6 @@
 """For Streamfields."""
 
+#from typing_extensions import Required
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
 
@@ -13,28 +14,6 @@ class TitleAndSubtitleBlock(blocks.StructBlock):
         template = 'streams/title_and_subtitle_block.html'
         icon = 'title'
         label = 'Title & Subtitle'
-
-
-class CardBlock(blocks.StructBlock):
-    """Cards with image, text and buttons."""
-
-    title = blocks.CharBlock(required=True, help_text='Add your title')
-    cards = blocks.ListBlock(
-        blocks.StructBlock(
-            [
-                ('image', ImageChooserBlock(required=True)),
-                ('title', blocks.CharBlock(required=True, max_length=40)),
-                ('text', blocks.TextBlock(required=True, max_length=200)),
-                ('button_page', blocks.PageChooserBlock(required=False)),
-                ('button_url', blocks.URLBlock(required=False, help_text='If the button page above is selected, that will be used instead of the button URL.')),
-            ]
-        )
-    )
-
-    class Meta:
-        template = 'streams/card_block.html'
-        icon = 'placeholder'
-        label = 'Staff Cards'
 
 
 class RichTextBlock(blocks.RichTextBlock):
@@ -67,6 +46,99 @@ class RichTextBlock(blocks.RichTextBlock):
             'redo',
             'undo',
         ]
+
+class GalleryBlock(blocks.StructBlock):
+    """Image gallery block."""
+
+    title = blocks.CharBlock(required=False)
+    gallery = blocks.ListBlock(
+        blocks.StructBlock(
+            [
+                ('image', ImageChooserBlock(required=True)),
+                ('title', blocks.CharBlock(required=False))
+            ],
+            icon = 'image'
+        )
+    )
+
+    class Meta:
+        template = 'streams/gallery_block.html'
+        icon = 'image'
+        label = 'Gallery'
+
+
+
+
+
+
+
+
+
+
+
+class ReferencesBlock(blocks.StructBlock):
+    """References block."""
+    
+    references = blocks.ListBlock(
+        blocks.StructBlock(
+            [
+               #blocks.URLBlock(required=False, help_text='Enter the URL for your reference')
+               ('reference', blocks.CharBlock(required=True, help_text='For APA-style references, visit: https://www.citationmachine.net/apa')),
+               ('url', blocks.URLBlock(required=False))
+            ],
+            icon = 'link'
+        )
+    )
+
+    class Meta:
+        template = 'streams/references_block.html'
+        icon = 'doc-full'
+        label = 'References'
+        #help_text='Add APA-style references to your page'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class CardBlock(blocks.StructBlock):
+    """Cards with image, text and buttons."""
+
+    title = blocks.CharBlock(required=True, help_text='Add your title')
+    cards = blocks.ListBlock(
+        blocks.StructBlock(
+            [
+                ('image', ImageChooserBlock(required=True)),
+                ('title', blocks.CharBlock(required=True, max_length=40)),
+                ('text', blocks.TextBlock(required=True, max_length=200)),
+                ('button_page', blocks.PageChooserBlock(required=False)),
+                ('button_url', blocks.URLBlock(required=False, help_text='If the button page above is selected, that will be used instead of the button URL.')),
+            ]
+        )
+    )
+
+    class Meta:
+        template = 'streams/card_block.html'
+        icon = 'placeholder'
+        label = 'Staff Cards'
+
+
+
 
 class SimpleRichTextBlock(blocks.RichTextBlock):
     """Richtext with limited Draftail features."""

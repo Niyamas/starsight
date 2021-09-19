@@ -24,7 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     {# Global stylesheets #}
-    <link rel="stylesheet" type="text/css" href="{% static 'starsight/css/starsight.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'starsight/scss/starsight.css' %}">
 
     <!-- Bootstrap 5 beta CSS (https://getbootstrap.com/docs/5.0/getting-started/introduction/) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
@@ -63,10 +63,7 @@
     </nav> {% endcomment %}
     
 
-
-
-
-    <nav id="nav" class="nav">
+    <nav id="nav" class="nav no-select">
 
         <a class="nav__starsight" href="{% slugurl 'home' %}"><h1 id="navStarsight">STARSIGHT</h1></a>
 
@@ -97,20 +94,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 {% comment %}     <div class="hero">
 
         {% image settings.site_settings.StarsightSettings.hero_image original as hero_img %}
@@ -127,20 +110,6 @@
         </p>
 
     </div> {% endcomment %}
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -172,7 +141,7 @@
     {% endblock %}
 
 
-    <footer class="footer">
+    <footer class="footer no-select">
 
         <div class="footer__left">
 

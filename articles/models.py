@@ -115,6 +115,8 @@ class ArticleDetailPage(Page):
         [
             ('title_and_subtitle', blocks.TitleAndSubtitleBlock()),
             ('full_richtext', blocks.RichTextBlock()),
+            ('gallery', blocks.GalleryBlock()),
+            ('references', blocks.ReferencesBlock()),
             ('simple_richtext', blocks.SimpleRichTextBlock()),
             ('cards', blocks.CardBlock()),
             ('cta', blocks.CTABlock()),

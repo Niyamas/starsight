@@ -1,0 +1,21 @@
+@use 'colors';
+@use 'spacings';
+
+
+// Gets non-nested values
+@function get-color($color-name) {
+    @return map-get(colors.$colors, $color-name)
+};
+
+// Gets nested values
+@function get-deep-color($color-name, $color-name-nested) {
+    @return map-get(colors.$colors, $color-name, $color-name-nested)
+};
+
+@function get-spacing($spacing-name) {
+    @return map-get(spacings.$spacings, $spacing-name)
+};
+
+@function get-deep-spacing($spacing-name, $spacing-name-nested:'') {
+    @return map-get(spacings.$spacings, $spacing-name, unquote($spacing-name-nested))
+};

@@ -1,0 +1,21 @@
+{% load wagtailimages_tags %}
+{% load random_1_2_3 %}
+
+<div class="block__gallery">
+
+    {% if self.title %}
+        <h2 class="block__gallery__title">{{ self.title }}</h2>
+    {% endif %}
+
+    <div class="block__gallery__div">
+        {% for image in self.gallery %}
+
+            {% image image.image original as img %}
+
+            <img class="block__gallery__div__img block__gallery__div__img--{% random_1_2_3 %}" src="{{ img.url }}" alt="{{ img.alt }}">
+
+        {% endfor %}
+    </div>
+
+
+</div>

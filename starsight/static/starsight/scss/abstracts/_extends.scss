@@ -1,0 +1,13 @@
+@use 'functions';
+
+
+%hamburger_style {
+    //
+    //https://www.youtube.com/watch?v=dIyVTjJAkLw
+    //
+
+    width: 40px;
+    height: 2px;
+    background: functions.get-deep-color('text', 'dark') !important;
+    border-radius: 5px;
+}

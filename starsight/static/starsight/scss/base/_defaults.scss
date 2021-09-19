@@ -1,0 +1,71 @@
+@use '../abstracts';
+
+
+// Default CSS for blank canvas start
+* {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none !important;       // Bootstrap needs !important to remove link underline on hover */
+}
+
+// Apply border-box as default: https://css-tricks.com/international-box-sizing-awareness-day/
+// https://css-tricks.com/box-sizing/
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;    
+    box-sizing: border-box;
+
+    font-size: 17px;                // Default font-size 16px -> 17px. 1rem = 17px.
+    scroll-behavior: smooth;        // Smooth scroll for anchor links: https://gomakethings.com/how-to-animate-scrolling-to-anchor-links-with-one-line-of-css/
+
+    // For firefox scrollbar styling
+    scrollbar-color: abstracts.get-color('scrollbar') abstracts.get-deep-color('background', 'scrollbar');
+    scrollbar-width: thin !important;
+
+    // For other browsers scrollbar styling
+    &::-webkit-scrollbar {
+        width: 0.6rem;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: abstracts.get-deep-color('background', 'scrollbar');
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: abstracts.get-color('scrollbar');
+    }
+
+    @include abstracts.verge(1980) {
+        font-size: 16px;
+    }
+
+    @include abstracts.verge(1500) {
+        font-size: 14px;
+    }
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box; 
+    box-sizing: border-box;
+}
+
+// Change blue hyperlink color to its parent color
+a, a:hover, a:active {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+// Remove extra space below ul element
+ul {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+body {
+    background-color: abstracts.get-deep-color('background', 'body');
+    color: abstracts.get-deep-color('text', 'dark');
+}

@@ -1,0 +1,83 @@
+@use '../abstracts';
+
+
+.nav__ham-house {
+    position: absolute;
+    z-index: 6;
+    top: 0;
+    right: abstracts.get-spacing('md');
+    width: 40px;
+    height: 70px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    cursor: pointer;
+    transition: height ease-in-out 0.15s, width ease-in-out 0.15s;
+
+    &.sticky {
+        height: 55px;
+    }
+
+    &.sticky.open {
+        width: 30px;
+    }
+
+    @include abstracts.verge(desktop) {
+        display: none;
+    }
+
+    &__hamburger {
+        @extend %hamburger_style;
+        position: relative;
+        transition: all 0.27s ease-in-out;
+        will-change: background;
+
+        &.open {
+            transform: translateX(-50px);
+            background-color: abstracts.get-color('transparent') !important;
+        }
+
+        &.sticky.open {
+            width: 30px;
+        }
+
+        &__top {
+            @extend %hamburger_style;
+            position: absolute;
+            transform: translateY(-11px);
+            transition: transform 0.15s ease-in-out, width 0.15s ease-in-out;
+
+            &.sticky {
+                transform: translateY(-7px);
+            }
+
+            &.open {
+                transform: rotate(45deg) translate(35px, -35px);
+            }
+
+            &.sticky.open {
+                width: 30px;
+            }
+        }
+
+        &__bottom {
+            position: absolute;
+            @extend %hamburger_style;
+
+            transform: translateY(11px);
+            transition: transform 0.15s ease-in-out, width 0.15s ease-in-out;
+
+            &.sticky {
+                transform: translateY(7px);
+            }
+
+            &.open {
+                transform: rotate(-45deg) translate(35px, 35px);
+            }
+
+            &.sticky.open {
+                width: 30px;
+            }
+        }
+    }
+}

@@ -1,12 +1,10 @@
-.blocks__title-and-subtitle
+.block__title-and-subtitle
     margin-top: 3.529rem
 
     &__title
-        //margin-bottom: 1.176rem
         margin: 0
  
     &__subtitle
-        //margin: 1.176rem 0
         margin: 0
 
         font-size: 1.5rem
@@ -14,8 +12,13 @@
         line-height: 1.7
         color: color(text-faded)
 
-.blocks__richtext
+.block__richtext
     margin-top: 1.176rem
+
+    & > h2,
+    & > h3,
+    & > h4
+        margin-bottom: 1.176rem
 
     & > p
         letter-spacing: 1px
@@ -44,3 +47,55 @@
     // Style the centered text to be a smaller font size
     & .text-center > a
         font-size: 0.85rem
+
+.block__references
+    //margin-top: 1.176rem
+    margin-top: 3.529rem
+
+    &__reference
+        display: flex
+        width: 100%
+        
+        &:not(:last-child)
+            margin-bottom: 1rem
+
+        &__counter
+            margin-right: 1rem
+            letter-spacing: 1px
+            line-height: 2
+            overflow-wrap: break-word
+
+        &__url
+            min-width: 0
+
+            letter-spacing: 1px
+            line-height: 2
+            overflow-wrap: break-word
+
+.block__gallery
+    margin-top: 3.529rem
+
+    &__title
+        margin-bottom: 1.176rem
+
+    &__div
+        display: grid
+        grid-template-columns: repeat(3, 1fr)
+        grid-auto-rows: 100px 300px
+        grid-gap: 7px
+    
+        &__img
+            width: 100%
+            height: 100%
+            object-fit: cover
+            object-position: 50% 50%
+            cursor: pointer
+
+            &--1
+                grid-column: span 1
+
+            &--2
+                grid-column: span 2
+            
+            &--3
+                grid-column: span 3

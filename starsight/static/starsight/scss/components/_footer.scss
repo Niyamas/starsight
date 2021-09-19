@@ -1,0 +1,103 @@
+@use '../abstracts';
+
+
+.footer {
+    margin-top: 200px;
+    height: 350px;
+    background-color: abstracts.get-deep-color('background', 'footer');
+    display: flex;
+    align-items: center;
+
+    &__left {
+        margin-left: abstracts.get-spacing('lg');
+        display: flex;
+        justify-content: left;
+        flex-grow: 1;
+        gap: 25px;
+
+        @include abstracts.verge(1700) {
+            margin-left: abstracts.get-spacing('md');
+        }
+
+        @include abstracts.verge(900) {
+            gap: 20px;
+        }
+
+        @include abstracts.verge(777) {
+            flex-direction: column;
+        }
+
+        &__link {
+            fill: abstracts.get-deep-color('text', 'light');
+            transition: fill ease-in-out 0.2s;
+            will-change: fill;
+
+            &:hover {
+                fill: abstracts.get-deep-color('text', 'flourish');
+            }
+        }
+
+        & svg {
+
+            @include abstracts.verge(900) {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    }
+
+    &__middle {
+        font-size: 1.76rem;
+        font-weight: 300;
+        letter-spacing: 5px;
+        color: abstracts.get-deep-color('text', 'light') !important;
+        transition: color ease-in-out 0.2s;
+        will-change: color;
+
+        &:hover, &:active {
+            color: abstracts.get-deep-color('text', 'flourish') !important;
+        }
+
+        @include abstracts.verge(900) {
+            font-size: 1.58rem;
+        }
+    }
+
+    &__right {
+        margin-right: abstracts.get-spacing('lg');
+        display: flex;
+        justify-content: right;
+        flex-grow: 1;
+        gap: 25px;
+
+        @include abstracts.verge(1700) {
+            margin-right: abstracts.get-spacing('md');
+        }
+
+        @include abstracts.verge(900) {
+            gap: 20px;
+        }
+
+        @include abstracts.verge(777) {
+            flex-direction: column;
+            text-align: right;
+        }
+
+        &__link {
+            font-size: 1.18rem;
+            font-weight: 300;
+            letter-spacing: 1.2px;
+            color: abstracts.get-deep-color('text', 'light') !important;
+            transition: color ease-in-out 0.2s;
+            will-change: color;
+
+            &:hover {
+                color: abstracts.get-deep-color('text', 'flourish') !important;
+            }
+
+            @include abstracts.verge(900) {
+                font-size: 1rem;
+            }
+        }
+    }
+}

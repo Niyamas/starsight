@@ -1,0 +1,9 @@
+<div class="block__references">
+    <h3>References</h3>
+    {% for reference in self.references %}
+        <div class="block__references__reference">
+            <a class="block__references__reference__counter" href="{{ reference.url }}" target="_blank">[{{ forloop.counter }}]</a>
+            <a class="block__references__reference__url" href="{{ reference.url }}" target="_blank">{{ reference.reference }}</a>
+        </div>
+    {% endfor %}
+</div>
