@@ -5,9 +5,21 @@
     //
     //https://www.youtube.com/watch?v=dIyVTjJAkLw
     //
-
     width: 40px;
     height: 2px;
     background: functions.get-deep-color('text', 'dark') !important;
-    border-radius: 5px;
+}
+
+%starsight-btn {
+    padding: 0.7rem 1.2rem;
+    color: functions.get-deep-color('text', 'light') !important;
+    background-color: functions.get-deep-color('text', 'flourish');
+    border-color: functions.get-deep-color('text', 'flourish');
+    transition: color 0.4s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.4s cubic-bezier(0.22, 1, 0.36, 1) !important;
+
+    &:hover, &:focus, &:active {
+        color: functions.get-deep-color('text', 'light') !important;
+        background-color: functions.get-deep-color('text', 'light-flourish');
+        border-color: functions.get-deep-color('text', 'light-flourish');
+    }
 }

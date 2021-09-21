@@ -12,18 +12,19 @@
     left: 0;
     z-index: 7;
     margin-bottom: 0;
-
     width: 100%;
     height: 70px;
-
-    background-color: abstracts.get-deep-color('background', 'nav');
-
     display: flex;
     align-items: center;
     justify-content: flex-start;
-
+    background-color: abstracts.get-deep-color('background', 'nav');
     transition: height ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
     will-change: height, box-shadow;
+
+    &.sticky {
+        height: 55px;
+        box-shadow: 0px 1px 5px rgb(207, 207, 207);
+    }
 
     &__starsight {
         margin-left: abstracts.get-spacing('lg');
@@ -31,12 +32,15 @@
         display: flex;
         align-items: center;
 
+        @include abstracts.verge(1700) {
+            margin-left: abstracts.get-spacing('md');
+        }
+
         & h1 {
             margin-bottom: 0;
             font-size: 1.76rem;
             font-weight: 300;
             letter-spacing: 5px;
-
             transition: color ease-in-out 0.2s, font-size ease-in-out 0.15s;
             will-change: color, font-size;
 
@@ -48,24 +52,46 @@
                 font-size: 1.5rem;
             }
         }
-
-        @include abstracts.verge(1700) {
-            margin-left: abstracts.get-spacing('md');
-        }
     }
 
     &__links {
         margin-left: 5vw !important;
-
         height: 100%;
         width: 70%;
-
         display: flex;
         //gap: 5vw;  // use margin-right on &_li instead. gap is not widely supported yet.
 
+        // For ham house
+        @include abstracts.verge(1250) {
+            position: absolute;
+            z-index: 6;
+            top: 0;
+            right: 0;
+            margin-left: 0;
+            width: 290px;
+            height: 100vh;
+            flex-direction: column;
+            background-color: abstracts.get-deep-color('background', 'nav') !important;
+            opacity: 0;
+            pointer-events: none;
+
+            box-shadow:                                     // Ty: https://css-tricks.com/make-a-smooth-shadow-friend/
+                0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+                0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+                0 12.5px 10px rgba(0, 0, 0, 0.06),
+                0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+                0 41.8px 33.4px rgba(0, 0, 0, 0.086);
+
+            &.open {
+                opacity: 1;
+                pointer-events: auto;
+                transition: opacity ease-in-out 0.2s;
+                will-change: opacity;
+            }
+        }
+
         &__li {
             height: 100%;
-
             margin-right: 5vw;
 
             @include abstracts.verge(1250) {
@@ -82,7 +108,6 @@
                     margin-top: 70px;
 
                     &.sticky {
-
                         margin-top: 55px;
                     }
                 }
@@ -150,7 +175,6 @@
 
                 @include abstracts.verge(1250) {
                     font-size: 1.3rem;
-                    
                 }
             }
 
@@ -164,39 +188,5 @@
             }
 
         }
-
-        // For ham house
-        @include abstracts.verge(1250) {
-            position: absolute;
-            z-index: 6;
-            top: 0;
-            right: 0;
-            margin-left: 0;
-            width: 290px;
-            height: 100vh;
-            flex-direction: column;
-            background-color: abstracts.get-deep-color('background', 'nav') !important;
-            opacity: 0;
-            pointer-events: none;
-
-            box-shadow:                                     // Ty: https://css-tricks.com/make-a-smooth-shadow-friend/
-                0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-                0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-                0 12.5px 10px rgba(0, 0, 0, 0.06),
-                0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-                0 41.8px 33.4px rgba(0, 0, 0, 0.086);
-
-            &.open {
-                opacity: 1;
-                pointer-events: auto;
-                transition: opacity ease-in-out 0.2s;
-                will-change: opacity;
-            }
-        }
-    }
-
-    &.sticky {
-        height: 55px;
-        box-shadow: 0px 1px 5px rgb(207, 207, 207);
     }
 }

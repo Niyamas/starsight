@@ -2,27 +2,19 @@
 {% load static %}       <!-- Remove after removing article images -->
 {% load wagtailcore_tags wagtailimages_tags wagtailroutablepage_tags %}
 
-
 {% block body_class %}template-homepage{% endblock %}
 
-
 {% block extra_css %}
-
-<link rel="stylesheet" href="{% static 'home/css/home.css' %}">
-
+<link rel="stylesheet" href="{% static 'home/scss/home.css' %}">
 {% endblock extra_css %}
 
 
 {% block head_js %}
-
 <!-- Preload scripts -->
 <link rel="preload" as="script" href="{% static 'home/js/external_apis.js' %}">
-
 {% endblock head_js %}
 
-
 {% block content %}
-
 
 <div class="hero">
 
@@ -40,7 +32,6 @@
     </p>
 
 </div>
-
 
 <div class="home-grid">
 
@@ -133,7 +124,7 @@
 
     {% endfor %}
 
-    <a class="more-grid__btn starsight-btn btn btn-primary shadow-none no-select" href="{% slugurl 'articles' %}">Read more articles</a>
+    <a class="more-grid__btn no-select" href="{% slugurl 'articles' %}">Read more articles</a>
 
 </div>
 

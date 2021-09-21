@@ -1,0 +1,88 @@
+@use '../../../../../starsight/static/starsight/scss/abstracts';
+
+
+.hero {
+    position: relative;
+    margin-top: 70px;
+    width: 100%;
+    height: 700px;
+
+    &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__text-left {
+        position: absolute;
+        top: 30%;
+        left: abstracts.get-spacing('lg');
+
+        font-size: 1.47rem;
+        font-weight: 400;
+        letter-spacing: 5px;
+        line-height: 2;
+        color: abstracts.get-deep-color('text', 'light');
+
+        pointer-events: none;
+
+        @include abstracts.verge(1700) {
+            left: abstracts.get-spacing('md');
+        }
+
+        @include abstracts.verge(1250) {
+            top: 25%;
+        }
+
+        @include abstracts.verge(1000) {
+            font-size: 1.3rem;
+        }
+
+        @include abstracts.verge(900) {
+            font-size: 1.1rem;
+        }
+
+        @include abstracts.verge(777) {
+            width: 364px;
+            top: 20%;
+        }
+    }
+
+    &__text-right {
+        position: absolute;
+        top: 45%;
+        right: calc( #{abstracts.get-spacing('lg')} + 3vw );
+
+        font-size: 4.12rem;
+        font-weight: 700;
+        letter-spacing: 15px;
+        color: abstracts.get-deep-color('text', 'light');
+
+        pointer-events: none;
+
+        @include abstracts.verge(1700) {
+            right: calc( #{abstracts.get-spacing('md')} + 3vw );
+        }
+
+        @include abstracts.verge(1250) {
+            top: 50%;
+        }
+
+        @include abstracts.verge(1000) {
+            font-size: 3.95rem;
+            top: 55%;
+        }
+
+        @include abstracts.verge(900) {
+            font-size: 3.4rem;
+        }
+
+        @include abstracts.verge(777) {
+            top: 50%;
+        }
+    }
+
+    @include abstracts.verge(777) {
+        height: 500px;
+    }
+}

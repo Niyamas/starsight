@@ -1,0 +1,169 @@
+@use '../../../../../starsight/static/starsight/scss/abstracts';
+
+
+.home-grid {
+    margin: 70px abstracts.get-spacing('lg') 0 abstracts.get-spacing('lg');
+    height: auto;
+    display: grid;
+    grid-template-rows: fit-content(1.5fr) fit-content(1fr);
+    grid-template-columns: 2.37fr 1fr;
+    grid-template-areas:
+        "featured-row-1   widgets"
+        "featured-row-2   widgets";
+    grid-row-gap: 70px;
+    grid-column-gap: 140px;
+
+    @include abstracts.verge(1980) {
+        grid-template-columns: 2.2fr 1fr;
+        grid-column-gap: 120px;
+    }
+
+    @include abstracts.verge(1700) {
+        margin: 70px abstracts.get-spacing('md') 0 abstracts.get-spacing('md');
+        grid-template-columns: 2fr 1fr;
+        grid-column-gap: 100px;
+    }
+
+    @include abstracts.verge(1250) {
+        grid-template-rows: fit-content(1fr) fit-content(2fr);
+        grid-template-columns: 1.7fr 1fr;
+        grid-column-gap: 70px;
+    }
+
+    @include abstracts.verge(1100) {
+        margin: 70px abstracts.get-spacing('md') 0px abstracts.get-spacing('md');
+        grid-template-rows: 1fr fit-content(2fr) 1fr;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "featured-row-1"
+            "featured-row-2"
+            "widgets";
+    }
+
+    &__widgets {
+        position: relative;
+        grid-area: widgets;
+
+        @include abstracts.verge(1100) {
+            
+            &.move-up {
+                top: -70px;
+            }
+        }
+    }
+
+    &__nested {
+        grid-area: featured-row-2;
+        height: auto;
+        display: grid;
+        grid-template-rows: fit-content(1fr);
+        grid-template-columns: 2fr 1fr;
+        grid-column-gap: 60px;
+
+        @include abstracts.verge(1700) {
+            grid-template-columns: 1.65fr 1fr;
+        }
+
+        @include abstracts.verge(1500) {
+            grid-template-columns: 1.4fr 1fr;
+            grid-column-gap: 50px;
+        }
+
+        @include abstracts.verge(1250) {
+            grid-template-rows: fit-content(400px) fit-content(400px);
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+.featured-article {
+    position: relative;
+    height: 100%;
+
+    &--0 {
+        height: 600px;
+
+        @include abstracts.verge(1250) {
+            height: 400px;
+        }
+    }
+
+    &--1, &--2 {
+        height: 400px;
+    }
+
+    &--2 {
+        
+        @include abstracts.verge(1250) {
+            margin-top: 70px;
+        }
+    }
+
+    &__top {
+        position: absolute;
+        top: -30px;
+        left: 0px;
+
+        &__topic {
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            color: abstracts.get-deep-color('text', 'flourish') !important;
+            transition: color ease-in-out 0.2s;
+            will-change: color;
+    
+            &:hover {
+                color: abstracts.get-deep-color('text', 'light-flourish') !important;
+            }
+        }
+    
+        &__date {
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: abstracts.get-deep-color('text', 'dark');
+        }
+    }
+
+    &__img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 2px;
+    }
+
+    &__content {
+        position: absolute;
+        bottom: 30px;
+        left: 30px;
+        padding: 20px;
+        max-width: 40%;
+        background-color: abstracts.get-deep-color('background', 'featured-text-box');
+        border-radius: 2px;
+        pointer-events: none;
+
+        @include abstracts.verge(1250) {
+            max-width: 70%;
+        }
+
+        &--2 {
+            max-width: 70%;
+        }
+
+        &__title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: abstracts.get-deep-color('text', 'light');
+        }
+
+        &__text p {
+            margin-bottom: 0;
+            font-weight: 300;
+            letter-spacing: 1.2px;
+            color: abstracts.get-deep-color('text', 'light');
+        }
+    }
+}

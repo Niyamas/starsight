@@ -10,7 +10,9 @@ $colors: (
         'body': #f5f5f5,
         'nav': #ffffff,
         'footer': #30323F,
-        'scrollbar': #f5f5f5
+        'scrollbar': #f5f5f5,
+        'featured-text-box': rgba(48, 50, 63, 0.5),
+        'apod-fade': linear-gradient(to bottom, rgba(255,255,255,0.001), #fff 70%)
     ),
     'scrollbar': #4FC0C0,
     'transparent': transparent
