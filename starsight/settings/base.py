@@ -171,9 +171,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-
-
-
 #DJANGO_SETTINGS_MODULE = config('DJANGO_SETTINGS_MODULE')
 
 

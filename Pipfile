@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-wagtail = "==2.14.1"
+wagtail = "==2.15.1"
 Django = "==3.2.5"
 psycopg2 = "==2.9.1"
 python-decouple = "==3.4"
@@ -26,7 +26,7 @@ decorator = "==4.4.2"
 dj-database-url = "==0.5.0"
 django-extensions = "==3.1.0"
 django-filter = "==2.4.0"
-django-modelcluster = "==5.1"
+django-modelcluster = "==5.2"
 django-taggit = "==1.5.0"
 django-treebeard = "==4.5.1"
 djangorestframework = "==3.12.4"
